@@ -16,7 +16,7 @@ public class Drivetrain extends Subsystem {
 	private CANTalon rightMiddle = new CANTalon(0);
 	private CANTalon rightBack = new CANTalon(0);
 	
-	public void setSpeed(double left, double right){
+	public void tankDrive(double left, double right){
 		leftFront.set(left);
 		leftBack.set(left);
 		leftMiddle.set(left);
