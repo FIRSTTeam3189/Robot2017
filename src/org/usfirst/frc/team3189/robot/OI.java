@@ -4,19 +4,26 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * Provides a map for all operator interfaces
+ * @author Damon Wagenknecht
+ *
  */
 public class OI {
 	private Joystick leftjoystick = new Joystick(0);
 	private Joystick rightjoystick = new Joystick(1);
-	private Joystick launcherjoystick = new Joystick(2);//TODO what launcher?
+	private Joystick grabjoystick = new Joystick(2);
 
-	public double getLeftY() {//TODO DOCUMENTATION
+	public double getLeftY() {
+		/**
+		 * Sets the left joystick to get the Y axis
+		 */
 		return leftjoystick.getY();
 	}
 
 	public double getRightY() {
+		/**
+		 * Sets the right joystick to get the Y axis
+		 */
 		return rightjoystick.getY();
 	}
 }
