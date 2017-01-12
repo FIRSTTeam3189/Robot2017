@@ -8,10 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
  * Drives the robot
  *@author Deez Nuts and Alex and Harambe
  */
+
 public class TankDrive extends Command {
-/**
- * 
- */
 	public TankDrive() {
 		/**
 		 * Uses the Robots drivetrain's subsystem
