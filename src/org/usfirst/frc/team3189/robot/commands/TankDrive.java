@@ -9,9 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *@author Deez Nuts and Alex and Harambe
  */
 public class TankDrive extends Command {// TODO fill in java doc
-/**
- * 
- */
 	public TankDrive() {
 		/**
 		 * Uses the Robots drivetrain's subsystem
