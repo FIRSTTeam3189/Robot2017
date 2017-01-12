@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * Drives the robot
  *@author Deez Nuts and Alex and Harambe
  */
-public class TankDrive extends Command {// TODO fill in java doc
+public class TankDrive extends Command {
 /**
  * 
  */

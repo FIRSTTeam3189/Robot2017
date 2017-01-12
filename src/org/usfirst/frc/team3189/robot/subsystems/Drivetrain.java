@@ -4,6 +4,7 @@ import org.usfirst.frc.team3189.robot.commands.TankDrive;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,6 +16,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drivetrain extends Subsystem {
 
 	private CANTalon leftFront = new CANTalon(2);
+	/**
+	 * The {@link SpeedController} for the left front motor of the {@link Drivetrain}
+	 */
 	private CANTalon leftMiddle = new CANTalon(1);
 	private CANTalon leftBack = new CANTalon(0);
 	private CANTalon rightFront = new CANTalon(5);
