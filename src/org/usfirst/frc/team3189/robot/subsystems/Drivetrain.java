@@ -17,14 +17,15 @@ public class Drivetrain extends Subsystem {
 
 	private CANTalon leftFront = new CANTalon(2);
 	/**
-	 * The {@link SpeedController} for the left front motor of the {@link Drivetrain}
+	 * The {@link SpeedController} for the left front motor of the
+	 * {@link Drivetrain}
 	 */
 	private CANTalon leftMiddle = new CANTalon(1);
 	private CANTalon leftBack = new CANTalon(0);
 	private CANTalon rightFront = new CANTalon(5);
 	private CANTalon rightMiddle = new CANTalon(4);
 	private CANTalon rightBack = new CANTalon(3);
-	
+
 	public Drivetrain() {
 		/**
 		 * This inverts the right motors on the robot.
@@ -32,10 +33,10 @@ public class Drivetrain extends Subsystem {
 		rightFront.setInverted(true);
 		rightMiddle.setInverted(true);
 		rightBack.setInverted(true);
-		
+
 	}
-	
-	public void tankDrive(double left, double right){
+
+	public void tankDrive(double left, double right) {
 		/**
 		 * Sets the speeds of the left and right motors for the tankdrve
 		 */
@@ -47,14 +48,13 @@ public class Drivetrain extends Subsystem {
 		rightBack.set(right);
 	}
 
-    public void initDefaultCommand() {
-    	/**
-    	 * Sets the default command to Tankdrive
-    	 */
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	
-    	setDefaultCommand(new TankDrive());
-    }
-}
+	public void initDefaultCommand() {
+		/**
+		 * Sets the default command to Tankdrive
+		 */
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
 
+		setDefaultCommand(new TankDrive());
+	}
+}

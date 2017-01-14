@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
  * Provides a map for all operator interfaces
+ * 
  * @author Damon Wagenknecht
  *
  */
