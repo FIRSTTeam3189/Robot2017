@@ -6,24 +6,23 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * Drives the robot
- *@author Deez Nuts and Alex and Harambe
+ * 
+ * @author Deez Nuts and Alex and Harambe
  */
 
 public class TankDrive extends Command {
+
 	public TankDrive() {
-		/**
-		 * Uses the Robots drivetrain's subsystem
-		 */
 		requires(Robot.drivetrain);
 	}
 
 	protected void initialize() {
 	}
-	
+
+	/**
+	 * Get speed from Joysticks and drives bot.
+	 */
 	protected void execute() {
-		/**
-		 * Get speed from Joysticks and Drives bot
-		 */
 		Robot.drivetrain.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
 	}
 
@@ -31,18 +30,14 @@ public class TankDrive extends Command {
 		return false;
 	}
 
-	protected void end(){
-		/**
-		 * Stops the robot when their is no input from the Joysticks
-		 */
-		
+	protected void end() {
 		Robot.drivetrain.tankDrive(0, 0);
 	}
-	
+
+	/**
+	 * Stops the robot when another command is called.
+	 */
 	protected void interrupted() {
-		/**
-		 * Stops the robot when another Command is called
-		 */
 		Robot.drivetrain.tankDrive(0, 0);
 	}
 }
