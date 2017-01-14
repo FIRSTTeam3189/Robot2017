@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot;
 
+import org.usfirst.frc.team3189.robot.commands.ControlWinch;
 import org.usfirst.frc.team3189.robot.commands.ShiftDown;
 import org.usfirst.frc.team3189.robot.commands.ShiftUp;
 
@@ -20,11 +21,12 @@ public class OI {
 	public JoystickButton shiftGears = new JoystickButton(leftjoystick, 1);
 	public JoystickButton shiftUp = new JoystickButton(leftjoystick, 2);
 	public JoystickButton shiftDown = new JoystickButton(leftjoystick, 3);
+	public JoystickButton activateWinch = new JoystickButton(leftjoystick, 5);
 	
 	public OI() {
 		shiftDown.whenPressed(new ShiftDown());
 		shiftUp.whenPressed(new ShiftUp());
-	
+		activateWinch.toggleWhenPressed(new ControlWinch());
 		
 	}
 
