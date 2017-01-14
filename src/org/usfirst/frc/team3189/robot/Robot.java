@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3189.robot.subsystems.Gearbox;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +22,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static final Drivetrain drivetrain = new Drivetrain();
+	public static final Gearbox gearbox = new Gearbox();
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
