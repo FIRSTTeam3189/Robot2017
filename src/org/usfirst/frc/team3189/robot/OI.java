@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * Provides a map for all operator interfaces
- * 
  * @author Damon Wagenknecht
  *
  */
@@ -29,13 +28,17 @@ public class OI {
 		
 	}
 
+	/**
+	 * returns the value from the left hoystick with a range of 1.0 - -1.0.
+	 * @return Double left joy stick vlaue
+	 */
 	public double getLeftY() {
-		/**
-		 * Sets the left joystick to get the Y axis
-		 */
 		return leftjoystick.getY();
 	}
-
+	/**
+	 * returns the value from the left Joystick with a range of 1.0 - -1.0.
+	 * @return Double Right joy stick Value
+	 */
 	public double getRightY() {
 		/**
 		 * Sets the right joystick to get the Y axis
