@@ -5,14 +5,16 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *	@author Trent, Nate
+ * @author Trent, Nate
  */
 public class Winch extends Subsystem {
 	private CANTalon winchMotor = new CANTalon(0);
 
 	/**
 	 * sets the speed for the winch
-	 * @param speed value between 1 and -1 used to control the winch
+	 * 
+	 * @param speed
+	 *            value between 1 and -1 used to control the winch
 	 */
 	public void setWinchspeed(double speed) {
 		winchMotor.set(speed);

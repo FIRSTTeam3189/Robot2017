@@ -17,17 +17,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 
-	/**{@link SpeedController} for the left front motor of the {@link Drivetrain}*/
+	/**
+	 * {@link SpeedController} for the left front motor of the
+	 * {@link Drivetrain}
+	 */
 	private CANTalon leftFront = new CANTalon(RobotMap.leftFront);
-	/**{@link SpeedController} for the left middle motor of the {@link Drivetrain}*/
+	/**
+	 * {@link SpeedController} for the left middle motor of the
+	 * {@link Drivetrain}
+	 */
 	private CANTalon leftMiddle = new CANTalon(RobotMap.leftMiddle);
-	/**{@link SpeedController} for the left back motor of the {@link Drivetrain}*/
+	/**
+	 * {@link SpeedController} for the left back motor of the {@link Drivetrain}
+	 */
 	private CANTalon leftBack = new CANTalon(RobotMap.leftBack);
-	/**{@link SpeedController} for the right front motor of the {@link Drivetrain}*/
+	/**
+	 * {@link SpeedController} for the right front motor of the
+	 * {@link Drivetrain}
+	 */
 	private CANTalon rightFront = new CANTalon(RobotMap.rightFront);
-	/**{@link SpeedController} for the right middle motor of the {@link Drivetrain}*/
+	/**
+	 * {@link SpeedController} for the right middle motor of the
+	 * {@link Drivetrain}
+	 */
 	private CANTalon rightMiddle = new CANTalon(RobotMap.rightMiddle);
-	/**{@link SpeedController} for the right back motor of the {@link Drivetrain}*/
+	/**
+	 * {@link SpeedController} for the right back motor of the
+	 * {@link Drivetrain}
+	 */
 	private CANTalon rightBack = new CANTalon(RobotMap.rightBack);
 
 	/**

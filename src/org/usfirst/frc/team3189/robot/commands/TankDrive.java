@@ -32,7 +32,7 @@ public class TankDrive extends Command {
 	protected boolean isFinished() {
 		return false;
 	}
-	
+
 	/**
 	 * Stops the robot when their is no input from the Joysticks
 	 */
