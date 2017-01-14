@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot;
 
+import org.usfirst.frc.team3189.robot.commands.ControlWinch;
 import org.usfirst.frc.team3189.robot.commands.ShiftDown;
 import org.usfirst.frc.team3189.robot.commands.ShiftUp;
 
@@ -17,13 +18,14 @@ public class OI {
 	private Joystick rightjoystick = new Joystick(1);
 	private Joystick grabjoystick = new Joystick(2);
 	//joystick button number not finalized
-	public JoystickButton shiftGears = new JoystickButton(leftjoystick, 1);
-	public JoystickButton shiftUp = new JoystickButton(leftjoystick, 2);
-	public JoystickButton shiftDown = new JoystickButton(leftjoystick, 3);
-	
+	private JoystickButton shiftGears = new JoystickButton(leftjoystick, 1);
+	private JoystickButton shiftUp = new JoystickButton(leftjoystick, 2);
+	private JoystickButton shiftDown = new JoystickButton(leftjoystick, 3);
+	private JoystickButton winchButton = new JoystickButton(leftjoystick, 4);
 	public OI() {
 		shiftDown.whenPressed(new ShiftDown());
 		shiftUp.whenPressed(new ShiftUp());
+		winchButton.toggleWhenPressed(new ControlWinch());
 	
 		
 	}
