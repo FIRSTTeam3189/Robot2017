@@ -11,8 +11,8 @@ public class Winch extends Subsystem {
 	private CANTalon winchMotor = new CANTalon(0);
 
 	/**
-	 * 
-	 * @param speed sets the speed of the winch
+	 * sets the speed for the winch
+	 * @param speed value between 1 and -1 used to control the winch
 	 */
 	public void setWinchspeed(double speed) {
 		winchMotor.set(speed);
