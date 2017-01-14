@@ -16,33 +16,59 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * 
  */
 public class Drivetrain extends Subsystem {
-	
+
 	/**
 	 * The {@link SpeedController} for the left front motor of the
 	 * {@link Drivetrain}
 	 */
 	private CANTalon leftFront = new CANTalon(RobotMap.leftFront);
-	
+	/**
+	 * {@link SpeedController} for the left middle motor of the
+	 * {@link Drivetrain}
+	 * 
+	 */
 	private CANTalon leftMiddle = new CANTalon(RobotMap.leftMiddle);
+	/**
+	 * {@link SpeedController} for the leftBack motor of the {@linkDrivetrain}
+	 */
 	private CANTalon leftBack = new CANTalon(RobotMap.leftBack);
+	/**
+	 * {@link SpeedController} for the rightFront Motor of the {@linkDrivetrain}
+	 */
 	private CANTalon rightFront = new CANTalon(RobotMap.rightFront);
+	/**
+	 * {@link SpeedController} for the rightMiddle Motor of the
+	 * {@link SpeedController}
+	 */
 	private CANTalon rightMiddle = new CANTalon(RobotMap.rightMiddle);
+	/**
+	 * {@link SpeedController} for the rightBack Motor of the
+	 * {@link SpeedController}
+	 * 
+	 */
 	private CANTalon rightBack = new CANTalon(RobotMap.rightBack);
 
+	/**
+	 * This inverts the right motors on the robot.
+	 */
 	public Drivetrain() {
-		/**
-		 * This inverts the right motors on the robot.
-		 */
+
 		rightFront.setInverted(true);
 		rightMiddle.setInverted(true);
 		rightBack.setInverted(true);
 
 	}
 
+	/**
+	 * Set's speed of Motors of tankDrive
+	 * 
+	 * @param left
+	 *            double set left side Motor speed
+	 * @param right
+	 *            double set right side Motor Speed
+	 */
 	public void tankDrive(double left, double right) {
-		/**
-		 * Sets the speeds of the left and right motors for the tankdrve
-		 */
+
 		leftFront.set(left);
 		leftBack.set(left);
 		leftMiddle.set(left);
@@ -51,10 +77,11 @@ public class Drivetrain extends Subsystem {
 		rightBack.set(right);
 	}
 
+	/**
+	 * Sets the default command to Tankdrive
+	 */
 	public void initDefaultCommand() {
-		/**
-		 * Sets the default command to Tankdrive
-		 */
+
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 
