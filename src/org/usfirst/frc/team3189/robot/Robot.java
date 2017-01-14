@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team3189.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -10,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Gearbox;
+import org.usfirst.frc.team3189.robot.subsystems.Winch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final Gearbox gearbox = new Gearbox();
-
+	public static final Winch winch = new Winch();
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
