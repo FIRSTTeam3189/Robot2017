@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3189.robot;
 
-import org.usfirst.frc.team3189.robot.commands.ControlWinch;
 import org.usfirst.frc.team3189.robot.commands.ShiftDown;
 import org.usfirst.frc.team3189.robot.commands.ShiftUp;
 
@@ -21,22 +20,25 @@ public class OI {
 	public JoystickButton shiftGears = new JoystickButton(leftjoystick, 1);
 	public JoystickButton shiftUp = new JoystickButton(leftjoystick, 2);
 	public JoystickButton shiftDown = new JoystickButton(leftjoystick, 3);
-	public JoystickButton activateWinch = new JoystickButton(leftjoystick, 5);
 	
 	public OI() {
 		shiftDown.whenPressed(new ShiftDown());
 		shiftUp.whenPressed(new ShiftUp());
-		activateWinch.toggleWhenPressed(new ControlWinch());
+	
 		
 	}
 
+	/**
+	 * returns the value from the left hoystick with a range of 1.0 - -1.0.
+	 * @return Double left joy stick vlaue
+	 */
 	public double getLeftY() {
-		/**
-		 * Sets the left joystick to get the Y axis
-		 */
 		return leftjoystick.getY();
 	}
-
+	/**
+	 * returns the value from the left Joystick with a range of 1.0 - -1.0.
+	 * @return Double Right joy stick Value
+	 */
 	public double getRightY() {
 		/**
 		 * Sets the right joystick to get the Y axis
