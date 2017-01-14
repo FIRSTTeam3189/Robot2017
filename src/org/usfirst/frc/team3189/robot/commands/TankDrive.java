@@ -1,3 +1,8 @@
+/**
+ * Drives the robot
+ * 
+ * @author Damon and Alex and Nick
+ */
 package org.usfirst.frc.team3189.robot.commands;
 
 import org.usfirst.frc.team3189.robot.Robot;
@@ -5,44 +10,42 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Drives the robot
- *@author Deez Nuts and Alex and Harambe
+ * Uses the Robots drivetrain's subsystem
  */
-
 public class TankDrive extends Command {
 	public TankDrive() {
-		/**
-		 * Uses the Robots drivetrain's subsystem
-		 */
+
 		requires(Robot.drivetrain);
 	}
 
 	protected void initialize() {
 	}
-	
+
+	/**
+	 * Get speed from Joysticks and Drives bot
+	 */
 	protected void execute() {
-		/**
-		 * Get speed from Joysticks and Drives bot
-		 */
+
 		Robot.drivetrain.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
 	}
 
 	protected boolean isFinished() {
 		return false;
 	}
+	
+	/**
+	 * Stops the robot when their is no input from the Joysticks
+	 */
+	protected void end() {
 
-	protected void end(){
-		/**
-		 * Stops the robot when their is no input from the Joysticks
-		 */
-		
 		Robot.drivetrain.tankDrive(0, 0);
 	}
-	
+
+	/**
+	 * Stops the robot when another Command is called
+	 */
 	protected void interrupted() {
-		/**
-		 * Stops the robot when another Command is called
-		 */
+
 		Robot.drivetrain.tankDrive(0, 0);
 	}
 }
