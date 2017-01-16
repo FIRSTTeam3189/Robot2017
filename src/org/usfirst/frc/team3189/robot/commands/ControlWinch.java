@@ -8,19 +8,20 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ControlWinch extends Command {
-
+	/**
+	 * Uses the winch subsystem
+	 */
 	public ControlWinch() {
 		requires(Robot.winch);
 
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/**
+	 * gets speed from copilot's joystick and controls the winch
+	 */
 	protected void execute() {
 		Robot.winch.setWinchspeed(Robot.oi.getCoPilotJoystickY());
 	}
@@ -30,13 +31,16 @@ public class ControlWinch extends Command {
 		return false;
 	}
 
-	// Called once after isFinished returns true
+/**
+ * sets speed of winch to 0 when command ends
+ */
 	protected void end() {
 		Robot.winch.setWinchspeed(0);
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
+/**
+ * sets the speed of the winch to zero if the command is inturupted
+ */
 	protected void interrupted() {
 		Robot.winch.setWinchspeed(0);
 	}

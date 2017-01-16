@@ -40,7 +40,7 @@ public class OI {
 	}
 
 	/**
-	 * returns the value from the left Joystick with a range of 1.0 - -1.0.
+	 * returns the value from the right Joystick with a range of 1.0 - -1.0.
 	 * 
 	 * @return Double Right joy stick Value
 	 */
@@ -50,6 +50,10 @@ public class OI {
 		 */
 		return rightjoystick.getY();
 	}
+	/**
+	 * returns the value of the copilot's joystick with a range of 1.0 to -1.0.
+	 * @return Double copilot's joystick value
+	 */
 	public double getCoPilotJoystickY(){
 		return grabjoystick.getY();
 	}
