@@ -50,4 +50,7 @@ public class OI {
 		 */
 		return rightjoystick.getY();
 	}
+	public double getCoPilotJoystickY(){
+		return grabjoystick.getY();
+	}
 }
