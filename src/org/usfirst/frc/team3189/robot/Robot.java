@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3189.robot.subsystems.Dropper;
 import org.usfirst.frc.team3189.robot.subsystems.Gearbox;
 import org.usfirst.frc.team3189.robot.subsystems.Winch;
 
@@ -24,6 +26,8 @@ public class Robot extends IterativeRobot {
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final Gearbox gearbox = new Gearbox();
 	public static final Winch winch = new Winch();
+	public static final Dropper dropper = new Dropper();
+	public static final Claw claw = new Claw();
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 

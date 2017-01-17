@@ -1,7 +1,14 @@
 package org.usfirst.frc.team3189.robot;
 
+import org.usfirst.frc.team3189.robot.commands.CloseClaw;
+import org.usfirst.frc.team3189.robot.commands.CloseDropper;
 import org.usfirst.frc.team3189.robot.commands.ControlWinch;
+import org.usfirst.frc.team3189.robot.commands.LiftClaw;
+import org.usfirst.frc.team3189.robot.commands.LowerClaw;
+import org.usfirst.frc.team3189.robot.commands.OpenClaw;
+import org.usfirst.frc.team3189.robot.commands.OpenDropper;
 import org.usfirst.frc.team3189.robot.commands.ShiftDown;
+import org.usfirst.frc.team3189.robot.commands.ShiftGears;
 import org.usfirst.frc.team3189.robot.commands.ShiftUp;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,11 +30,23 @@ public class OI {
 	private JoystickButton shiftUp = new JoystickButton(leftjoystick, 2);
 	private JoystickButton shiftDown = new JoystickButton(leftjoystick, 3);
 	private JoystickButton winchButton = new JoystickButton(leftjoystick, 4);
+	private JoystickButton openDropper = new JoystickButton(leftjoystick, 5);
+	private JoystickButton closeDropper = new JoystickButton(leftjoystick, 6);
+	private JoystickButton liftClaw = new JoystickButton(leftjoystick, 7);
+	private JoystickButton lowerClaw = new JoystickButton(leftjoystick, 8);
+	private JoystickButton openClaw = new JoystickButton(leftjoystick, 9);
+	private JoystickButton closeClaw = new JoystickButton(leftjoystick, 10);
 
 	public OI() {
 		shiftDown.whenPressed(new ShiftDown());
 		shiftUp.whenPressed(new ShiftUp());
-		winchButton.toggleWhenPressed(new ControlWinch());
+		shiftGears.whenPressed(new ShiftGears());
+		openDropper.whenPressed(new OpenDropper());
+		closeDropper.whenPressed(new CloseDropper());
+		liftClaw.whenPressed(new LiftClaw());
+		lowerClaw.whenPressed(new LowerClaw());
+		closeClaw.whenPressed(new CloseClaw());
+		openClaw.whenPressed(new OpenClaw());
 	}
 
 	/**

@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Trent, Nate
  */
 public class Winch extends Subsystem {
-	private CANTalon winchMotor = new CANTalon(0);
+	private CANTalon winchMotor1 = new CANTalon(0);
+	private CANTalon winchMotor2 = new CANTalon(1);
 
 	/**
 	 * sets the speed for the winch
@@ -17,7 +18,8 @@ public class Winch extends Subsystem {
 	 *            value between 1 and -1 used to control the winch
 	 */
 	public void setWinchspeed(double speed) {
-		winchMotor.set(speed);
+		winchMotor1.set(speed);
+		winchMotor2.set(speed);
 
 	}
 
