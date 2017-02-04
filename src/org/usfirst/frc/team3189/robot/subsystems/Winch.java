@@ -1,15 +1,14 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
-import com.ctre.CANTalon;
-
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * @author Trent, Nate
  */
 public class Winch extends Subsystem {
-	private CANTalon winchMotor1 = new CANTalon(0);
-	private CANTalon winchMotor2 = new CANTalon(1);
+	private Spark winchMotor1 = new Spark(0);
+	private Spark winchMotor2 = new Spark(1);
 
 	/**
 	 * sets the speed for the winch
