@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -7,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Trent, Nate
  */
 public class Winch extends Subsystem {
-	private Spark winchMotor1 = new Spark(0);
-	private Spark winchMotor2 = new Spark(1);
+	private Spark winchMotor1 = new Spark(RobotMap.WINCH_MOTOR_1);
+	private Spark winchMotor2 = new Spark(RobotMap.WINCH_MOTOR_2);
 
 	/**
 	 * sets the speed for the winch
