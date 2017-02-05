@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Winch extends Subsystem {
 	private Spark winchMotor1 = new Spark(RobotMap.WINCH_MOTOR_1);
-	private Spark winchMotor2 = new Spark(RobotMap.WINCH_MOTOR_2);
 
 	/**
 	 * sets the speed for the winch
@@ -20,7 +19,6 @@ public class Winch extends Subsystem {
 	 */
 	public void setWinchspeed(double speed) {
 		winchMotor1.set(speed);
-		winchMotor2.set(speed);
 
 	}
 

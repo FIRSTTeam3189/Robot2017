@@ -19,8 +19,8 @@ public class RobotMap {
 
 	public final static int DROPPER_EXTEND = 0;
 	public final static int DROPPER_RETRACT = 1;
-	public final static int GEARBOX_LEFT_EXTEND = 2;
-	public final static int GEARBOX_LEFT_RETRACT = 3;
+	public final static int GEARBOX_EXTEND = 2;
+	public final static int GEARBOX_RETRACT = 3;
 	public final static int GEARBOX_RIGHT_EXTEND = 4;
 	public final static int GEARBOX_RIGHT_RETRACT = 5;
 	public final static int GRABBER_EXTEND = 6;

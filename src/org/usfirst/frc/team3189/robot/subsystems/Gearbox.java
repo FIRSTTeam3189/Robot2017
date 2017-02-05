@@ -10,16 +10,14 @@ import org.usfirst.frc.team3189.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Gearbox extends Subsystem {
-	Piston pistonLeft = new Piston(RobotMap.GEARBOX_LEFT_EXTEND, RobotMap.GEARBOX_LEFT_RETRACT);
-	Piston pistonRight = new Piston(RobotMap.GEARBOX_RIGHT_EXTEND, RobotMap.GEARBOX_RIGHT_RETRACT);
+	Piston piston = new Piston(RobotMap.GEARBOX_EXTEND, RobotMap.GEARBOX_RETRACT);
 
 	/**
 	 * Shifts up gearbox
 	 */
 	public void shiftUp() {
 
-		pistonLeft.retract();
-		pistonRight.retract();
+		piston.retract();
 	}
 
 	/**
@@ -27,17 +25,14 @@ public class Gearbox extends Subsystem {
 	 */
 	public void shiftDown() {
 
-		pistonLeft.extend();
-		pistonRight.extend();
+		piston.extend();
 	}
 
 	/**
 	 * Toggles the state of the pistons
 	 */
 	public void toggle() {
-
-		pistonLeft.toggle();
-		pistonRight.toggle();
+		piston.toggle();
 	}
 
 	public void initDefaultCommand() {
