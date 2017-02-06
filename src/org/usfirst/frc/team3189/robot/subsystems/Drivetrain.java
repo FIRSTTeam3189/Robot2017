@@ -6,6 +6,7 @@ import org.usfirst.frc.team3189.robot.commands.TankDrive;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -86,4 +87,22 @@ public class Drivetrain extends Subsystem {
 
 		setDefaultCommand(new TankDrive());
 	}
+	
+	public int leftBackEncoderPos() {
+		return leftBack.getEncPosition();
+		
+	}
+	
+	public int leftFrontEncoderPos() {
+		return leftFront.getEncPosition();
+	}
+	
+	public int rightBackEncoderPos() {
+		return rightBack.getEncPosition();
+	}
+	
+	public int rightFrontEncoderPos() {
+		return rightFront.getEncPosition();
+	}
+	
 }
