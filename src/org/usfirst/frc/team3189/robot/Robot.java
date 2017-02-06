@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3189.robot.commands.TankDrive;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		//chooser.addDefault("Default", new TankDrive());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

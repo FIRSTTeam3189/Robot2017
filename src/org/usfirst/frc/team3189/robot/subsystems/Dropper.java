@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Dropper extends Subsystem {
 	
-	private Piston piston = new Piston(RobotMap.dropperExtend,RobotMap.dropperRetract);
+	private Piston piston = new Piston(RobotMap.DROPPER_EXTEND,RobotMap.DROPPER_RETRACT);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

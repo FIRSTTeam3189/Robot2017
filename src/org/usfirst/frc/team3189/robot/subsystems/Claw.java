@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Claw extends Subsystem {
 
-	private Piston grabbingPiston = new Piston(RobotMap.grabberExtend,
-			RobotMap.grabberRetract);
-	private Piston liftingPiston = new Piston(RobotMap.lifterExtend,
-			RobotMap.lifterRetract);
-	private Talon liftingMotor = new Talon(RobotMap.clawLiftingMotor);
+	private Piston grabbingPiston = new Piston(RobotMap.GRABBER_EXTEND,
+			RobotMap.GRABBER_RETRACT);
+	private Piston liftingPiston = new Piston(RobotMap.LIFTER_EXTEND,
+			RobotMap.LIFTER_RETRACT);
+	private Talon liftingMotor = new Talon(RobotMap.CLAW_LIFTING_MOTOR);
 
 	public void setClawSpeed(double speed) {
 		liftingMotor.set(speed);

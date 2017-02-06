@@ -88,21 +88,4 @@ public class Drivetrain extends Subsystem {
 		setDefaultCommand(new TankDrive());
 	}
 	
-	public int leftBackEncoderPos() {
-		return leftBack.getEncPosition();
-		
-	}
-	
-	public int leftFrontEncoderPos() {
-		return leftFront.getEncPosition();
-	}
-	
-	public int rightBackEncoderPos() {
-		return rightBack.getEncPosition();
-	}
-	
-	public int rightFrontEncoderPos() {
-		return rightFront.getEncPosition();
-	}
-	
 }
