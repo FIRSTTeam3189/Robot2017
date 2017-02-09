@@ -90,7 +90,6 @@ public class Drivetrain extends Subsystem {
 	
 	public int leftBackEncoderPos() {
 		return leftBack.getEncPosition();
-		
 	}
 	
 	public int leftFrontEncoderPos() {
@@ -103,6 +102,17 @@ public class Drivetrain extends Subsystem {
 	
 	public int rightFrontEncoderPos() {
 		return rightFront.getEncPosition();
+	}
+	
+	public void configMotors() {
+		//Because 6" wheels.
+		leftBack.configEncoderCodesPerRev(6);
+		leftMiddle.configEncoderCodesPerRev(6);
+		leftFront.configEncoderCodesPerRev(6);
+		rightBack.configEncoderCodesPerRev(6);
+		rightMiddle.configEncoderCodesPerRev(6);
+		rightFront.configEncoderCodesPerRev(6);
+		
 	}
 	
 }

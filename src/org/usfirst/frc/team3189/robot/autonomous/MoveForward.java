@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class MoveForward extends CommandGroup {
 
     public MoveForward() {
-    	addSequential(new DriveForwardCommand());
+    	addSequential(new DriveForwardCommand(3));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
