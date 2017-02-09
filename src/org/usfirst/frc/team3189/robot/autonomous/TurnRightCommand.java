@@ -6,6 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class TurnRightCommand extends Command {
+	
+	public double time;
+	
+	public TurnRightCommand
 
     public TurnRightCommand() {
         // Use requires() here to declare subsystem dependencies
