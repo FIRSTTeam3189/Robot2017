@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Damon Wagenknecht
  *
  */
-public class TurnLeftCommand extends Command {
+public class TurnRightCommand extends Command {
 
 	/**
 	 * Sets how long the robot moves and does stuff during Autonomous
 	 */
+	
 	public double time;
 	
 	/**
