@@ -105,7 +105,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void configMotors() {
-		//Because 6" wheels.
+		//Because 6" wheels. (Each tick corresponds to pi inches in lateral movement)
 		leftBack.configEncoderCodesPerRev(6);
 		leftMiddle.configEncoderCodesPerRev(6);
 		leftFront.configEncoderCodesPerRev(6);
