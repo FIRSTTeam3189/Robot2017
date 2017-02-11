@@ -1,14 +1,17 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
 import org.usfirst.frc.team3189.robot.commands.TankDrive;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * This provides a interface for the drivetrain command for the 2017 bot
@@ -22,37 +25,42 @@ public class Drivetrain extends Subsystem {
 	 * {@link SpeedController} for the left front motor of the
 	 * {@link Drivetrain}
 	 */
-	private CANTalon leftFront = new CANTalon(RobotMap.leftFront);
+	private CANTalon leftFront = new CANTalon(RobotMap.LEFT_FRONT);
 	/**
 	 * {@link SpeedController} for the left middle motor of the
 	 * {@link Drivetrain}
 	 */
-	private CANTalon leftMiddle = new CANTalon(RobotMap.leftMiddle);
+	private CANTalon leftMiddle = new CANTalon(RobotMap.LEFT_MIDDLE);
 	/**
 	 * {@link SpeedController} for the left back motor of the {@link Drivetrain}
 	 */
-	private CANTalon leftBack = new CANTalon(RobotMap.leftBack);
+	private CANTalon leftBack = new CANTalon(RobotMap.LEFT_BACK);
 	/**
 	 * {@link SpeedController} for the right front motor of the
 	 * {@link Drivetrain}
 	 */
-	private CANTalon rightFront = new CANTalon(RobotMap.rightFront);
+	private CANTalon rightFront = new CANTalon(RobotMap.RIGHT_FRONT);
 	/**
 	 * {@link SpeedController} for the right middle motor of the
 	 * {@link Drivetrain}
 	 */
-	private CANTalon rightMiddle = new CANTalon(RobotMap.rightMiddle);
+	private CANTalon rightMiddle = new CANTalon(RobotMap.RIGHT_MIDDLE);
 	/**
 	 * {@link SpeedController} for the right back motor of the
 	 * {@link Drivetrain}
 	 */
-	private CANTalon rightBack = new CANTalon(RobotMap.rightBack);
+	private CANTalon rightBack = new CANTalon(RobotMap.RIGHT_BACK);
 
 	/**
 	 * This inverts the right motors on the robot.
 	 */
-	public Drivetrain() {
+	
+	AnalogGyro gyro = new AnalogGyro(0);
+	PIDLoop loop = new PIDLoop(Constants.tuneP, Constants.tuneI, Constants.tuneD);
+	
 
+	public Drivetrain() {
+		gyro.reset();
 		rightFront.setInverted(true);
 		rightMiddle.setInverted(true);
 		rightBack.setInverted(true);
@@ -84,35 +92,12 @@ public class Drivetrain extends Subsystem {
 
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-
 		setDefaultCommand(new TankDrive());
 	}
 	
-	public int leftBackEncoderPos() {
-		return leftBack.getEncPosition();
-	}
 	
-	public int leftFrontEncoderPos() {
-		return leftFront.getEncPosition();
-	}
-	
-	public int rightBackEncoderPos() {
-		return rightBack.getEncPosition();
-	}
-	
-	public int rightFrontEncoderPos() {
-		return rightFront.getEncPosition();
-	}
-	
-	public void configMotors() {
-		//Because 6" wheels. (Each tick corresponds to pi inches in lateral movement)
-		leftBack.configEncoderCodesPerRev(6);
-		leftMiddle.configEncoderCodesPerRev(6);
-		leftFront.configEncoderCodesPerRev(6);
-		rightBack.configEncoderCodesPerRev(6);
-		rightMiddle.configEncoderCodesPerRev(6);
-		rightFront.configEncoderCodesPerRev(6);
-		
+	public void changeAngle(double newAngle) {
+		loop.usePIDOutput(newAngle);	
 	}
 	
 }
