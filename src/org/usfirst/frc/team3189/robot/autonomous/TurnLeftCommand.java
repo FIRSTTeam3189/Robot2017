@@ -6,12 +6,23 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * Makes the robot turn left during Autonomous
+ * @author Damon Wagenknecht
  *
  */
 public class TurnLeftCommand extends Command {
 
+	/**
+	 * Sets how long the robot moves and does stuff during Autonomous
+	 */
 	public double time;
 	
+	/**
+	 * Turns the robot left
+	 * 
+	 * @param time
+	 * time = how long robot turns left
+	 */
     public TurnLeftCommand(double time) {
     	
     	requires(Robot.drivetrain);
@@ -24,12 +35,18 @@ public class TurnLeftCommand extends Command {
     }
 
     // Called just before this Command runs the first time
+    /**
+     * Sets how long the robot will turn left
+     */
     protected void initialize() {
     	
     	setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
+    /**
+     * Sets the speed of the robot
+     */
     protected void execute() {
     	
     	Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED, Constants.AUTO_FORWARD_SPEED);
@@ -47,6 +64,9 @@ public class TurnLeftCommand extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
+    /**
+     * Stops the robot
+     */
     protected void interrupted() {
 
     	Robot.drivetrain.tankDrive(0, 0);
