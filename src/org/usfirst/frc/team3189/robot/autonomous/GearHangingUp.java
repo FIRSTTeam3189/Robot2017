@@ -6,16 +6,20 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * This opens the dropper for one second, then it closes it
+ *  @author Damon Wagenknecht and Nate Mansfield
  *
  */
 public class GearHangingUp extends Command {
-
     public GearHangingUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
+   /**
+    * Opens, waits one second, then closes the dropper during Autonomous
+    */
     protected void initialize() {
     	Robot.dropper.OpenDropper();
     	Timer.delay(1);
