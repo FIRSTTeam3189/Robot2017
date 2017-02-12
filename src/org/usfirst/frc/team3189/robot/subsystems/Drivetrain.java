@@ -21,6 +21,18 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  */
 public class Drivetrain extends Subsystem {
 
+	private double angle = 0;
+	private double gyroError = 0;
+	private double speed = 0;
+	private double speedReal = 0;
+	private double xAngle = 0;
+	private double xAngleFiltered = 0;
+	private double prev = angle;
+	private double difference = 0;
+	
+	
+	
+	
 	/**
 	 * {@link SpeedController} for the left front motor of the
 	 * {@link Drivetrain}
@@ -95,6 +107,22 @@ public class Drivetrain extends Subsystem {
 		setDefaultCommand(new TankDrive());
 	}
 	
+	public double AdjustedAngle(){
+		xAngle = Math.toDegrees(Robot.Acceloremeter.getAcceloremeterAcceleration());
+				//(getAxesMeasurements().XAxis);
+		xAngleFiltered = RobotMap.HFC * xAngleFiltered + (1 - RobotMap.HFC)
+				* xAngle;
+		gyroError = xAngleFiltered - Robot.gyroscope.getGyroAngle();
+		// Get the actual Angle of the bot
+		angle = RobotMap.LFC
+				* ((angle + (Robot.gyroscope.getGyroAngle() + gyroError)) / 2)
+				+ (1 - RobotMap.LFC) * xAngle;
+		
+		speedReal = angle / RobotMap.SPEED_DIV;
+		difference=angle-prev;
+		
+		return angle;
+	}
 	
 	public void changeAngle(double newAngle) {
 		loop.usePIDOutput(newAngle);	

@@ -27,4 +27,11 @@ public class RobotMap {
 	public final static int GRABBER_RETRACT = 7;
 	public final static int LIFTER_EXTEND = 8;
 	public final static int LIFTER_RETRACT = 9;
+
+	public final static double HFC = 0.90;
+	public final static double LFC = 0.98;
+	public final static double SPEED_DIV = 46; // I don't know what this is
+	
+	public static final int ACCELEREMETER_PORT = 0;
+	public static final int GYROSCOPE_PORT = 0;
 }

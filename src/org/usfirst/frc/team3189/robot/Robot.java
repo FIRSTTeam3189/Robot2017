@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3189.robot.commands.TankDrive;
+import org.usfirst.frc.team3189.robot.subsystems.Acceloremeter;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
 import org.usfirst.frc.team3189.robot.subsystems.Gearbox;
+import org.usfirst.frc.team3189.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team3189.robot.subsystems.Winch;
 
 /**
@@ -29,6 +31,8 @@ public class Robot extends IterativeRobot {
 	public static final Winch winch = new Winch();
 	public static final Dropper dropper = new Dropper();
 	public static final Claw claw = new Claw();
+	public static final Gyroscope gyroscope = new Gyroscope();
+	public static final Acceloremeter Acceloremeter = new Acceloremeter();
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
