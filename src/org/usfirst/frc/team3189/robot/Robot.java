@@ -26,13 +26,13 @@ import org.usfirst.frc.team3189.robot.subsystems.Winch;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static final Drivetrain drivetrain = new Drivetrain();
-	public static final Gearbox gearbox = new Gearbox();
-	public static final Winch winch = new Winch();
-	public static final Dropper dropper = new Dropper();
-	public static final Claw claw = new Claw();
-	public static final Gyroscope gyroscope = new Gyroscope();
-	public static final Acceloremeter Acceloremeter = new Acceloremeter();
+	public static Drivetrain drivetrain;
+	public static Gearbox gearbox;
+	public static Winch winch;
+	public static Dropper dropper;
+	public static Claw claw;
+	public static Gyroscope gyroscope;
+	public static Acceloremeter Acceloremeter;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -42,6 +42,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		drivetrain = new Drivetrain();
+		gearbox = new Gearbox();
+		winch = new Winch();
+		dropper = new Dropper();
+		claw = new Claw();
+		gyroscope = new Gyroscope();
+		Acceloremeter = new Acceloremeter();
 		oi = new OI();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

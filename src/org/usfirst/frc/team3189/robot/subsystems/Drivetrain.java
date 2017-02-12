@@ -29,10 +29,7 @@ public class Drivetrain extends Subsystem {
 	private double xAngleFiltered = 0;
 	private double prev = angle;
 	private double difference = 0;
-	
-	
-	
-	
+
 	/**
 	 * {@link SpeedController} for the left front motor of the
 	 * {@link Drivetrain}
