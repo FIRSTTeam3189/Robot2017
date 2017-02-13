@@ -7,9 +7,11 @@ import org.usfirst.frc.team3189.robot.commands.TankDrive;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.AnalogAccelerometer;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
@@ -64,7 +66,9 @@ public class Drivetrain extends Subsystem {
 	 * This inverts the right motors on the robot.
 	 */
 	
-	AnalogGyro gyro = new AnalogGyro(0);
+	AnalogGyro gyro = new AnalogGyro(RobotMap.GYROSCOPE_PORT);
+	AnalogAccelerometer Accelorometer = new AnalogAccelerometer(RobotMap.ACCELEREMETER_PORT);
+	Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_PORT, RobotMap.ULTRASONIC_PORT);
 	PIDLoop loop = new PIDLoop(Constants.tuneP, Constants.tuneI, Constants.tuneD);
 	
 
@@ -94,6 +98,9 @@ public class Drivetrain extends Subsystem {
 		rightBack.set(right);
 	}
 
+	public double SonarPing(){
+	return	ultrasonic.getRangeInches();
+	}
 	/**
 	 * Sets the default command to Tankdrive
 	 */
@@ -105,14 +112,14 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public double AdjustedAngle(){
-		xAngle = Math.toDegrees(Robot.Acceloremeter.getAcceloremeterAcceleration());
+		xAngle = Math.toDegrees(Accelorometer.getAcceleration());
 				//(getAxesMeasurements().XAxis);
 		xAngleFiltered = RobotMap.HFC * xAngleFiltered + (1 - RobotMap.HFC)
 				* xAngle;
-		gyroError = xAngleFiltered - Robot.gyroscope.getGyroAngle();
+		gyroError = xAngleFiltered - gyro.getAngle();
 		// Get the actual Angle of the bot
 		angle = RobotMap.LFC
-				* ((angle + (Robot.gyroscope.getGyroAngle() + gyroError)) / 2)
+				* ((angle + (gyro.getAngle() + gyroError)) / 2)
 				+ (1 - RobotMap.LFC) * xAngle;
 		
 		speedReal = angle / RobotMap.SPEED_DIV;

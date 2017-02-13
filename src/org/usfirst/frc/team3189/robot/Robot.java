@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3189.robot.autonomous.StartAutoCenter;
+import org.usfirst.frc.team3189.robot.autonomous.StartAutoLeft;
+import org.usfirst.frc.team3189.robot.autonomous.StartAutoRight;
 import org.usfirst.frc.team3189.robot.commands.TankDrive;
 import org.usfirst.frc.team3189.robot.subsystems.Acceloremeter;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
@@ -32,8 +35,6 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static Dropper dropper;
 	public static Claw claw;
-	public static Gyroscope gyroscope;
-	public static Acceloremeter Acceloremeter;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -48,13 +49,14 @@ public class Robot extends IterativeRobot {
 		winch = new Winch();
 		dropper = new Dropper();
 		claw = new Claw();
-		gyroscope = new Gyroscope();
-		Acceloremeter = new Acceloremeter();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//chooser.addDefault("Default", new TankDrive());
+		chooser.addDefault("Center", new  StartAutoCenter());
+		chooser.addObject("Left", new StartAutoLeft());
+		chooser.addObject("Right", new StartAutoRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

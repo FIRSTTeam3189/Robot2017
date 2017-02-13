@@ -31,4 +31,10 @@ public class RobotMap {
 	
 	public static final int ACCELEREMETER_PORT = 0;
 	public static final int GYROSCOPE_PORT = 1;
+	public static final int ULTRASONIC_PORT = 2;
+	
+	public static final double AUTO_STOP_DISTANCE = 12; //needs to be tested and calibrated and stuff. 12 is a random number.
+	public static final double AUTO_STOP_LEFT = 15; //same as first
+	public static final double AUTO_STOP_RIGHT = 15; //same as second
+	public static final double AUTO_DRIVE_SPEED = 0.8;  //needs testing and stuff as well
 }
