@@ -36,9 +36,9 @@ public class GyroTurn extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.drivetrain.AdjustedAngle() <= angle + Constants.AUTO_ANGLE_OFF && 
-        		Robot.drivetrain.AdjustedAngle() >= angle + -Constants.AUTO_ANGLE_OFF);
-        
+    	
+    		return (Robot.drivetrain.AdjustedAngle() <= newAngle + Constants.AUTO_ANGLE_OFF && 
+            		Robot.drivetrain.AdjustedAngle() >= newAngle + -Constants.AUTO_ANGLE_OFF);    
     }
 
     // Called once after isFinished returns true
