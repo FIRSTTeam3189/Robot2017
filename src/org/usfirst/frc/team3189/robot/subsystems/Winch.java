@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.RobotMap;
+import org.usfirst.frc.team3189.robot.commands.ControlWinch;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,7 +27,6 @@ public class Winch extends Subsystem {
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new ControlWinch());
 	}
 }

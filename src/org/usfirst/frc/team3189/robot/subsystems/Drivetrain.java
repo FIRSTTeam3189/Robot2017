@@ -71,9 +71,9 @@ public class Drivetrain extends PIDSubsystem {
 	public Drivetrain() {
 		super(Constants.tuneP, Constants.tuneI, Constants.tuneD);
 		gyro.reset();
-		rightFront.setInverted(true);
-		rightMiddle.setInverted(true);
-		rightBack.setInverted(true);
+		leftFront.setInverted(true);
+		leftMiddle.setInverted(true);
+		leftBack.setInverted(true);
 	}
 
 	/**
@@ -115,9 +115,6 @@ public class Drivetrain extends PIDSubsystem {
 		gyroError = xAngleFiltered - gyro.getAngle();
 		// Get the actual Angle of the bot
 		angle = RobotMap.LFC * ((angle + (gyro.getAngle() + gyroError)) / 2) + (1 - RobotMap.LFC) * xAngle;
-
-		speedReal = angle / RobotMap.SPEED_DIV;
-		difference = angle - prev;
 
 		return angle;
 	}
