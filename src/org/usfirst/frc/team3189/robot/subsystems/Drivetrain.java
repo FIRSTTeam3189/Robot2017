@@ -78,7 +78,6 @@ public class Drivetrain extends PIDSubsystem {
 		rightFront.setInverted(true);
 		rightMiddle.setInverted(true);
 		rightBack.setInverted(true);
-
 	}
 
 	/**
@@ -137,6 +136,12 @@ public class Drivetrain extends PIDSubsystem {
 	protected void usePIDOutput(double output) {
 		Robot.drivetrain.tankDrive(output, -output);
 
+	}
+	
+	public void setP(double desiredAngle) {
+		
+		getPIDController().setPID((1.0 / (Math.abs(AdjustedAngle() - desiredAngle)), Constants.tuneI, Constants.tuneD);
+		
 	}
 	
 }

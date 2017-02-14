@@ -18,6 +18,7 @@ public class GyroTurn extends Command {
     public GyroTurn(double newAngle) {
     	
     	this.newAngle = newAngle;
+    	Robot.drivetrain.setP(newAngle);
     	requires(Robot.drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
