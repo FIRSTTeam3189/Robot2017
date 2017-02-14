@@ -27,12 +27,8 @@ public class Drivetrain extends PIDSubsystem {
 
 	private double angle = 0;
 	private double gyroError = 0;
-	private double speed = 0;
-	private double speedReal = 0;
 	private double xAngle = 0;
 	private double xAngleFiltered = 0;
-	private double prev = angle;
-	private double difference = 0;
 
 	/**
 	 * {@link SpeedController} for the left front motor of the
@@ -70,7 +66,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.GYROSCOPE_PORT);
 	BuiltInAccelerometer Accelorometer = new BuiltInAccelerometer();
-	Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_PORT, RobotMap.ULTRASONIC_PORT);
+	Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_PORT, 3);
 
 	public Drivetrain() {
 		super(Constants.tuneP, Constants.tuneI, Constants.tuneD);
@@ -140,7 +136,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void setP(double desiredAngle) {
 		
-		getPIDController().setPID((1.0 / (Math.abs(AdjustedAngle() - desiredAngle)), Constants.tuneI, Constants.tuneD);
+		getPIDController().setPID(1.0 / (Math.abs(AdjustedAngle() - desiredAngle)), Constants.tuneI, Constants.tuneD);
 		
 	}
 	
