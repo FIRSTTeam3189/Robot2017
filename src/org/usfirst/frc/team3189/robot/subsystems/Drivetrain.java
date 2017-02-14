@@ -1,8 +1,8 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
-import org.usfirst.frc.team3189.robot.autonomous.Constants;
 import org.usfirst.frc.team3189.robot.commands.TankDrive;
 
 import com.ctre.CANTalon;
@@ -138,5 +138,5 @@ public class Drivetrain extends PIDSubsystem {
 		Robot.drivetrain.tankDrive(output, -output);
 
 	}
-
+	
 }

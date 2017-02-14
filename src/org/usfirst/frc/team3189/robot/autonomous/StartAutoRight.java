@@ -11,7 +11,7 @@ public class StartAutoRight extends CommandGroup {
 
     public StartAutoRight() {
     	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_RIGHT));
-    	addSequential(new GyroTurnRight());
+    	addSequential(new GyroTurn());
     	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_DISTANCE));
         // Add Commands here:
         // e.g. addSequential(new Command1());

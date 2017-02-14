@@ -1,74 +1,56 @@
 package org.usfirst.frc.team3189.robot.autonomous;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
+import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Makes the robot turn left during Autonomous
- * @author Damon Wagenknecht
  *
  */
-public class TurnRightCommand extends Command {
+public class GyroTurn extends Command {
 
-	/**
-	 * Sets how long the robot moves and does stuff during Autonomous
-	 */
+	private double angle = Robot.drivetrain.AdjustedAngle();
 	
-	public double time;
+	private double newAngle;
 	
-	/**
-	 * Turns the robot right
-	 * 
-	 * @param time
-	 * time = how long robot turns right
-	 */
-    public TurnRightCommand(double time) {
+    public GyroTurn(double newAngle) {
     	
+    	this.newAngle = newAngle;
     	requires(Robot.drivetrain);
-    	
-    	this.time = time;
-    	
-    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
-    /**
-     * Sets how long the robot will turn right
-     */
     protected void initialize() {
-    	
-    	setTimeout(time);
+    	Robot.drivetrain.enable();
+    	Robot.drivetrain.setSetpoint(newAngle);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    /**
-     * Sets the speed of the robot
-     */
     protected void execute() {
-    	
-    	Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED, Constants.AUTO_FORWARD_SPEED);
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return (Robot.drivetrain.AdjustedAngle() <= angle + Constants.AUTO_ANGLE_OFF && 
+        		Robot.drivetrain.AdjustedAngle() >= angle + -Constants.AUTO_ANGLE_OFF);
+        
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.disable();
+    	Robot.drivetrain.tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    /**
-     * Stops the robot
-     */
     protected void interrupted() {
-
     	Robot.drivetrain.tankDrive(0, 0);
     }
+    
 }
