@@ -53,10 +53,7 @@ public class Robot extends IterativeRobot {
 		dropper = new Dropper();
 		claw = new Claw();
 		oi = new OI();
-		//CameraServer.getInstance().startAutomaticCapture();
-		// chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		//chooser.addDefault("Default", new TankDrive());
+		CameraServer.getInstance().startAutomaticCapture();
 		chooser.addDefault("Center", new  StartAutoCenter());
 		chooser.addObject("Left", new StartAutoLeft());
 		chooser.addObject("Right", new StartAutoRight());
