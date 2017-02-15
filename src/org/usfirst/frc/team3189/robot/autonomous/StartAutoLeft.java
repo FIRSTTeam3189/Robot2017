@@ -11,8 +11,9 @@ public class StartAutoLeft extends CommandGroup {
 
     public StartAutoLeft() {
     	
-    	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_LEFT));
-    	addSequential(new GyroTurnLeft());
+    	addSequential(new DriveForwardCommand(0.5));
+    	addSequential(new GyroTurn(45.0));
+    	//TODO: Add vision correction
     	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_DISTANCE));
     	
         // Add Commands here:

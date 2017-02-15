@@ -41,7 +41,7 @@ public class DriveForwardCommand extends Command {
      * Turn on the motor controllers.
      */
     protected void execute() {
-    	Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED, Constants.AUTO_FORWARD_SPEED);
+    	Robot.drivetrain.tankDrive(Constants.AUTO_FORWARD_SPEED, Constants.AUTO_FORWARD_SPEED);
     }
     
     // Make this return true when this Command no longer needs to run execute()
@@ -54,6 +54,7 @@ public class DriveForwardCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

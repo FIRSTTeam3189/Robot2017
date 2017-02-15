@@ -10,8 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class StartAutoRight extends CommandGroup {
 
     public StartAutoRight() {
-    	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_RIGHT));
-    	addSequential(new GyroTurn(90.0));
+    	addSequential(new DriveForwardCommand(0.5));
+    	addSequential(new GyroTurn(-45.0));
+    	//TODO: Add vision correction.
     	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_DISTANCE));
         // Add Commands here:
         // e.g. addSequential(new Command1());
