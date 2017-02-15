@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3189.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,16 +9,16 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import javax.swing.text.AbstractDocument.LeafElement;
+
 import org.usfirst.frc.team3189.robot.autonomous.StartAutoCenter;
 import org.usfirst.frc.team3189.robot.autonomous.StartAutoLeft;
 import org.usfirst.frc.team3189.robot.autonomous.StartAutoRight;
 import org.usfirst.frc.team3189.robot.commands.TankDrive;
-import org.usfirst.frc.team3189.robot.subsystems.Acceloremeter;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
 import org.usfirst.frc.team3189.robot.subsystems.Gearbox;
-import org.usfirst.frc.team3189.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team3189.robot.subsystems.Winch;
 
 /**
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static Dropper dropper;
 	public static Claw claw;
+	Compressor comp = new Compressor(0);
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -44,13 +46,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		comp.setClosedLoopControl(true);
 		drivetrain = new Drivetrain();
 		gearbox = new Gearbox();
 		winch = new Winch();
 		dropper = new Dropper();
 		claw = new Claw();
 		oi = new OI();
-		CameraServer.getInstance().startAutomaticCapture();
+		//CameraServer.getInstance().startAutomaticCapture();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//chooser.addDefault("Default", new TankDrive());
@@ -73,6 +76,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		updateStatus();
 	}
 
 	/**
@@ -99,6 +103,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		updateStatus();
 	}
 
 	@Override
@@ -113,6 +118,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		updateStatus();
 	}
 
 	/**
@@ -121,5 +127,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	
+	public void updateStatus(){
+		SmartDashboard.putData("drivetrain", drivetrain);
 	}
 }
