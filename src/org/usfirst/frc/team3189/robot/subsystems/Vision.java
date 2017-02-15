@@ -42,7 +42,8 @@ public class Vision extends Subsystem {
 		int left = (int) ((points[leftID == 0 ? 0 : 1][0][0] + points[leftID == 0 ? 0 : 1][1][0])/2);
 		int right = (int) ((points[leftID == 0 ? 1 : 0][3][0] + points[leftID == 0 ? 1 : 0][2][0])/2);
 		
-		return (left + right)/2;
+		//TODO: Fix magic numbers.
+		return ((left + right)/2)-320;
 	}
 	
 	public double[][] sortBox(double[][] box) {
