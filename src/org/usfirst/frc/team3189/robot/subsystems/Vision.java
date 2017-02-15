@@ -1,0 +1,68 @@
+package org.usfirst.frc.team3189.robot.subsystems;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+
+/**
+ *
+ */
+public class Vision extends Subsystem {
+
+	public enum XY{
+		x,y
+	}
+	//   box_[box number]_[point number]_[x or y]
+	
+	NetworkTable table;
+
+	public Vision() {
+		table = NetworkTable.getTable("vision");
+		
+	}
+	
+	
+	public double getPoint(int boxNumber, int pointNumber, XY xory) {
+		return table.getNumber("box_" + boxNumber + "_" + pointNumber + "_" + (xory == XY.x ? 'x' : 'y'), -1);
+	}
+	
+	public double getTheThing(){
+		double[][][] points = new double[2][4][2];
+		for(int i = 0; i < 2; i++) {
+			for(int j = 0; i < 4; i++) {
+				points[i][j][0] = getPoint(i, j, XY.x);
+				points[i][j][1] = getPoint(i, j, XY.y);
+			}
+		}
+		
+		int leftID = (points[0][0][0] < points[1][0][0] ? 0 : 1);
+		
+		points[0] = sortBox(points[0]);
+		points[1] = sortBox(points[1]);
+		
+		int left = (int) ((points[leftID == 0 ? 0 : 1][0][0] + points[leftID == 0 ? 0 : 1][1][0])/2);
+		int right = (int) ((points[leftID == 0 ? 1 : 0][3][0] + points[leftID == 0 ? 1 : 0][2][0])/2);
+		
+		return (left + right)/2;
+	}
+	
+	public double[][] sortBox(double[][] box) {
+		double[] key;
+		int j;
+		for(int i = 0; i < box.length; i++) {
+			
+			key = box[i];
+			for(j = i - 1; (j >= 0) && (box[j][0] < key[0]); j--){
+				box[j+1] = box[j];
+			}
+			box[j + 1] = key;
+		}
+		return box;
+	}
+	
+	
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+}
+
