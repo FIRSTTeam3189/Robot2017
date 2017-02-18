@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.AnalogUltrasonic;
 import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
@@ -67,11 +68,9 @@ public class Drivetrain extends PIDSubsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.GYROSCOPE_PORT);
 	BuiltInAccelerometer Accelorometer = new BuiltInAccelerometer();
-	Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_PORT, 1);
-
+	AnalogUltrasonic sonic = new AnalogUltrasonic(RobotMap.ULTRASONIC_PORT);
 	public Drivetrain() {
 		super(Constants.tuneP, Constants.tuneI, Constants.tuneD);
-		ultrasonic.setAutomaticMode(true);
 		gyro.reset();
 		leftFront.setInverted(true);
 		leftMiddle.setInverted(true);
@@ -97,7 +96,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 
 	public double SonarPing() {
-		return ultrasonic.getRangeInches();
+		return sonic.getInches();
 	}
 
 	/**
@@ -111,14 +110,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 
 	public double AdjustedAngle() {
-		xAngle = Math.toDegrees(Accelorometer.getX());
-		// (getAxesMeasurements().XAxis);
-		xAngleFiltered = RobotMap.HFC * xAngleFiltered + (1 - RobotMap.HFC) * xAngle;
-		gyroError = xAngleFiltered - gyro.getAngle();
-		// Get the actual Angle of the bot
-		angle = RobotMap.LFC * ((angle + (gyro.getAngle() + gyroError)) / 2) + (1 - RobotMap.LFC) * xAngle;
-
-		return angle;
+	return gyro.getAngle();
 	}
 
 	@Override
