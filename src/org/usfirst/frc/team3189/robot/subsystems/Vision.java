@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
- *
+ * Prvides vision for the robot
+ * @author Alex, Dev, Nicky
  */
 public class Vision extends Subsystem {
 
@@ -14,18 +15,31 @@ public class Vision extends Subsystem {
 	//   box_[box number]_[point number]_[x or y]
 	
 	NetworkTable table;
-
+	/**
+	 * Get network table for vision
+	 */
 	public Vision() {
 		table = NetworkTable.getTable("vision");
 		
 	}
 	
-	
+	/**
+	 * Get the points inside the boxes
+	 * 
+	 * @param boxNumber the number of boxes
+	 * @param pointNumber return the points inside of the boxes
+	 * @param xory wheather it is x or y
+	 * @return the points
+	 */
 	public double getPoint(int boxNumber, int pointNumber, XY xory) {
 		return table.getNumber("box_" + boxNumber + "_" + pointNumber + "_" + (xory == XY.x ? 'x' : 'y'), -1);
 	}
 	
-	public double getTheThing(){
+	/**
+	 * Get the midpoints of the boxes
+	 * @return the midpoint
+	 */
+	public double getheThing(){
 		double[][][] points = new double[2][4][2];
 		int validBoxs = 2;
 		for(int i = 0; i < 2; i++) {
@@ -83,3 +97,6 @@ public class Vision extends Subsystem {
     }
 }
 
+
+
+//Hey Gayboy
