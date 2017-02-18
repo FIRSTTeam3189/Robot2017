@@ -54,7 +54,7 @@ public class Vision extends Subsystem {
 			
 			//TODO: Fix magic numbers.
 			return ((distance * Constants.VISION_OFFSET)+((left + right) /2 ) - 320);
-		}else if(validBoxs == 1)
+		}else if(validBoxs == 1) {
 			int count = 0;
 			for(int i = 0; i < 4; i++) {
 				count += points[0][i][0];
