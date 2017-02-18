@@ -132,5 +132,6 @@ public class Robot extends IterativeRobot {
 	public void updateStatus(){
 		SmartDashboard.putData("drivetrain", drivetrain);
 		drivetrain.updateStatus();
+		SmartDashboard.putNumber("Ultrasonic sensor	",Robot.drivetrain.SonarPing());
 	}
 }
