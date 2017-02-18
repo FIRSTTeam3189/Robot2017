@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.Constants;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
@@ -51,8 +53,8 @@ public class Vision extends Subsystem {
 			double distance = right - left;
 			
 			//TODO: Fix magic numbers.
-			return ((distance * Constants.VISION_OFFSET)((left + right)/2)-320);
-		}else if(validBoxs == 1){
+			return ((distance * Constants.VISION_OFFSET)+((left + right) /2 ) - 320);
+		}else if(validBoxs == 1)
 			int count = 0;
 			for(int i = 0; i < 4; i++) {
 				count += points[0][i][0];
