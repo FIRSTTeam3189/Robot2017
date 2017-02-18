@@ -34,6 +34,7 @@ public class Vision extends Subsystem {
 				points[i][j][1] = getPoint(i, j, XY.y);
 				if(points[i][j][0] < 0 && points[i][j][1] < 0){
 					validBoxs--;
+					break;
 				}
 			}
 		}
@@ -46,10 +47,17 @@ public class Vision extends Subsystem {
 			int left = (int) ((points[leftID == 0 ? 0 : 1][0][0] + points[leftID == 0 ? 0 : 1][1][0])/2);
 			int right = (int) ((points[leftID == 0 ? 1 : 0][3][0] + points[leftID == 0 ? 1 : 0][2][0])/2);
 			
-			//TODO: Fix magic numbers.
-			return ((left + right)/2)-320;
-		}else if(validBoxs == 1){
 			
+			double distance = right - left;
+			
+			//TODO: Fix magic numbers.
+			return ((distance * Constants.VISION_OFFSET)((left + right)/2)-320);
+		}else if(validBoxs == 1){
+			int count = 0;
+			for(int i = 0; i < 4; i++) {
+				count += points[0][i][0];
+			}
+			return (count / 4.0d);
 		}
 		return 0;
 	}
