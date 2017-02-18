@@ -128,5 +128,6 @@ public class Robot extends IterativeRobot {
 	
 	public void updateStatus(){
 		SmartDashboard.putData("drivetrain", drivetrain);
+		drivetrain.updateStatus();
 	}
 }

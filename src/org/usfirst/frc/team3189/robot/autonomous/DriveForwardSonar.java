@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot.autonomous;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
 
@@ -25,7 +26,7 @@ public class DriveForwardSonar extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.tankDrive(RobotMap.AUTO_DRIVE_SPEED,RobotMap.AUTO_DRIVE_SPEED);
+		Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED,-Constants.AUTO_FORWARD_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

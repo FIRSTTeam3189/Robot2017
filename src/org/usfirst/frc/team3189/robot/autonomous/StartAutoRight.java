@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot.autonomous;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -13,7 +14,7 @@ public class StartAutoRight extends CommandGroup {
     	addSequential(new DriveForwardCommand(0.5));
     	addSequential(new GyroTurn(-45.0));
     	//TODO: Add vision correction.
-    	addSequential(new DriveForwardSonar(RobotMap.AUTO_STOP_DISTANCE));
+    	addSequential(new DriveForwardSonar(Constants.AUTO_STOP_DISTANCE));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

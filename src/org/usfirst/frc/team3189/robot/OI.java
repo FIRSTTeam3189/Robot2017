@@ -13,6 +13,7 @@ import org.usfirst.frc.team3189.robot.commands.OpenDropper;
 import org.usfirst.frc.team3189.robot.commands.ShiftDown;
 import org.usfirst.frc.team3189.robot.commands.ShiftGears;
 import org.usfirst.frc.team3189.robot.commands.ShiftUp;
+import org.usfirst.frc.team3189.robot.commands.ToggleDropper;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -44,18 +45,19 @@ public class OI {
 	private JoystickButton goFoward = new JoystickButton(rightjoystick, 3);
 
 	public OI() {
-		shiftDown.whenPressed(new ShiftDown());
-		shiftUp.whenPressed(new ShiftUp());
-		shiftGears.whenPressed(new ShiftGears());
-		openDropper.whenPressed(new OpenDropper());
-		closeDropper.whenPressed(new CloseDropper());
-		liftClaw.whenPressed(new LiftClaw());
-		lowerClaw.whenPressed(new LowerClaw());
-		closeClaw.whenPressed(new CloseClaw());
-		openClaw.whenPressed(new OpenClaw());
-		turnLeft.whenPressed(new StartAutoLeft());
-		turnRight.whenPressed(new StartAutoRight());
-		goFoward.whenPressed(new StartAutoCenter());
+		//shiftDown.whenPressed(new ShiftDown());
+		//shiftUp.whenPressed(new ShiftUp());
+		shiftGears.whileHeld(new ShiftUp());
+		shiftUp.whenPressed(new ToggleDropper());
+		//openDropper.whenPressed(new OpenDropper());
+		//closeDropper.whenPressed(new CloseDropper());
+		//liftClaw.whenPressed(new LiftClaw());
+		//lowerClaw.whenPressed(new LowerClaw());
+		//closeClaw.whenPressed(new CloseClaw());
+		//openClaw.whenPressed(new OpenClaw());
+		//turnLeft.whenPressed(new StartAutoLeft());
+		//turnRight.whenPressed(new StartAutoRight());
+		//goFoward.whenPressed(new StartAutoCenter());
 		
 	}
 

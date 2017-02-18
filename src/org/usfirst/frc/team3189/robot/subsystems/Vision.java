@@ -27,23 +27,31 @@ public class Vision extends Subsystem {
 	
 	public double getTheThing(){
 		double[][][] points = new double[2][4][2];
+		int validBoxs = 2;
 		for(int i = 0; i < 2; i++) {
 			for(int j = 0; i < 4; i++) {
 				points[i][j][0] = getPoint(i, j, XY.x);
 				points[i][j][1] = getPoint(i, j, XY.y);
+				if(points[i][j][0] < 0 && points[i][j][1] < 0){
+					validBoxs--;
+				}
 			}
 		}
-		
-		int leftID = (points[0][0][0] < points[1][0][0] ? 0 : 1);
-		
-		points[0] = sortBox(points[0]);
-		points[1] = sortBox(points[1]);
-		
-		int left = (int) ((points[leftID == 0 ? 0 : 1][0][0] + points[leftID == 0 ? 0 : 1][1][0])/2);
-		int right = (int) ((points[leftID == 0 ? 1 : 0][3][0] + points[leftID == 0 ? 1 : 0][2][0])/2);
-		
-		//TODO: Fix magic numbers.
-		return ((left + right)/2)-320;
+		if(validBoxs == 2){
+			int leftID = (points[0][0][0] < points[1][0][0] ? 0 : 1);
+			
+			points[0] = sortBox(points[0]);
+			points[1] = sortBox(points[1]);
+			
+			int left = (int) ((points[leftID == 0 ? 0 : 1][0][0] + points[leftID == 0 ? 0 : 1][1][0])/2);
+			int right = (int) ((points[leftID == 0 ? 1 : 0][3][0] + points[leftID == 0 ? 1 : 0][2][0])/2);
+			
+			//TODO: Fix magic numbers.
+			return ((left + right)/2)-320;
+		}else if(validBoxs == 1){
+			
+		}
+		return 0;
 	}
 	
 	public double[][] sortBox(double[][] box) {

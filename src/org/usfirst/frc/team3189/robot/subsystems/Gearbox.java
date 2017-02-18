@@ -6,6 +6,8 @@ package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.Piston;
 import org.usfirst.frc.team3189.robot.RobotMap;
+import org.usfirst.frc.team3189.robot.commands.ShiftDown;
+import org.usfirst.frc.team3189.robot.commands.ShiftUp;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,7 +19,7 @@ public class Gearbox extends Subsystem {
 	 */
 	public void shiftUp() {
 
-		piston.retract();
+		piston.extend();
 	}
 
 	/**
@@ -25,7 +27,7 @@ public class Gearbox extends Subsystem {
 	 */
 	public void shiftDown() {
 
-		piston.extend();
+		piston.retract();
 	}
 
 	/**
@@ -36,7 +38,6 @@ public class Gearbox extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new ShiftDown());
 	}
 }

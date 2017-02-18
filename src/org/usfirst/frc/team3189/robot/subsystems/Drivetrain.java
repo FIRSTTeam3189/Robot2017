@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This provides a interface for the drivetrain command for the 2017 bot
@@ -66,10 +67,11 @@ public class Drivetrain extends PIDSubsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.GYROSCOPE_PORT);
 	BuiltInAccelerometer Accelorometer = new BuiltInAccelerometer();
-	Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_PORT, 3);
+	Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_PORT, 1);
 
 	public Drivetrain() {
 		super(Constants.tuneP, Constants.tuneI, Constants.tuneD);
+		ultrasonic.setAutomaticMode(true);
 		gyro.reset();
 		leftFront.setInverted(true);
 		leftMiddle.setInverted(true);
@@ -135,6 +137,18 @@ public class Drivetrain extends PIDSubsystem {
 		
 		getPIDController().setPID(1.0 / (Math.abs(AdjustedAngle() - desiredAngle)), Constants.tuneI, Constants.tuneD);
 		
+	}
+	
+	public void updateStatus(){
+		SmartDashboard.putNumber("leftone", leftBack.getOutputVoltage());
+		SmartDashboard.putNumber("lefttwo", leftFront.getOutputVoltage());
+		SmartDashboard.putNumber("leftthree", leftMiddle.getOutputVoltage());
+		SmartDashboard.putNumber("rightone", rightBack.getOutputVoltage());
+		SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
+		SmartDashboard.putNumber("rightthree", rightFront.getOutputVoltage());
+		SmartDashboard.putNumber("gyro", gyro.getAngle());
+		SmartDashboard.putNumber("accel", Accelorometer.getX());
+		SmartDashboard.putNumber("ajust", this.AdjustedAngle());
 	}
 	
 }
