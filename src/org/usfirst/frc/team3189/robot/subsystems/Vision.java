@@ -79,6 +79,11 @@ public class Vision extends Subsystem {
 		return 0;
 	}
 	
+	/**
+	 * 
+	 * @param box The box from vision
+	 * @return a sorted array of all the points
+	 */
 	public double[][] sortBox(double[][] box) {
 		double[] key;
 		int j;
