@@ -19,6 +19,7 @@ import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
 import org.usfirst.frc.team3189.robot.subsystems.Gearbox;
+import org.usfirst.frc.team3189.robot.subsystems.Vision;
 import org.usfirst.frc.team3189.robot.subsystems.Winch;
 
 /**
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static Dropper dropper;
 	public static Claw claw;
+	public static Vision vision;
 	Compressor comp = new Compressor(0);
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -52,6 +54,7 @@ public class Robot extends IterativeRobot {
 		winch = new Winch();
 		dropper = new Dropper();
 		claw = new Claw();
+		vision = new Vision();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
 		chooser.addDefault("Center", new  StartAutoCenter());

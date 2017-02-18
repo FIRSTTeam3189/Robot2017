@@ -15,4 +15,6 @@ public class Constants {
 	public static final double AUTO_STOP_LEFT = 15; //same as first
 	public static final double AUTO_STOP_RIGHT = 15; //same as second
 	public static final double AUTO_DRIVE_SPEED = 0.8;  //needs testing and stuff as well
+	
+	public static final double AUTO_VISION_SPEED = 0.5;
 }
