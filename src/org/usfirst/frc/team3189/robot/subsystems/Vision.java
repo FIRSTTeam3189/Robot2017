@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.Constants;
@@ -7,8 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
- * Prvides vision for the robot
- * @author Alex, Dev, Nicky
+ *
  */
 public class Vision extends Subsystem {
 
@@ -18,31 +16,18 @@ public class Vision extends Subsystem {
 	//   box_[box number]_[point number]_[x or y]
 	
 	NetworkTable table;
-	/**
-	 * Get network table for vision
-	 */
+
 	public Vision() {
 		table = NetworkTable.getTable("vision");
 		
 	}
 	
-	/**
-	 * Get the points inside the boxes
-	 * 
-	 * @param boxNumber the number of boxes
-	 * @param pointNumber return the points inside of the boxes
-	 * @param xory wheather it is x or y
-	 * @return the points
-	 */
+	
 	public double getPoint(int boxNumber, int pointNumber, XY xory) {
 		return table.getNumber("box_" + boxNumber + "_" + pointNumber + "_" + (xory == XY.x ? 'x' : 'y'), -1);
 	}
 	
-	/**
-	 * Get the midpoints of the boxes
-	 * @return the midpoint
-	 */
-	public double getheThing(){
+	public double getTheThing(){
 		double[][][] points = new double[2][4][2];
 		int validBoxs = 2;
 		for(int i = 0; i < 2; i++) {
@@ -68,8 +53,8 @@ public class Vision extends Subsystem {
 			double distance = right - left;
 			
 			//TODO: Fix magic numbers.
-			return ((distance * Constants.VISION_OFFSET)+((left + right)/2)-320);
-		}else if(validBoxs == 1){
+			return ((distance * Constants.VISION_OFFSET)+((left + right) /2 ) - 320);
+		}else if(validBoxs == 1) {
 			int count = 0;
 			for(int i = 0; i < 4; i++) {
 				count += points[0][i][0];
@@ -79,11 +64,6 @@ public class Vision extends Subsystem {
 		return 0;
 	}
 	
-	/**
-	 * 
-	 * @param box The box from vision
-	 * @return a sorted array of all the points
-	 */
 	public double[][] sortBox(double[][] box) {
 		double[] key;
 		int j;
@@ -105,4 +85,3 @@ public class Vision extends Subsystem {
     }
 }
 
-//Hey Gayboy
