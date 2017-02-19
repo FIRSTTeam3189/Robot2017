@@ -25,17 +25,15 @@ public class VisionDropperCommand extends Command {
 		double thingy = Robot.vision.getTheThing();
 		if (thingy >= 10) {
 			Robot.drivetrain.tankDrive(-Constants.AUTO_VISION_SPEED, Constants.AUTO_VISION_SPEED);
-		}
-		else if(thingy <= -10){
+		} else if (thingy <= -10) {
 			Robot.drivetrain.tankDrive(Constants.AUTO_VISION_SPEED, -Constants.AUTO_DRIVE_SPEED);
 		}
-		
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (Robot.vision.getTheThing()<=10 && Robot.vision.getTheThing()>=-10);
+		return (Robot.vision.getTheThing() <= 10 && Robot.vision.getTheThing() >= -10);
 	}
 
 	// Called once after isFinished returns true
