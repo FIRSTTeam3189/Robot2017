@@ -5,10 +5,14 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Opens the dropper
+ * @author Alex Rodgers
  */
 public class OpenDropper extends Command {
 
+	/**
+	 * Grabs the dropper
+	 */
     public OpenDropper() {
     	requires(Robot.dropper);
     	// Use requires() here to declare subsystem dependencies
@@ -16,6 +20,9 @@ public class OpenDropper extends Command {
     }
 
     // Called just before this Command runs the first time
+    /**
+     * Opens the dropper.
+     */
     protected void initialize() {
     	Robot.dropper.OpenDropper();
     }
