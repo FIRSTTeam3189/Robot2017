@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveForwardSonar extends Command {
 
 	double stopDistance;
-	
+
 	public DriveForwardSonar(double stopDistance) {
 		requires(Robot.drivetrain);
 		this.stopDistance = stopDistance;
@@ -26,7 +26,7 @@ public class DriveForwardSonar extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED,-Constants.AUTO_FORWARD_SPEED);
+		Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED, -Constants.AUTO_FORWARD_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
