@@ -5,16 +5,22 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Closes the Piston
  */
 public class CloseClaw extends Command {
 
+	/**
+	 * Grabs the Claw subsystem
+	 */
     public CloseClaw() {
     	requires(Robot.claw);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
+  /**
+   * Grabs the Claw
+   */
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.claw.Grab();

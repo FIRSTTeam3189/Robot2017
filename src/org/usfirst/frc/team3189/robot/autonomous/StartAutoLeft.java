@@ -10,28 +10,28 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class StartAutoLeft extends CommandGroup {
 
-    public StartAutoLeft() {
-    	
-    	addSequential(new DriveForwardCommand(0.5));
-    	addSequential(new GyroTurn(45.0));
-    	//TODO: Add vision correction
-    	addSequential(new DriveForwardSonar(Constants.AUTO_STOP_DISTANCE));
-    	
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+	public StartAutoLeft() {
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+		addSequential(new DriveForwardCommand(0.5));
+		addSequential(new GyroTurn(45.0));
+		// TODO: Add vision correction
+		addSequential(new DriveForwardSonar(Constants.AUTO_STOP_DISTANCE));
 
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    }
+		// Add Commands here:
+		// e.g. addSequential(new Command1());
+		// addSequential(new Command2());
+		// these will run in order.
+
+		// To run multiple commands at the same time,
+		// use addParallel()
+		// e.g. addParallel(new Command1());
+		// addSequential(new Command2());
+		// Command1 and Command2 will run in parallel.
+
+		// A command group will require all of the subsystems that each member
+		// would require.
+		// e.g. if Command1 requires chassis, and Command2 requires arm,
+		// a CommandGroup containing them would require both the chassis and the
+		// arm.
+	}
 }

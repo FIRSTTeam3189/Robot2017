@@ -19,4 +19,8 @@ public class Constants {
 	public static final double AUTO_DRIVE_SPEED = 0.8;  //needs testing and stuff as well
 	
 	public static final double AUTO_VISION_SPEED = 0.5;
+	
+	public final static double HFC = 0.90;
+	public final static double LFC = 0.98;
+	public final static double SPEED_DIV = 46; // I don't know what this is
 }

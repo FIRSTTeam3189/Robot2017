@@ -5,15 +5,22 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Toggle the state of the dropper
+ * @author Alex Rodgers
  */
 public class ToggleDropper extends Command {
 
+	/**
+	 * Gets the robots claw.
+	 */
     public ToggleDropper() {
         requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
+    /**
+     * Toggle the state of the piston
+     */
     protected void initialize() {
     	Robot.claw.Toggle();
     }
