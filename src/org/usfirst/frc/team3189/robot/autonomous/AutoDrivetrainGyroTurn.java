@@ -2,7 +2,6 @@ package org.usfirst.frc.team3189.robot.autonomous;
 
 import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
-import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -13,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoDrivetrainGyroTurn extends Command {
 
-	private double angle = Robot.drivetrain.getGyroAngle();
 	private double desiredAngle;
 	private double newAngle;
 

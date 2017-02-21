@@ -2,7 +2,6 @@ package org.usfirst.frc.team3189.robot.autonomous;
 
 import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
-import org.usfirst.frc.team3189.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 

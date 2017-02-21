@@ -1,22 +1,16 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.AnalogUltrasonic;
-import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
 import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.AnalogAccelerometer;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -26,11 +20,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  */
 public class Drivetrain extends Subsystem {
-
-	private double angle = 0;
-	private double gyroError = 0;
-	private double xAngle = 0;
-	private double xAngleFiltered = 0;
 
 	/**
 	 * {@link SpeedController} for the left front motor of the

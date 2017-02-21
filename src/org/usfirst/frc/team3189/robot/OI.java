@@ -1,27 +1,9 @@
 package org.usfirst.frc.team3189.robot;
 
-import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainForward;
-import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainSonarGoto;
-import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainGyroTurn;
-import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainReverce;
-import org.usfirst.frc.team3189.robot.autonomous.AutoGroupCenter;
-import org.usfirst.frc.team3189.robot.autonomous.AutoGroupLeft;
-import org.usfirst.frc.team3189.robot.autonomous.AutoGroupRight;
-import org.usfirst.frc.team3189.robot.commands.ClawClose;
-import org.usfirst.frc.team3189.robot.commands.DropperClose;
-import org.usfirst.frc.team3189.robot.commands.WinchControl;
-import org.usfirst.frc.team3189.robot.commands.ClawLift;
-import org.usfirst.frc.team3189.robot.commands.ClawLower;
-import org.usfirst.frc.team3189.robot.commands.ClawOpen;
-import org.usfirst.frc.team3189.robot.commands.DropperOpen;
-import org.usfirst.frc.team3189.robot.commands.GearboxLow;
-import org.usfirst.frc.team3189.robot.commands.GearboxShift;
 import org.usfirst.frc.team3189.robot.commands.GearboxHigh;
-import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
 import org.usfirst.frc.team3189.robot.commands.DropperToggle;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -37,18 +19,18 @@ public class OI {
 	// joystick button number not finalized
 	private JoystickButton leftOne = new JoystickButton(leftjoystick, 1);
 	private JoystickButton leftTwo = new JoystickButton(leftjoystick, 2);
-	private JoystickButton leftThree = new JoystickButton(leftjoystick, 3);
-	private JoystickButton leftFour = new JoystickButton(leftjoystick, 4);
-	private JoystickButton leftFive = new JoystickButton(leftjoystick, 5);
-	private JoystickButton leftSix = new JoystickButton(leftjoystick, 6);
-	private JoystickButton leftSeven = new JoystickButton(leftjoystick, 7);
-	private JoystickButton leftEight = new JoystickButton(leftjoystick, 8);
-	private JoystickButton leftNine = new JoystickButton(leftjoystick, 9);
-	private JoystickButton leftTen = new JoystickButton(leftjoystick, 10);
-	private JoystickButton rightFour = new JoystickButton(rightjoystick, 4);
-	private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
-	private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
-	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
+//	private JoystickButton leftThree = new JoystickButton(leftjoystick, 3);
+//	private JoystickButton leftFour = new JoystickButton(leftjoystick, 4);
+//	private JoystickButton leftFive = new JoystickButton(leftjoystick, 5);
+//	private JoystickButton leftSix = new JoystickButton(leftjoystick, 6);
+//	private JoystickButton leftSeven = new JoystickButton(leftjoystick, 7);
+//	private JoystickButton leftEight = new JoystickButton(leftjoystick, 8);
+//	private JoystickButton leftNine = new JoystickButton(leftjoystick, 9);
+//	private JoystickButton leftTen = new JoystickButton(leftjoystick, 10);
+//	private JoystickButton rightFour = new JoystickButton(rightjoystick, 4);
+//	private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
+//	private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
+//	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
 
 	public OI() {
 		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in

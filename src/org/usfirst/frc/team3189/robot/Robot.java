@@ -9,12 +9,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import javax.swing.text.AbstractDocument.LeafElement;
-
 import org.usfirst.frc.team3189.robot.autonomous.AutoGroupCenter;
 import org.usfirst.frc.team3189.robot.autonomous.AutoGroupLeft;
 import org.usfirst.frc.team3189.robot.autonomous.AutoGroupRight;
-import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
