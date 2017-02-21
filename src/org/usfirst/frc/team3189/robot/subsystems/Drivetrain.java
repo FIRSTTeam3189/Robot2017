@@ -125,6 +125,20 @@ public class Drivetrain extends PIDSubsystem {
 
 	}
 	
+	public double getLeftEncVelocity() {
+		return leftFront.getEncVelocity();
+	}
+	
+	public double getRightEncVelocity() {
+		return rightBack.getEncVelocity();
+	}
+	
+	public void setEncoderRevs() {
+		//This entire method is useless.
+		leftFront.configEncoderCodesPerRev(6);
+		rightBack.configEncoderCodesPerRev(6);
+	}
+	
 	public void setP(double desiredAngle) {
 		
 		getPIDController().setPID(1.0 / (Math.abs(AdjustedAngle() - desiredAngle)), Constants.tuneI, Constants.tuneD);
@@ -143,6 +157,10 @@ public class Drivetrain extends PIDSubsystem {
 		SmartDashboard.putNumber("ajust", this.AdjustedAngle());
 		SmartDashboard.putNumber("left y", Robot.oi.getLeftY());
 		SmartDashboard.putNumber("right y", Robot.oi.getRightY());
+		SmartDashboard.putNumber("left Encoder", getLeftEncVelocity());
+		SmartDashboard.putNumber("Right Encoder", getRightEncVelocity());
+		SmartDashboard.putNumber("Left Enc Pos", leftFront.getEncPosition());
+		SmartDashboard.putNumber("Right Enc Pos", rightBack.getEncPosition());
 	}
 	
 }
