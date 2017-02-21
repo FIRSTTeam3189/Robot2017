@@ -4,16 +4,18 @@ public class Constants {
 	
 	public static final double VISION_OFFSET = 1.0;
 	
-	public static final double AUTO_FORWARD_SPEED = 0.05;
-	public static final double AUTO_REVERSE_SPEED = 0.05;
+	public static final double AUTO_FORWARD_SPEED = 0.4;
+	public static final double AUTO_REVERSE_SPEED = 0.4;
+	
+	public static final double GYRO_SPEED_MULTIPLIER = .50;
 	
 	public static final double tuneP = 0.01;
 	public static final double tuneI = 0.001;
 	public static final double tuneD = 0.01;
 	
-	public static final double AUTO_ANGLE_OFF = 0.5;
+	public static final double AUTO_ANGLE_OFF = 10;
 	
-	public static final double AUTO_STOP_DISTANCE = 48; //needs to be tested and calibrated and stuff. 12 is a random number.
+	public static final double AUTO_STOP_DISTANCE = 12; //needs to be tested and calibrated and stuff. 12 is a random number.
 	public static final double AUTO_STOP_LEFT = 15; //same as first
 	public static final double AUTO_STOP_RIGHT = 15; //same as second
 	public static final double AUTO_DRIVE_SPEED = 0.8;  //needs testing and stuff as well

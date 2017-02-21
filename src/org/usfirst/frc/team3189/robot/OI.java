@@ -1,5 +1,9 @@
 package org.usfirst.frc.team3189.robot;
 
+import org.usfirst.frc.team3189.robot.autonomous.DriveForwardCommand;
+import org.usfirst.frc.team3189.robot.autonomous.DriveForwardSonar;
+import org.usfirst.frc.team3189.robot.autonomous.GyroTurn;
+import org.usfirst.frc.team3189.robot.autonomous.ReverseDirectionCommand;
 import org.usfirst.frc.team3189.robot.autonomous.StartAutoCenter;
 import org.usfirst.frc.team3189.robot.autonomous.StartAutoLeft;
 import org.usfirst.frc.team3189.robot.autonomous.StartAutoRight;
@@ -13,6 +17,7 @@ import org.usfirst.frc.team3189.robot.commands.OpenDropper;
 import org.usfirst.frc.team3189.robot.commands.ShiftDown;
 import org.usfirst.frc.team3189.robot.commands.ShiftGears;
 import org.usfirst.frc.team3189.robot.commands.ShiftUp;
+import org.usfirst.frc.team3189.robot.commands.TankDrive;
 import org.usfirst.frc.team3189.robot.commands.ToggleDropper;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -43,6 +48,7 @@ public class OI {
 	private JoystickButton turnLeft = new JoystickButton(rightjoystick, 4);
 	private JoystickButton turnRight = new JoystickButton(rightjoystick, 5);
 	private JoystickButton goFoward = new JoystickButton(rightjoystick, 3);
+	private JoystickButton stopBot = new JoystickButton(rightjoystick, 1);
 
 	public OI() {
 		//shiftDown.whenPressed(new ShiftDown());
@@ -55,10 +61,10 @@ public class OI {
 		//lowerClaw.whenPressed(new LowerClaw());
 		//closeClaw.whenPressed(new CloseClaw());
 		//openClaw.whenPressed(new OpenClaw());
-		//turnLeft.whenPressed(new StartAutoLeft());
-		//turnRight.whenPressed(new StartAutoRight());
-		//goFoward.whenPressed(new StartAutoCenter());
-		
+		turnLeft.whenPressed(new DriveForwardCommand(0.5));
+		turnRight.whenPressed(new DriveForwardSonar(Constants.AUTO_STOP_DISTANCE));
+		goFoward.whenPressed(new GyroTurn(180));
+		stopBot.whenPressed(new ReverseDirectionCommand(0.2));
 	}
 
 	/**

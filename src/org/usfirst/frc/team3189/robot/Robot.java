@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static Dropper dropper;
 	public static Claw claw;
 	public static Vision vision;
-	Compressor comp = new Compressor(0);
+	Compressor comp = new Compressor(0); //is this a magic number? -Nate
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 

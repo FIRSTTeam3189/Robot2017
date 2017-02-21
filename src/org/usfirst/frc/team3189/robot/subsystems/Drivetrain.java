@@ -121,7 +121,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		Robot.drivetrain.tankDrive(output, -output);
+		Robot.drivetrain.tankDrive(-output * Constants.GYRO_SPEED_MULTIPLIER, output * Constants.GYRO_SPEED_MULTIPLIER);
 
 	}
 	
@@ -141,6 +141,8 @@ public class Drivetrain extends PIDSubsystem {
 		SmartDashboard.putNumber("gyro", gyro.getAngle());
 		SmartDashboard.putNumber("accel", Accelorometer.getX());
 		SmartDashboard.putNumber("ajust", this.AdjustedAngle());
+		SmartDashboard.putNumber("left y", Robot.oi.getLeftY());
+		SmartDashboard.putNumber("right y", Robot.oi.getRightY());
 	}
 	
 }
