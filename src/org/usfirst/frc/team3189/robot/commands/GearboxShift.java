@@ -4,28 +4,26 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+//TODO java doc this
 /**
- * Uses the gearbox subsystem
- *
  * @author Nate Mansfield
  */
-public class ShiftDown extends Command {
+public class GearboxShift extends Command {
 
-	public ShiftDown() {
+	public GearboxShift() {
 		requires(Robot.gearbox);
 	}
-	/**
-	 * calls the shiftDown method and shifts the gears down
-	 */
+
 	protected void initialize() {
-		Robot.gearbox.shiftDown();
+		Robot.gearbox.toggle();
+
 	}
 
 	protected void execute() {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	protected void end() {

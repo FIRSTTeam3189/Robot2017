@@ -10,13 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
  * Turns the robot with gyro
  * 
  * @author Damon Wagenknecht
- *
  */
-public class GyroTurn extends Command {
+public class AutoDrivetrainGyroTurn extends Command {
 
-	private double angle = Robot.drivetrain.AdjustedAngle();
+	private double angle = Robot.drivetrain.getGyroAngle();
 	private double desiredAngle;
-
 	private double newAngle;
 
 	/**
@@ -24,26 +22,19 @@ public class GyroTurn extends Command {
 	 * 
 	 * @param newAngle
 	 */
-	public GyroTurn(double newAngle) {
-
+	public AutoDrivetrainGyroTurn(double newAngle) {
 		this.newAngle = newAngle;
-		Robot.drivetrain.setP(newAngle);
 		requires(Robot.drivetrain);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 	}
 
-	/**
-	 * Moves the robot to the new angle
-	 */
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		desiredAngle = Robot.drivetrain.AdjustedAngle() + newAngle;
+		desiredAngle = Robot.drivetrain.getGyroAngle() + newAngle;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (desiredAngle > Robot.drivetrain.AdjustedAngle()) {
+		if (desiredAngle > Robot.drivetrain.getGyroAngle()) {
 			Robot.drivetrain.tankDrive(-Constants.AUTO_DRIVE_SPEED * Constants.GYRO_SPEED_MULTIPLIER,
 					Constants.AUTO_DRIVE_SPEED * Constants.GYRO_SPEED_MULTIPLIER);
 		} else {
@@ -52,32 +43,21 @@ public class GyroTurn extends Command {
 		}
 	}
 
-	/**
-	 * Returns true when angle is in range
-	 */
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 
-		return (Robot.drivetrain.AdjustedAngle() <= desiredAngle + Constants.AUTO_ANGLE_OFF
-				&& Robot.drivetrain.AdjustedAngle() >= desiredAngle + -Constants.AUTO_ANGLE_OFF);
+		return (Robot.drivetrain.getGyroAngle() <= desiredAngle + Constants.AUTO_ANGLE_OFF
+				&& Robot.drivetrain.getGyroAngle() >= desiredAngle + -Constants.AUTO_ANGLE_OFF);
 	}
 
-	// daddy trump
-	/**
-	 * Stops the robot
-	 */
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.drivetrain.tankDrive(0, 0);
 	}
 
-	/**
-	 * Stops the robot
-	 */
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		Robot.drivetrain.tankDrive(0, 0);
 	}
-
 }

@@ -4,7 +4,7 @@ import org.usfirst.frc.team3189.robot.AnalogUltrasonic;
 import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
-import org.usfirst.frc.team3189.robot.commands.TankDrive;
+import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
 
 import com.ctre.CANTalon;
 
@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Nate and Nick
  * 
  */
-public class Drivetrain extends PIDSubsystem {
+public class Drivetrain extends Subsystem {
 
 	private double angle = 0;
 	private double gyroError = 0;
@@ -62,15 +62,11 @@ public class Drivetrain extends PIDSubsystem {
 	 */
 	private CANTalon rightBack = new CANTalon(RobotMap.RIGHT_BACK);
 
-	/**
-	 * This inverts the right motors on the robot.
-	 */
-
 	AnalogGyro gyro = new AnalogGyro(RobotMap.GYROSCOPE_PORT);
 	BuiltInAccelerometer Accelorometer = new BuiltInAccelerometer();
 	AnalogUltrasonic sonic = new AnalogUltrasonic(RobotMap.ULTRASONIC_PORT);
+
 	public Drivetrain() {
-		super(Constants.tuneP, Constants.tuneI, Constants.tuneD);
 		gyro.reset();
 		leftFront.setInverted(true);
 		leftMiddle.setInverted(true);
@@ -95,7 +91,12 @@ public class Drivetrain extends PIDSubsystem {
 		rightBack.set(right);
 	}
 
-	public double SonarPing() {
+	/**
+	 * gets the distance read by the ultrasonic sensor
+	 * 
+	 * @return distance from object in inches
+	 */
+	public double sonarPing() {
 		return sonic.getInches();
 	}
 
@@ -103,58 +104,45 @@ public class Drivetrain extends PIDSubsystem {
 	 * Sets the default command to Tankdrive
 	 */
 	public void initDefaultCommand() {
-
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new TankDrive());
+		setDefaultCommand(new DrivetrainTankControl());
 	}
 
-	public double AdjustedAngle() {
-	return gyro.getAngle();
+	// TODO java doc this
+	public double getGyroAngle() {
+		return gyro.getAngle();
 	}
 
-	@Override
-	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		Robot.drivetrain.tankDrive(-output * Constants.GYRO_SPEED_MULTIPLIER, output * Constants.GYRO_SPEED_MULTIPLIER);
-
-	}
-	
+	// TODO java doc this
 	public double getLeftEncVelocity() {
 		return leftFront.getEncVelocity();
 	}
-	
+
+	// TODO java doc this
 	public double getRightEncVelocity() {
 		return rightBack.getEncVelocity();
 	}
-	
+
+	// TODO java doc this
 	public void setEncoderRevs() {
-		//This entire method is useless.
-		leftFront.configEncoderCodesPerRev(6);
-		rightBack.configEncoderCodesPerRev(6);
+		// TODO this is not useless
+		// leftFront.configEncoderCodesPerRev(6);
+		// rightBack.configEncoderCodesPerRev(6);
 	}
-	
-	public void setP(double desiredAngle) {
-		
-		getPIDController().setPID(1.0 / (Math.abs(AdjustedAngle() - desiredAngle)), Constants.tuneI, Constants.tuneD);
-		
-	}
-	
-	public void updateStatus(){
+
+	/**
+	 * sends values of this system to smartdashboard
+	 */
+	public void updateStatus() {
 		SmartDashboard.putNumber("leftone", leftBack.getOutputVoltage());
 		SmartDashboard.putNumber("lefttwo", leftFront.getOutputVoltage());
 		SmartDashboard.putNumber("leftthree", leftMiddle.getOutputVoltage());
 		SmartDashboard.putNumber("rightone", rightBack.getOutputVoltage());
 		SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
 		SmartDashboard.putNumber("rightthree", rightFront.getOutputVoltage());
+		SmartDashboard.putNumber("Ultrasonic sensor	", sonarPing());
 		SmartDashboard.putNumber("gyro", gyro.getAngle());
 		SmartDashboard.putNumber("accel", Accelorometer.getX());
-		SmartDashboard.putNumber("ajust", this.AdjustedAngle());
+		SmartDashboard.putNumber("ajust", getGyroAngle());
 		SmartDashboard.putNumber("left y", Robot.oi.getLeftY());
 		SmartDashboard.putNumber("right y", Robot.oi.getRightY());
 		SmartDashboard.putNumber("left Encoder", getLeftEncVelocity());
@@ -162,5 +150,4 @@ public class Drivetrain extends PIDSubsystem {
 		SmartDashboard.putNumber("Left Enc Pos", leftFront.getEncPosition());
 		SmartDashboard.putNumber("Right Enc Pos", rightBack.getEncPosition());
 	}
-	
 }

@@ -1,24 +1,24 @@
 package org.usfirst.frc.team3189.robot;
 
-import org.usfirst.frc.team3189.robot.autonomous.DriveForwardCommand;
-import org.usfirst.frc.team3189.robot.autonomous.DriveForwardSonar;
-import org.usfirst.frc.team3189.robot.autonomous.GyroTurn;
-import org.usfirst.frc.team3189.robot.autonomous.ReverseDirectionCommand;
-import org.usfirst.frc.team3189.robot.autonomous.StartAutoCenter;
-import org.usfirst.frc.team3189.robot.autonomous.StartAutoLeft;
-import org.usfirst.frc.team3189.robot.autonomous.StartAutoRight;
-import org.usfirst.frc.team3189.robot.commands.CloseClaw;
-import org.usfirst.frc.team3189.robot.commands.CloseDropper;
-import org.usfirst.frc.team3189.robot.commands.ControlWinch;
-import org.usfirst.frc.team3189.robot.commands.LiftClaw;
-import org.usfirst.frc.team3189.robot.commands.LowerClaw;
-import org.usfirst.frc.team3189.robot.commands.OpenClaw;
-import org.usfirst.frc.team3189.robot.commands.OpenDropper;
-import org.usfirst.frc.team3189.robot.commands.ShiftDown;
-import org.usfirst.frc.team3189.robot.commands.ShiftGears;
-import org.usfirst.frc.team3189.robot.commands.ShiftUp;
-import org.usfirst.frc.team3189.robot.commands.TankDrive;
-import org.usfirst.frc.team3189.robot.commands.ToggleDropper;
+import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainForward;
+import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainSonarGoto;
+import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainGyroTurn;
+import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainReverce;
+import org.usfirst.frc.team3189.robot.autonomous.AutoGroupCenter;
+import org.usfirst.frc.team3189.robot.autonomous.AutoGroupLeft;
+import org.usfirst.frc.team3189.robot.autonomous.AutoGroupRight;
+import org.usfirst.frc.team3189.robot.commands.ClawClose;
+import org.usfirst.frc.team3189.robot.commands.DropperClose;
+import org.usfirst.frc.team3189.robot.commands.WinchControl;
+import org.usfirst.frc.team3189.robot.commands.ClawLift;
+import org.usfirst.frc.team3189.robot.commands.ClawLower;
+import org.usfirst.frc.team3189.robot.commands.ClawOpen;
+import org.usfirst.frc.team3189.robot.commands.DropperOpen;
+import org.usfirst.frc.team3189.robot.commands.GearboxLow;
+import org.usfirst.frc.team3189.robot.commands.GearboxShift;
+import org.usfirst.frc.team3189.robot.commands.GearboxHigh;
+import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
+import org.usfirst.frc.team3189.robot.commands.DropperToggle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -35,36 +35,25 @@ public class OI {
 	private Joystick rightjoystick = new Joystick(1);
 	private Joystick grabjoystick = new Joystick(2);
 	// joystick button number not finalized
-	private JoystickButton shiftGears = new JoystickButton(leftjoystick, 1);
-	private JoystickButton shiftUp = new JoystickButton(leftjoystick, 2);
-	private JoystickButton shiftDown = new JoystickButton(leftjoystick, 3);
-	private JoystickButton winchButton = new JoystickButton(leftjoystick, 4);
-	private JoystickButton openDropper = new JoystickButton(leftjoystick, 5);
-	private JoystickButton closeDropper = new JoystickButton(leftjoystick, 6);
-	private JoystickButton liftClaw = new JoystickButton(leftjoystick, 7);
-	private JoystickButton lowerClaw = new JoystickButton(leftjoystick, 8);
-	private JoystickButton openClaw = new JoystickButton(leftjoystick, 9);
-	private JoystickButton closeClaw = new JoystickButton(leftjoystick, 10);
-	private JoystickButton turnLeft = new JoystickButton(rightjoystick, 4);
-	private JoystickButton turnRight = new JoystickButton(rightjoystick, 5);
-	private JoystickButton goFoward = new JoystickButton(rightjoystick, 3);
-	private JoystickButton stopBot = new JoystickButton(rightjoystick, 1);
+	private JoystickButton leftOne = new JoystickButton(leftjoystick, 1);
+	private JoystickButton leftTwo = new JoystickButton(leftjoystick, 2);
+	private JoystickButton leftThree = new JoystickButton(leftjoystick, 3);
+	private JoystickButton leftFour = new JoystickButton(leftjoystick, 4);
+	private JoystickButton leftFive = new JoystickButton(leftjoystick, 5);
+	private JoystickButton leftSix = new JoystickButton(leftjoystick, 6);
+	private JoystickButton leftSeven = new JoystickButton(leftjoystick, 7);
+	private JoystickButton leftEight = new JoystickButton(leftjoystick, 8);
+	private JoystickButton leftNine = new JoystickButton(leftjoystick, 9);
+	private JoystickButton leftTen = new JoystickButton(leftjoystick, 10);
+	private JoystickButton rightFour = new JoystickButton(rightjoystick, 4);
+	private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
+	private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
+	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
 
 	public OI() {
-		//shiftDown.whenPressed(new ShiftDown());
-		//shiftUp.whenPressed(new ShiftUp());
-		shiftGears.whileHeld(new ShiftUp());
-		shiftUp.whenPressed(new ToggleDropper());
-		//openDropper.whenPressed(new OpenDropper());
-		//closeDropper.whenPressed(new CloseDropper());
-		//liftClaw.whenPressed(new LiftClaw());
-		//lowerClaw.whenPressed(new LowerClaw());
-		//closeClaw.whenPressed(new CloseClaw());
-		//openClaw.whenPressed(new OpenClaw());
-		turnLeft.whenPressed(new DriveForwardCommand(0.5));
-		turnRight.whenPressed(new DriveForwardSonar(Constants.AUTO_STOP_DISTANCE));
-		goFoward.whenPressed(new GyroTurn(180));
-		stopBot.whenPressed(new ReverseDirectionCommand(0.2));
+		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in
+												// high gear
+		leftTwo.whenPressed(new DropperToggle());
 	}
 
 	/**
@@ -87,11 +76,13 @@ public class OI {
 		 */
 		return rightjoystick.getY();
 	}
+
 	/**
 	 * returns the value of the copilot's joystick with a range of 1.0 to -1.0.
+	 * 
 	 * @return Double copilot's joystick value
 	 */
-	public double getCoPilotJoystickY(){
+	public double getCoPilotJoystickY() {
 		return grabjoystick.getY();
 	}
 }

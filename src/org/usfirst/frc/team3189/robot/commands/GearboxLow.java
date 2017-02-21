@@ -5,22 +5,18 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * Uses the gearbox subsystem
+ *
  * @author Nate Mansfield
  */
-public class ShiftGears extends Command {
-	/**
-	 * Uses the gearbox subsystem
-	 */
-	public ShiftGears() {
+public class GearboxLow extends Command {
+
+	public GearboxLow() {
 		requires(Robot.gearbox);
 	}
 
-	/**
-	 * calls the toggle method and toggles the gears.
-	 */
 	protected void initialize() {
-		Robot.gearbox.toggle();
-
+		Robot.gearbox.shiftIntoLow();
 	}
 
 	protected void execute() {

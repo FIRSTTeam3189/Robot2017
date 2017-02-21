@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import javax.swing.text.AbstractDocument.LeafElement;
 
-import org.usfirst.frc.team3189.robot.autonomous.StartAutoCenter;
-import org.usfirst.frc.team3189.robot.autonomous.StartAutoLeft;
-import org.usfirst.frc.team3189.robot.autonomous.StartAutoRight;
-import org.usfirst.frc.team3189.robot.commands.TankDrive;
+import org.usfirst.frc.team3189.robot.autonomous.AutoGroupCenter;
+import org.usfirst.frc.team3189.robot.autonomous.AutoGroupLeft;
+import org.usfirst.frc.team3189.robot.autonomous.AutoGroupRight;
+import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static Dropper dropper;
 	public static Claw claw;
 	public static Vision vision;
-	Compressor comp = new Compressor(0); //is this a magic number? -Nate
+	Compressor comp = new Compressor(0); // is this a magic number? -Nate
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -57,9 +57,9 @@ public class Robot extends IterativeRobot {
 		vision = new Vision();
 		oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
-		chooser.addDefault("Center", new  StartAutoCenter());
-		chooser.addObject("Left", new StartAutoLeft());
-		chooser.addObject("Right", new StartAutoRight());
+		chooser.addDefault("Center", new AutoGroupCenter());
+		chooser.addObject("Left", new AutoGroupLeft());
+		chooser.addObject("Right", new AutoGroupRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -128,10 +128,9 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-	
-	public void updateStatus(){
+
+	public void updateStatus() {
 		SmartDashboard.putData("drivetrain", drivetrain);
 		drivetrain.updateStatus();
-		SmartDashboard.putNumber("Ultrasonic sensor	",Robot.drivetrain.SonarPing());
 	}
 }

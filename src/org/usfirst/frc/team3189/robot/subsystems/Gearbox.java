@@ -6,38 +6,36 @@ package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.Piston;
 import org.usfirst.frc.team3189.robot.RobotMap;
-import org.usfirst.frc.team3189.robot.commands.ShiftDown;
-import org.usfirst.frc.team3189.robot.commands.ShiftUp;
+import org.usfirst.frc.team3189.robot.commands.GearboxLow;
+import org.usfirst.frc.team3189.robot.commands.GearboxHigh;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Gearbox extends Subsystem {
-	Piston piston = new Piston(RobotMap.GEARBOX_EXTEND, RobotMap.GEARBOX_RETRACT);
+	Piston piston = new Piston(RobotMap.GEARBOX_LOW, RobotMap.GEARBOX_HIGH);
 
 	/**
-	 * Shifts up gearbox
+	 * Shifts gearbox into High gear.
 	 */
-	public void shiftUp() {
-
+	public void shiftIntoHigh() {
 		piston.extend();
 	}
 
 	/**
-	 * Shifts down gearbox
+	 * Shifts gearbox into Low gear
 	 */
-	public void shiftDown() {
-
+	public void shiftIntoLow() {
 		piston.retract();
 	}
 
 	/**
-	 * Toggles the state of the pistons
+	 * Toggles the state of the gearboxs' pistons
 	 */
 	public void toggle() {
 		piston.toggle();
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new ShiftDown());
+		setDefaultCommand(new GearboxLow());
 	}
 }

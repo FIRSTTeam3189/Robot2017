@@ -11,42 +11,64 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Claw extends Subsystem {
 
-	private Piston grabbingPiston = new Piston(RobotMap.GRABBER_EXTEND,
-			RobotMap.GRABBER_RETRACT, false);
-	private Piston liftingPiston = new Piston(RobotMap.LIFTER_EXTEND,
-			RobotMap.LIFTER_RETRACT);
+	private Piston clawPiston = new Piston(RobotMap.CLAW_OPEN, RobotMap.CLAW_CLOSED, false);
+	private Piston extensionPiston = new Piston(RobotMap.CLAW_EXTENDER_EXTEND, RobotMap.CLAW_EXTENDER_RETRACT);
 	private Talon liftingMotor = new Talon(RobotMap.CLAW_LIFTING_MOTOR);
 
-	public void setClawSpeed(double speed) {
+	/**
+	 * sets the speed of the motor controlling the position of the claw.
+	 * 
+	 * @param speed
+	 *            -1 through zero lowers, 0 through 1 lifts
+	 */
+	public void setLifterSpeed(double speed) {
 		liftingMotor.set(speed);
 	}
 
-	public void LiftClaw() {
-		liftingPiston.retract();
-
+	/**
+	 * extends the claw extension used for getting the gear closer the the front
+	 * of the robot. . /!\ DO NOT USE WHEN CLAW IS IN LOW POSITION /!\
+	 */
+	public void extend() {
+		extensionPiston.retract();
 	}
 
-	public void DropClaw() {
-		liftingPiston.extend();
+	/**
+	 * retracts the claw extension so the claw can go into the low position and
+	 * pick up a gear.
+	 */
+	public void retract() {
+		extensionPiston.extend();
 	}
 
-	public void Grab() {
-		grabbingPiston.retract();
+	/**
+	 * opens the claw so we can collect a gear.
+	 */
+	public void open() {
+		clawPiston.retract();
 	}
 
-	public void Release() {
-		grabbingPiston.extend();
-	}
-	
-	public void Toggle(){
-		grabbingPiston.toggle();
+	/**
+	 * closes the claw to grip what is between it.
+	 */
+	public void close() {
+		clawPiston.extend();
 	}
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+	/**
+	 * toggles the claws between open and closed.
+	 */
+	public void toggleClaw() {
+		clawPiston.toggle();
+	}
+
+	/**
+	 * toggles the claw extension to extended or retracted.
+	 */
+	public void toggleExtention() {
+		extensionPiston.toggle();
+	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 }

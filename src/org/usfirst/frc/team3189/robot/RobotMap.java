@@ -16,17 +16,17 @@ public class RobotMap {
 	public final static int CLAW_LIFTING_MOTOR = 1;
 	public final static int WINCH_MOTOR_1 = 0;
 
-	public final static int DROPPER_EXTEND = 4;
-	public final static int DROPPER_RETRACT = 5;
-	public final static int GEARBOX_EXTEND = 0;
-	public final static int GEARBOX_RETRACT = 1;
-	public final static int GRABBER_EXTEND = 3;
-	public final static int GRABBER_RETRACT = 2;
-	public final static int LIFTER_EXTEND = 6;
-	public final static int LIFTER_RETRACT = 7;
-	
-//	public static final int ACCELEREMETER_PORT = 0;
+	public final static int DROPPER_OPEN = 3;
+	public final static int DROPPER_CLOSED = 2;
+	public final static int GEARBOX_LOW = 0;
+	public final static int GEARBOX_HIGH = 1;
+	public final static int CLAW_OPEN = 4;
+	public final static int CLAW_CLOSED = 5;
+	public final static int CLAW_EXTENDER_EXTEND = 6;
+	public final static int CLAW_EXTENDER_RETRACT = 7;
+
+	// public static final int ACCELEREMETER_PORT = 0;
 	public static final int GYROSCOPE_PORT = 1;
 	public static final int ULTRASONIC_PORT = 0;
-	
+
 }

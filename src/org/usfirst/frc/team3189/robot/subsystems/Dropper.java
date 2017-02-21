@@ -9,27 +9,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Dropper extends Subsystem {
-	
+
 	private Piston piston;
-	
-	public Dropper(){
-		piston = new Piston(RobotMap.DROPPER_EXTEND,RobotMap.DROPPER_RETRACT);
+
+	public Dropper() {
+		piston = new Piston(RobotMap.DROPPER_OPEN, RobotMap.DROPPER_CLOSED);
 	}
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
-	public void OpenDropper(){
+	// TODO java doc this
+	public void open() {
 		piston.extend();
 	}
-	
-	public void CloseDropper(){
+
+	// TODO java doc this
+	public void close() {
 		piston.retract();
 	}
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
-}
+	// TODO java doc this
+	public void toggle() {
+		piston.toggle();
+	}
 
+	public void initDefaultCommand() {
+	}
+}

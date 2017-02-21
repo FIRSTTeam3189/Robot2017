@@ -1,23 +1,23 @@
-package org.usfirst.frc.team3189.robot.commands;
+package org.usfirst.frc.team3189.robot.autonomous;
 
 import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+//TODO java doc this
 /**
  *
  */
-public class TankDriveEncoder extends Command {
+public class AutoDrivetrainEncoder extends Command {
 
 	double lastTime;
 	double currentDistance;
 	double distance;
-	public TankDriveEncoder(double distance) {
+
+	public AutoDrivetrainEncoder(double distance) {
 		requires(Robot.drivetrain);
 		this.distance = distance;
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
@@ -26,18 +26,28 @@ public class TankDriveEncoder extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double RPS = Robot.drivetrain.getEncoderLeftRPS() + Robot.drivetrain.getEncoderRightRPS() / 2;
-		double ElapsedTime = timeSinceInitialized()-lastTime;
+		double RPS = Robot.drivetrain.getLeftEncVelocity() + Robot.drivetrain.getRightEncVelocity() / 2;// needs
+																										// to
+																										// be
+																										// seperated
+																										// into
+																										// both
+																										// side
+																										// to
+																										// ensure
+																										// straight
+																										// driving
+		double ElapsedTime = timeSinceInitialized() - lastTime;
 		lastTime = timeSinceInitialized();
-		double currentDistance = Constants.INCHES_PER_ROTATION * RPS * ElapsedTime/4;
+		double currentDistance = Constants.INCHES_PER_ROTATION * RPS * ElapsedTime / 4;
 		this.currentDistance += currentDistance;
-		
+
 		Robot.drivetrain.tankDrive(0.5, 0.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (currentDistance>=distance);
+		return (currentDistance >= distance);
 	}
 
 	// Called once after isFinished returns true

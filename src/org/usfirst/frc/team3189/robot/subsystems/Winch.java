@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.RobotMap;
-import org.usfirst.frc.team3189.robot.commands.ControlWinch;
+import org.usfirst.frc.team3189.robot.commands.WinchControl;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,13 +20,9 @@ public class Winch extends Subsystem {
 	 */
 	public void setWinchspeed(double speed) {
 		winchMotor1.set(speed);
-
 	}
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-
 	public void initDefaultCommand() {
-		setDefaultCommand(new ControlWinch());
+		setDefaultCommand(new WinchControl());
 	}
 }

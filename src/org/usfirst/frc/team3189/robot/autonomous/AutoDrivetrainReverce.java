@@ -6,51 +6,36 @@ import org.usfirst.frc.team3189.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Makes the robot turn left during Autonomous
+ * Moves the robot backwards
  * 
- * @author Damon Wagenknecht
- *
+ * @author Alex Rodgers
  */
-public class TurnLeftCommand extends Command {
+public class AutoDrivetrainReverce extends Command {
 
 	/**
-	 * Sets how long the robot moves and does stuff during Autonomous
+	 * How long the motors will be on.
 	 */
 	public double time;
 
 	/**
-	 * Turns the robot left
+	 * Reverses the wheels on the bot.
 	 * 
 	 * @param time
-	 *            time = how long robot turns left
+	 *            how long the wheels will be reversing.
 	 */
-	public TurnLeftCommand(double time) {
-
+	public AutoDrivetrainReverce(double time) {
 		requires(Robot.drivetrain);
-
 		this.time = time;
-
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
-	/**
-	 * Sets how long the robot will turn left
-	 */
 	protected void initialize() {
-
 		setTimeout(time);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
-	/**
-	 * Sets the speed of the robot
-	 */
 	protected void execute() {
-
-		Robot.drivetrain.tankDrive(-Constants.AUTO_FORWARD_SPEED, Constants.AUTO_FORWARD_SPEED);
-
+		Robot.drivetrain.tankDrive(-Constants.AUTO_REVERSE_SPEED, -Constants.AUTO_REVERSE_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -60,15 +45,12 @@ public class TurnLeftCommand extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		// TODO what does this command need to do when it finishes?
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
-	/**
-	 * Stops the robot
-	 */
 	protected void interrupted() {
-
 		Robot.drivetrain.tankDrive(0, 0);
 	}
 }
