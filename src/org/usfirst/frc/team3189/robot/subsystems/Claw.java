@@ -3,6 +3,7 @@ package org.usfirst.frc.team3189.robot.subsystems;
 import org.usfirst.frc.team3189.robot.Piston;
 import org.usfirst.frc.team3189.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -14,6 +15,9 @@ public class Claw extends Subsystem {
 	private Piston clawPiston = new Piston(RobotMap.CLAW_OPEN, RobotMap.CLAW_CLOSED, false);
 	private Piston extensionPiston = new Piston(RobotMap.CLAW_EXTENDER_EXTEND, RobotMap.CLAW_EXTENDER_RETRACT);
 	private Talon liftingMotor = new Talon(RobotMap.CLAW_LIFTING_MOTOR);
+	private DigitalInput upperSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
+	private DigitalInput lowerSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
+	
 
 	/**
 	 * sets the speed of the motor controlling the position of the claw.
@@ -70,5 +74,13 @@ public class Claw extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
+	}
+	
+	public boolean isUpperSwitch() {
+		return upperSwitch.get();
+	}
+	
+	public boolean isLowerSwitch() {
+		return lowerSwitch.get();
 	}
 }
