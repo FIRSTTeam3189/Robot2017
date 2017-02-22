@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoDropperDrop extends Command {
 	public AutoDropperDrop() {
-		// TODO require needed systems
+		requires(Robot.dropper);
 	}
 
 	// Called just before this Command runs the first time

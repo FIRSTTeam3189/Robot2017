@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoDrivetrainEncoder extends Command {
 
 	double distance;
-
+	
 	/**
 	 * uses encoders to drive forward a provided distance distance
 	 * 

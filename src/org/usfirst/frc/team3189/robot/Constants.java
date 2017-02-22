@@ -35,4 +35,7 @@ public class Constants {
 	public final static int ENCODER_ACCURACY = 4;
 	public final static double LOW_GEARING_RATIO = 2.16;
 	public final static double HIGH_GEARING_RATIO = 3.68;
+	
+	public static final double CLAW_LOWER_SPEED = -0.5;
+	public static final double CLAW_RAISE_SPEED = 0.5;
 }

@@ -4,8 +4,9 @@ import org.usfirst.frc.team3189.robot.Constants;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-//TODO java doc this
 /**
+ * Drives the robot foward until 1/2 seconds, turns the robot 45 degrees, and stops the robot
+ * @author Damon Wagenknecht
  *
  */
 public class AutoGroupLeft extends CommandGroup {

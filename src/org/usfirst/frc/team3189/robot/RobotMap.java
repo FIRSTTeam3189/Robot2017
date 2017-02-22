@@ -28,5 +28,8 @@ public class RobotMap {
 	// public static final int ACCELEREMETER_PORT = 0;
 	public static final int GYROSCOPE_PORT = 1;
 	public static final int ULTRASONIC_PORT = 0;
+	
+	public static final int UPPER_LIMIT_SWITCH = 0;
+	public static final int LOWER_LIMIT_SWITCH = 1;
 
 }

@@ -4,8 +4,9 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO java doc this
 /**
+ * closes the dropper
+ * @author Damon Wagenknecht
  *
  */
 public class DropperClose extends Command {

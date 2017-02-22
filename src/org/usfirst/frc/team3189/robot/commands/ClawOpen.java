@@ -4,8 +4,9 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO java doc this
 /**
+ * opens the claw
+ * @author Damon Wagenknecht
  *
  */
 public class ClawOpen extends Command {

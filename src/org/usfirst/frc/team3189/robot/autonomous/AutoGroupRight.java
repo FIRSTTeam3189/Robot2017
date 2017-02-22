@@ -4,8 +4,9 @@ import org.usfirst.frc.team3189.robot.Constants;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-//TODO java doc this
 /**
+ * Drives the robot forward for 1/2 second, turns the robot 45 degrees, and stops the robot using sonar
+ * @author Damon Wagenknecht
  *
  */
 public class AutoGroupRight extends CommandGroup {
