@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 //TODO java doc this
 /**
- *
+ * Controls the Winch
+ * @author Nicholas
  */
 public class WinchControl extends Command {
 
