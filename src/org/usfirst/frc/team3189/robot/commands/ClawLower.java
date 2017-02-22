@@ -5,9 +5,11 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO redo this command
+
 /**
- *
+ * Lowers the claw of the Robot.
+ * 
+ * @author Alex Rodgers
  */
 public class ClawLower extends Command {
 
