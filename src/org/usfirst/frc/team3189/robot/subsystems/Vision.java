@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
+ * The sight for the Robot
  *
+ *@author Devlyn, Alex
  */
 public class Vision extends Subsystem {
 
