@@ -15,7 +15,7 @@ public class ClawClose extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.claw.open();// TODO fix this
+		Robot.claw.close();// TODO fix this
 	}
 
 	// Called repeatedly when this Command is scheduled to run
