@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Moves the robot backwards
  * 
- * @author Alex Rodgers
+ * @author Alex Rogders
  */
-public class AutoDrivetrainReverce extends Command {
+public class AutoDrivetrainReverse extends Command {
 
 	/**
 	 * How long the motors will be on.
@@ -23,7 +23,7 @@ public class AutoDrivetrainReverce extends Command {
 	 * @param time
 	 *            how long the wheels will be reversing.
 	 */
-	public AutoDrivetrainReverce(double time) {
+	public AutoDrivetrainReverse(double time) {
 		requires(Robot.drivetrain);
 		this.time = time;
 	}
@@ -45,7 +45,7 @@ public class AutoDrivetrainReverce extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		// TODO what does this command need to do when it finishes?
+		Robot.drivetrain.tankDrive(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same

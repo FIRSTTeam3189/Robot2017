@@ -96,24 +96,37 @@ public class Drivetrain extends Subsystem {
 		setDefaultCommand(new DrivetrainTankControl());
 	}
 
-	// TODO java doc this
+	/**
+	 * Gets the current angle of the Robot.
+	 * 
+	 * @return double the angle at which the robot is pointing
+	 */
 	public double getGyroAngle() {
 		return gyro.getAngle();
 	}
 
-	// TODO java doc this
+	/**
+	 * Gets the velocity of the left side of the Robot.
+	 * 
+	 * @return the velocity in encoder ticks of the left side of the bot.
+	 */
 	public double getLeftEncVelocity() {
 		return leftFront.getEncVelocity();
 	}
 
-	// TODO java doc this
+	/**
+	 * Gets the velocity of the right side of the Robot.
+	 * 
+	 * @return the velocity in encoder ticks of the right side of the bot.
+	 */
 	public double getRightEncVelocity() {
 		return rightBack.getEncVelocity();
 	}
 
-	// TODO java doc this
+	/**
+	 * Sets the encoder ticks of the wheels per revolution
+	 */
 	public void setEncoderRevs() {
-		// TODO this is not useless
 		// leftFront.configEncoderCodesPerRev(6);
 		// rightBack.configEncoderCodesPerRev(6);
 	}
