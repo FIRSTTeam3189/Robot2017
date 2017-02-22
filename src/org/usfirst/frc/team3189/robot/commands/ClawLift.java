@@ -7,9 +7,10 @@ import org.usfirst.frc.team3189.robot.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO Redo this command
 /**
- *
+ * Lifts the Claw of the Robot
+ * 
+ * @author Alex Rodgers
  */
 public class ClawLift extends Command {
 	
