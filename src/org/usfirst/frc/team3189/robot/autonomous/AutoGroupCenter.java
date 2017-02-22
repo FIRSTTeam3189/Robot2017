@@ -5,8 +5,9 @@ import org.usfirst.frc.team3189.robot.commands.DropperClose;
 import org.usfirst.frc.team3189.robot.commands.DropperOpen;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-//TODO java doc this
 /**
+ * Drives forward with sonar and drops the gear
+ * @author Damon Wagenknecht
  *
  */
 public class AutoGroupCenter extends CommandGroup {
