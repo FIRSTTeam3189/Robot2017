@@ -64,4 +64,12 @@ public class Piston {
 		extend.set(!extend.get());
 		retract.set(!retract.get());
 	}
+	
+	/**
+	 * returns if the piston is retracted
+	 * @return
+	 */
+	public boolean isRetracted(){
+		return retract.get();
+	}
 }

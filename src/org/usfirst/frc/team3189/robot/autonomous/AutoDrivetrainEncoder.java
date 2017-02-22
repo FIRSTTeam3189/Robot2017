@@ -5,16 +5,20 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO java doc this
 /**
- *
+ * Drives forward using encoders
+ * @author Nathaniel Mansfield
  */
 public class AutoDrivetrainEncoder extends Command {
 
-	double lastTime;
-	double currentDistance;
 	double distance;
 
+	/**
+	 * uses encoders to drive forward a provided distance distance
+	 * 
+	 * @param distance
+	 *            in inches
+	 */
 	public AutoDrivetrainEncoder(double distance) {
 		requires(Robot.drivetrain);
 		this.distance = distance;
@@ -22,32 +26,25 @@ public class AutoDrivetrainEncoder extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.drivetrain.resetDistance();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double RPS = Robot.drivetrain.getLeftEncVelocity() + Robot.drivetrain.getRightEncVelocity() / 2;// needs
-																										// to
-																										// be
-																										// seperated
-																										// into
-																										// both
-																										// side
-																										// to
-																										// ensure
-																										// straight
-																										// driving
-		double ElapsedTime = timeSinceInitialized() - lastTime;
-		lastTime = timeSinceInitialized();
-		double currentDistance = Constants.INCHES_PER_ROTATION * RPS * ElapsedTime / 4;
-		this.currentDistance += currentDistance;
+		Robot.drivetrain.updateDistance();
+		if (Robot.drivetrain.getRightDistance() + 2 < Robot.drivetrain.getLeftDistance()) {
+			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED * 0.9, Constants.AUTO_DRIVE_SPEED);
+		} else if (Robot.drivetrain.getLeftDistance() + 2 < Robot.drivetrain.getRightDistance()) {
+			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED, Constants.AUTO_DRIVE_SPEED * 0.9);
+		} else {
+			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED, Constants.AUTO_DRIVE_SPEED);
+		}
 
-		Robot.drivetrain.tankDrive(0.5, 0.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (currentDistance >= distance);
+		return ((Robot.drivetrain.getRightDistance() + Robot.drivetrain.getLeftDistance()) / 2 >= distance);
 	}
 
 	// Called once after isFinished returns true

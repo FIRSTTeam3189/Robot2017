@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.AnalogUltrasonic;
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
 import org.usfirst.frc.team3189.robot.commands.DrivetrainTankControl;
@@ -21,6 +22,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drivetrain extends Subsystem {
 
+	double lastTime;
+	double rightDistance;
+	double leftDistance;
 	/**
 	 * {@link SpeedController} for the left front motor of the
 	 * {@link Drivetrain}
@@ -127,8 +131,32 @@ public class Drivetrain extends Subsystem {
 	 * Sets the encoder ticks of the wheels per revolution
 	 */
 	public void setEncoderRevs() {
-		// leftFront.configEncoderCodesPerRev(6);
-		// rightBack.configEncoderCodesPerRev(6);
+		leftFront.configEncoderCodesPerRev(Constants.ENCODER_ACCURACY);
+		rightBack.configEncoderCodesPerRev(Constants.ENCODER_ACCURACY);
+	}
+	public void updateDistance(){
+		double rightEncVelocity = rightBack.getEncPosition();
+		double leftEncVelocity = leftFront.getEncPosition();
+		
+		double tempLeft, tempRight = 0;
+		tempLeft = (leftEncVelocity*Constants.INCHES_PER_ROTATION) / (Robot.gearbox.isLowGear() ? Constants.LOW_GEARING_RATIO :Constants.HIGH_GEARING_RATIO);
+		tempRight = (rightEncVelocity*Constants.INCHES_PER_ROTATION) / (Robot.gearbox.isLowGear() ? Constants.LOW_GEARING_RATIO :Constants.HIGH_GEARING_RATIO);
+		
+		leftDistance += tempLeft;
+		rightDistance += tempRight;
+	}
+	
+	public double getRightDistance() {
+		return rightDistance;
+	}
+
+	public double getLeftDistance() {
+		return leftDistance;
+	}
+
+	public void resetDistance(){
+		leftDistance = 0;
+		rightDistance = 0;
 	}
 
 	/**
@@ -151,5 +179,7 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("Right Encoder", getRightEncVelocity());
 		SmartDashboard.putNumber("Left Enc Pos", leftFront.getEncPosition());
 		SmartDashboard.putNumber("Right Enc Pos", rightBack.getEncPosition());
+		
+		
 	}
 }
