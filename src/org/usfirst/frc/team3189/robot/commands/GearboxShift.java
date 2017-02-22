@@ -4,7 +4,6 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO java doc this
 /** Shifts the Gearbox
  * @author Nate Mansfield
  */
