@@ -31,5 +31,8 @@ public class Constants {
 	public final static double LFC = 0.98;
 	public final static double SPEED_DIV = 46; // I don't know what this is
 
-	public final static double INCHES_PER_ROTATION = 18.86;
+	public static final double INCHES_PER_ROTATION = 18.86;
+	
+	public static final double CLAW_LOWER_SPEED = -0.5;
+	public static final double CLAW_RAISE_SPEED = 0.5;
 }
