@@ -5,16 +5,18 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//TODO java doc this
 /**
- *
+ * Measures the Distance the Robot has Traveled
  */
 public class AutoDrivetrainEncoder extends Command {
 
 	double lastTime;
 	double currentDistance;
 	double distance;
-
+/**
+ * Sets what the Distance is
+ * @param distance = How far we want the Robot to go
+ */
 	public AutoDrivetrainEncoder(double distance) {
 		requires(Robot.drivetrain);
 		this.distance = distance;
