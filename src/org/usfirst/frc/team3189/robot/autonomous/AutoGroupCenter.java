@@ -4,6 +4,7 @@ import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.commands.DropperClose;
 import org.usfirst.frc.team3189.robot.commands.DropperOpen;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  * Drives forward with sonar and drops the gear
@@ -14,7 +15,8 @@ public class AutoGroupCenter extends CommandGroup {
 
 	public AutoGroupCenter() {
 		addSequential(new AutoDrivetrainSonarGoto(Constants.AUTO_STOP_DISTANCE));
+		addSequential(new WaitCommand(2.0));
 		addSequential(new DropperOpen());
-		addSequential(new DropperClose());
+//		addSequential(new DropperClose());
 	}
 }

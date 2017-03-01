@@ -5,7 +5,7 @@ public class Constants {
 	public static final double VISION_OFFSET = 1.0;
 	public static final int VISION_PICTURE_WIDTH = 640;
 
-	public static final double AUTO_FORWARD_SPEED = 0.4;
+	public static final double AUTO_FORWARD_SPEED = 0.3;
 	public static final double AUTO_REVERSE_SPEED = 0.4;
 
 	public static final double GYRO_SPEED_MULTIPLIER = .50;
@@ -38,4 +38,6 @@ public class Constants {
 	
 	public static final double CLAW_LOWER_SPEED = -0.5;
 	public static final double CLAW_RAISE_SPEED = 0.5;
+	
+	public static final double ENCODER_TICKS_PER_INCH = 160;
 }

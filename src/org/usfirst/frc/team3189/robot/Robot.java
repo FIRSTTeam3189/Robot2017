@@ -129,5 +129,8 @@ public class Robot extends IterativeRobot {
 	public void updateStatus() {
 		SmartDashboard.putData("drivetrain", drivetrain);
 		drivetrain.updateStatus();
+		if(oi.rightTen.get()){
+			drivetrain.resetDistance();
+		}
 	}
 }

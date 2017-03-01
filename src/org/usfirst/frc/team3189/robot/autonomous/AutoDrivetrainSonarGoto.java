@@ -38,7 +38,7 @@ public class AutoDrivetrainSonarGoto extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (stopDistance >= Robot.drivetrain.sonarPing());
+		return (stopDistance + 1 >= Robot.drivetrain.sonarPing());
 	}
 
 	// Called once after isFinished returns true

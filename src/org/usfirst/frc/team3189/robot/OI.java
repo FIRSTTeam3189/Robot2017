@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3189.robot;
 
 import org.usfirst.frc.team3189.robot.commands.GearboxHigh;
+import org.usfirst.frc.team3189.robot.commands.ClawToggle;
+import org.usfirst.frc.team3189.robot.commands.DropperOpen;
 import org.usfirst.frc.team3189.robot.commands.DropperToggle;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,11 +33,14 @@ public class OI {
 //	private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
 //	private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
 //	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
+	public JoystickButton rightTen = new JoystickButton(rightjoystick, 10);
 
 	public OI() {
 		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in
 												// high gear
-		leftTwo.whenPressed(new DropperToggle());
+		leftTwo.whileHeld(new DropperOpen());
+		
+		rightTen.whenPressed(new ClawToggle());
 	}
 
 	/**

@@ -49,14 +49,14 @@ public class Claw extends Subsystem {
 	 * opens the claw so we can collect a gear.
 	 */
 	public void open() {
-		clawPiston.retract();
+		clawPiston.extend();
 	}
 
 	/**
 	 * closes the claw to grip what is between it.
 	 */
 	public void close() {
-		clawPiston.extend();
+		clawPiston.retract();
 	}
 
 	/**

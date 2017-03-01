@@ -108,78 +108,38 @@ public class Drivetrain extends Subsystem {
 	public double getGyroAngle() {
 		return gyro.getAngle();
 	}
-
-	/**
-	 * Gets the velocity of the left side of the Robot.
-	 * 
-	 * @return the velocity in encoder ticks of the left side of the bot.
-	 */
-	public double getLeftEncVelocity() {
-		return leftFront.getEncVelocity();
-	}
-
-	/**
-	 * Gets the velocity of the right side of the Robot.
-	 * 
-	 * @return the velocity in encoder ticks of the right side of the bot.
-	 */
-	public double getRightEncVelocity() {
-		return rightBack.getEncVelocity();
-	}
-
-	/**
-	 * Sets the encoder ticks of the wheels per revolution
-	 */
-	public void setEncoderRevs() {
-		leftFront.configEncoderCodesPerRev(Constants.ENCODER_ACCURACY);
-		rightBack.configEncoderCodesPerRev(Constants.ENCODER_ACCURACY);
-	}
-	public void updateDistance(){
-		double rightEncVelocity = rightBack.getEncPosition();
-		double leftEncVelocity = leftFront.getEncPosition();
-		
-		double tempLeft, tempRight = 0;
-		tempLeft = (leftEncVelocity*Constants.INCHES_PER_ROTATION) / (Robot.gearbox.isLowGear() ? Constants.LOW_GEARING_RATIO :Constants.HIGH_GEARING_RATIO);
-		tempRight = (rightEncVelocity*Constants.INCHES_PER_ROTATION) / (Robot.gearbox.isLowGear() ? Constants.LOW_GEARING_RATIO :Constants.HIGH_GEARING_RATIO);
-		
-		leftDistance += tempLeft;
-		rightDistance += tempRight;
-	}
 	
 	public double getRightDistance() {
-		return rightDistance;
+		return rightFront.getEncPosition() / Constants.ENCODER_TICKS_PER_INCH;
 	}
 
 	public double getLeftDistance() {
-		return leftDistance;
+		return leftBack.getEncPosition() / Constants.ENCODER_TICKS_PER_INCH;
 	}
 
 	public void resetDistance(){
 		leftDistance = 0;
 		rightDistance = 0;
+		rightFront.setEncPosition(0);
+		leftBack.setEncPosition(0);
 	}
 
 	/**
 	 * sends values of this system to smartdashboard
 	 */
 	public void updateStatus() {
-		SmartDashboard.putNumber("leftone", leftBack.getOutputVoltage());
-		SmartDashboard.putNumber("lefttwo", leftFront.getOutputVoltage());
-		SmartDashboard.putNumber("leftthree", leftMiddle.getOutputVoltage());
-		SmartDashboard.putNumber("rightone", rightBack.getOutputVoltage());
-		SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
-		SmartDashboard.putNumber("rightthree", rightFront.getOutputVoltage());
+//		SmartDashboard.putNumber("leftone", leftBack.getOutputVoltage());
+//		SmartDashboard.putNumber("lefttwo", leftFront.getOutputVoltage());
+//		SmartDashboard.putNumber("leftthree", leftMiddle.getOutputVoltage());
+//		SmartDashboard.putNumber("rightone", rightBack.getOutputVoltage());
+//		SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
+//		SmartDashboard.putNumber("rightthree", rightFront.getOutputVoltage());
 		SmartDashboard.putNumber("Ultrasonic sensor	", sonarPing());
-		SmartDashboard.putNumber("gyro", gyro.getAngle());
 		SmartDashboard.putNumber("accel", Accelorometer.getX());
-		SmartDashboard.putNumber("ajust", getGyroAngle());
-		SmartDashboard.putNumber("left y", Robot.oi.getLeftY());
-		SmartDashboard.putNumber("right y", Robot.oi.getRightY());
-		SmartDashboard.putNumber("left Encoder", getLeftEncVelocity());
-		SmartDashboard.putNumber("Right Encoder", getRightEncVelocity());
-		SmartDashboard.putNumber("Left Enc Pos", leftFront.getEncPosition());
-		SmartDashboard.putNumber("Right Enc Pos", rightBack.getEncPosition());
-		
+		SmartDashboard.putNumber("gyro", getGyroAngle());
+		SmartDashboard.putNumber("LeftEnoderInches", getLeftDistance());
+		SmartDashboard.putNumber("RightEnoderInches", getRightDistance());
+		SmartDashboard.putNumber("Distance", (getLeftDistance() + getRightDistance())/2);
 		
 	}
 }

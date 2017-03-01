@@ -2,6 +2,7 @@ package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.Piston;
 import org.usfirst.frc.team3189.robot.RobotMap;
+import org.usfirst.frc.team3189.robot.commands.DropperClose;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -32,5 +33,6 @@ public class Dropper extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
+		setDefaultCommand(new DropperClose());
 	}
 }

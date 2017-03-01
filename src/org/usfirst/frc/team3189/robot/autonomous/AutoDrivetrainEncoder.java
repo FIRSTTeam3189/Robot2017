@@ -31,7 +31,6 @@ public class AutoDrivetrainEncoder extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.updateDistance();
 		if (Robot.drivetrain.getRightDistance() + 2 < Robot.drivetrain.getLeftDistance()) {
 			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED * 0.9, Constants.AUTO_DRIVE_SPEED);
 		} else if (Robot.drivetrain.getLeftDistance() + 2 < Robot.drivetrain.getRightDistance()) {

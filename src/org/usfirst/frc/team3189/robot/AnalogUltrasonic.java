@@ -19,7 +19,7 @@ public class AnalogUltrasonic extends AnalogInput {
 	 * @return distance in inches to object in front of the sensor
 	 */
 	public double getInches() {
-		return this.getVoltage() * 9.8;
+		return this.getVoltage() * 44;
 	}
 
 }

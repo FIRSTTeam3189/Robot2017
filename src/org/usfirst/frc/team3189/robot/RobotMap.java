@@ -16,8 +16,8 @@ public class RobotMap {
 	public final static int CLAW_LIFTING_MOTOR = 1;
 	public final static int WINCH_MOTOR_1 = 0;
 
-	public final static int DROPPER_OPEN = 3;
-	public final static int DROPPER_CLOSED = 2;
+	public final static int DROPPER_OPEN = 2;
+	public final static int DROPPER_CLOSED = 3;
 	public final static int GEARBOX_LOW = 0;
 	public final static int GEARBOX_HIGH = 1;
 	public final static int CLAW_OPEN = 4;
