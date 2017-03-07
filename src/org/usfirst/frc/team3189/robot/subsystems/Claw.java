@@ -1,8 +1,11 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Piston;
+import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,7 +20,7 @@ public class Claw extends Subsystem {
 	private Talon liftingMotor = new Talon(RobotMap.CLAW_LIFTING_MOTOR);
 	private DigitalInput upperSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
 	private DigitalInput lowerSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
-	
+	private AnalogPotentiometer potentiometer = new AnalogPotentiometer(0);
 
 	/**
 	 * sets the speed of the motor controlling the position of the claw.
@@ -75,12 +78,46 @@ public class Claw extends Subsystem {
 
 	public void initDefaultCommand() {
 	}
-	
+
 	public boolean isUpperSwitch() {
 		return upperSwitch.get();
 	}
-	
+
 	public boolean isLowerSwitch() {
 		return lowerSwitch.get();
+	}
+
+	public void getPot() {
+		potentiometer.get();
+	}
+
+	public void setPotHigh() {
+		if (potentiometer.get() < Constants.POTENTIOMETER_TOP - 2) {
+			liftingMotor.set(0.5);
+		} else if (potentiometer.get() < Constants.POTENTIOMETER_TOP + 2) {
+			liftingMotor.set(-0.5);
+		} else {
+			liftingMotor.set(0);
+		}
+	}
+
+	public void setPotMid() {
+		if (potentiometer.get() < Constants.POTENTIOMETER_MIDDLE - 2) {
+			liftingMotor.set(0.5);
+		} else if (potentiometer.get() < Constants.POTENTIOMETER_MIDDLE + 2) {
+			liftingMotor.set(-0.5);
+		} else {
+			liftingMotor.set(0);
+		}
+	}
+
+	public void setPotLow() {
+		if (potentiometer.get() < Constants.POTENTIOMETER_BOTTOM - 2) {
+			liftingMotor.set(0.5);
+		} else if (potentiometer.get() < Constants.POTENTIOMETER_BOTTOM + 2) {
+			liftingMotor.set(-0.5);
+		} else {
+			liftingMotor.set(0);
+		}
 	}
 }

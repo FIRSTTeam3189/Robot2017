@@ -16,10 +16,7 @@ public class Constants {
 
 	public static final double AUTO_ANGLE_OFF = 10;
 
-	public static final double AUTO_STOP_DISTANCE = 12; // needs to be tested
-														// and calibrated and
-														// stuff. 12 is a random
-														// number.
+	public static final double AUTO_STOP_DISTANCE = 12; 
 	public static final double AUTO_STOP_LEFT = 15; // same as first
 	public static final double AUTO_STOP_RIGHT = 15; // same as second
 	public static final double AUTO_DRIVE_SPEED = 0.8; // needs testing and
@@ -40,4 +37,8 @@ public class Constants {
 	public static final double CLAW_RAISE_SPEED = 0.5;
 	
 	public static final double ENCODER_TICKS_PER_INCH = 160;
+	
+	public static final double POTENTIOMETER_TOP = 0;
+	public static final double POTENTIOMETER_MIDDLE = 0;
+	public static final double POTENTIOMETER_BOTTOM = 0;	
 }
