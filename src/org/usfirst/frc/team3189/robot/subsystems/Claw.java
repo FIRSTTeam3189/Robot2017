@@ -20,7 +20,15 @@ public class Claw extends Subsystem {
 	private Talon liftingMotor = new Talon(RobotMap.CLAW_LIFTING_MOTOR);
 	private DigitalInput upperSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
 	private DigitalInput lowerSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
-	private AnalogPotentiometer potentiometer = new AnalogPotentiometer(0);
+	private AnalogPotentiometer potentiometer;
+	
+	public Claw(){
+		try{
+			new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT);
+		}catch(Exception e){
+			
+		}
+	}
 
 	/**
 	 * sets the speed of the motor controlling the position of the claw.
