@@ -34,13 +34,18 @@ public class OI {
 //	private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
 //	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
 	public JoystickButton rightTen = new JoystickButton(rightjoystick, 10);
+	public JoystickButton coSix = new JoystickButton(grabjoystick, 6);
+	public JoystickButton coOnedyOne = new JoystickButton(grabjoystick, 11);
+	public JoystickButton coTwo = new JoystickButton(grabjoystick, 2);
 
 	public OI() {
 		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in
 												// high gear
-		leftTwo.whileHeld(new DropperOpen());
+		coSix.whenPressed(new DropperToggle());
 		
-		rightTen.whenPressed(new ClawToggle());
+		coOnedyOne.whenPressed(new ClawToggle());
+		coTwo.whileHeld(new DropperOpen());
+		
 	}
 
 	/**

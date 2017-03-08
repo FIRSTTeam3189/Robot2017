@@ -33,6 +33,6 @@ public class Dropper extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DropperClose());
+		//setDefaultCommand(new DropperClose());
 	}
 }

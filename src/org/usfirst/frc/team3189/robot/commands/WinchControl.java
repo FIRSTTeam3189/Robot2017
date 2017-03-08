@@ -13,7 +13,6 @@ public class WinchControl extends Command {
 
 	public WinchControl() {
 		requires(Robot.winch);
-
 	}
 
 	protected void initialize() {
@@ -33,6 +32,6 @@ public class WinchControl extends Command {
 	}
 
 	protected void interrupted() {
-		Robot.winch.setWinchspeed(0);
+		end();
 	}
 }
