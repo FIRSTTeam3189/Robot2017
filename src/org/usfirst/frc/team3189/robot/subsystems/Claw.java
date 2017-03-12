@@ -4,11 +4,13 @@ import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Piston;
 import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
+import org.usfirst.frc.team3189.robot.commands.ClawControl;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,13 +23,9 @@ public class Claw extends Subsystem {
 	private DigitalInput upperSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
 	private DigitalInput lowerSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
 	private AnalogPotentiometer potentiometer;
-	
-	public Claw(){
-		try{
-			new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT);
-		}catch(Exception e){
-			
-		}
+
+	public Claw() {
+		potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT, 1024, 0);
 	}
 
 	/**
@@ -38,6 +36,7 @@ public class Claw extends Subsystem {
 	 */
 	public void setLifterSpeed(double speed) {
 		liftingMotor.set(speed);
+		SmartDashboard.putNumber("clawSpeed", speed);
 	}
 
 	/**
@@ -85,6 +84,7 @@ public class Claw extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
+		//setDefaultCommand(new ClawControl());
 	}
 
 	public boolean isUpperSwitch() {
@@ -95,37 +95,41 @@ public class Claw extends Subsystem {
 		return lowerSwitch.get();
 	}
 
-	public void getPot() {
-		potentiometer.get();
+	public double getPot() {
+		return potentiometer.get();
 	}
 
 	public void setPotHigh() {
-		if (potentiometer.get() < Constants.POTENTIOMETER_TOP - 2) {
-			liftingMotor.set(0.5);
-		} else if (potentiometer.get() < Constants.POTENTIOMETER_TOP + 2) {
-			liftingMotor.set(-0.5);
+		if (getPot() > Constants.POTENTIOMETER_TOP + 10) {
+			setLifterSpeed(Constants.CLAW_SPEED);
+		} else if (getPot() < Constants.POTENTIOMETER_TOP - 10) {
+			setLifterSpeed(-Constants.CLAW_SPEED);
 		} else {
-			liftingMotor.set(0);
+			setLifterSpeed(0);
 		}
 	}
 
 	public void setPotMid() {
-		if (potentiometer.get() < Constants.POTENTIOMETER_MIDDLE - 2) {
-			liftingMotor.set(0.5);
-		} else if (potentiometer.get() < Constants.POTENTIOMETER_MIDDLE + 2) {
-			liftingMotor.set(-0.5);
+		if (getPot() > Constants.POTENTIOMETER_MIDDLE + 10) {
+			setLifterSpeed(Constants.CLAW_SPEED + 0.1);
+		} else if (getPot() < Constants.POTENTIOMETER_MIDDLE - 10) {
+			setLifterSpeed(-Constants.CLAW_SPEED);
 		} else {
-			liftingMotor.set(0);
+			setLifterSpeed(0);
 		}
 	}
 
 	public void setPotLow() {
-		if (potentiometer.get() < Constants.POTENTIOMETER_BOTTOM - 2) {
-			liftingMotor.set(0.5);
-		} else if (potentiometer.get() < Constants.POTENTIOMETER_BOTTOM + 2) {
-			liftingMotor.set(-0.5);
+		if (getPot() > Constants.POTENTIOMETER_BOTTOM + 10) {
+			setLifterSpeed(Constants.CLAW_SPEED + 0.1);
+		} else if (getPot() < Constants.POTENTIOMETER_BOTTOM - 10) {
+			setLifterSpeed(-Constants.CLAW_SPEED);
 		} else {
-			liftingMotor.set(0);
+			setLifterSpeed(0);
 		}
+	}
+
+	public void updateStatus() {
+		SmartDashboard.putNumber("pot", getPot());
 	}
 }

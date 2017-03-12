@@ -1,6 +1,16 @@
 package org.usfirst.frc.team3189.robot;
 
 import org.usfirst.frc.team3189.robot.commands.GearboxHigh;
+import org.usfirst.frc.team3189.robot.commands.WinchControl;
+import org.usfirst.frc.team3189.robot.commands.WinchLift;
+import org.usfirst.frc.team3189.robot.commands.WinchLower;
+import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainReverse;
+import org.usfirst.frc.team3189.robot.commands.AutoDropperOpen;
+import org.usfirst.frc.team3189.robot.commands.AutoDropperToggle;
+import org.usfirst.frc.team3189.robot.commands.ClawControl;
+import org.usfirst.frc.team3189.robot.commands.ClawGoToHigh;
+import org.usfirst.frc.team3189.robot.commands.ClawGoToLow;
+import org.usfirst.frc.team3189.robot.commands.ClawGoToMid;
 import org.usfirst.frc.team3189.robot.commands.ClawToggle;
 import org.usfirst.frc.team3189.robot.commands.DropperOpen;
 import org.usfirst.frc.team3189.robot.commands.DropperToggle;
@@ -35,17 +45,25 @@ public class OI {
 //	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
 	public JoystickButton rightTen = new JoystickButton(rightjoystick, 10);
 	public JoystickButton coSix = new JoystickButton(grabjoystick, 6);
+	public JoystickButton coSeven = new JoystickButton(grabjoystick, 7);
 	public JoystickButton coOnedyOne = new JoystickButton(grabjoystick, 11);
+	public JoystickButton coTen = new JoystickButton(grabjoystick, 10);
 	public JoystickButton coTwo = new JoystickButton(grabjoystick, 2);
+	public JoystickButton coEight = new JoystickButton(grabjoystick, 8);
+	public JoystickButton coNine = new JoystickButton(grabjoystick, 9);
+	public JoystickButton coThree = new JoystickButton(grabjoystick, 3);
 
 	public OI() {
 		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in
-												// high gear
-		coSix.whenPressed(new DropperToggle());
-		
-		coOnedyOne.whenPressed(new ClawToggle());
-		coTwo.whileHeld(new DropperOpen());
-		
+		coTwo.whileHeld(new DropperOpen());	
+		coThree.whenPressed(new DropperToggle());
+		coSix.whileHeld(new WinchLift());
+		coSeven.whileHeld(new WinchLower());
+		coOnedyOne.whenPressed(new ClawGoToHigh());
+		coTen.whenPressed(new ClawGoToMid());
+		coNine.whenPressed(new ClawGoToLow());
+		coEight.whenPressed(new ClawToggle());
+		rightTen.whileHeld(new ClawControl());
 	}
 
 	/**

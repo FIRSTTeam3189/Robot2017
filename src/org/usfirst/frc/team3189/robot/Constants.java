@@ -19,7 +19,7 @@ public class Constants {
 	public static final double AUTO_STOP_DISTANCE = 12; 
 	public static final double AUTO_STOP_LEFT = 15; // same as first
 	public static final double AUTO_STOP_RIGHT = 15; // same as second
-	public static final double AUTO_DRIVE_SPEED = 0.8; // needs testing and
+	public static final double AUTO_DRIVE_SPEED = 0.35; // needs testing and
 														// stuff as well
 
 	public static final double AUTO_VISION_SPEED = 0.5;
@@ -38,7 +38,9 @@ public class Constants {
 	
 	public static final double ENCODER_TICKS_PER_INCH = 160;
 	
-	public static final double POTENTIOMETER_TOP = 0;
-	public static final double POTENTIOMETER_MIDDLE = 0;
-	public static final double POTENTIOMETER_BOTTOM = 0;	
+	public static final double POTENTIOMETER_TOP = 350;
+	public static final double POTENTIOMETER_MIDDLE = 380;
+	public static final double POTENTIOMETER_BOTTOM = 470;
+	public static final double CLAW_SPEED = 0.3;
+	public static final double DROPPER_OPEN_DELAY = 0.25;
 }

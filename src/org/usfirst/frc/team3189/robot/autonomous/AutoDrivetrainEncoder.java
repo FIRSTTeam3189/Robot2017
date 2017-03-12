@@ -32,18 +32,19 @@ public class AutoDrivetrainEncoder extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (Robot.drivetrain.getRightDistance() + 2 < Robot.drivetrain.getLeftDistance()) {
-			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED * 0.9, Constants.AUTO_DRIVE_SPEED);
+			Robot.drivetrain.tankDrive(-Constants.AUTO_DRIVE_SPEED * 0.9, -Constants.AUTO_DRIVE_SPEED);
 		} else if (Robot.drivetrain.getLeftDistance() + 2 < Robot.drivetrain.getRightDistance()) {
-			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED, Constants.AUTO_DRIVE_SPEED * 0.9);
+			Robot.drivetrain.tankDrive(-Constants.AUTO_DRIVE_SPEED, -Constants.AUTO_DRIVE_SPEED * 0.9);
 		} else {
-			Robot.drivetrain.tankDrive(Constants.AUTO_DRIVE_SPEED, Constants.AUTO_DRIVE_SPEED);
+			Robot.drivetrain.tankDrive(-Constants.AUTO_DRIVE_SPEED, -Constants.AUTO_DRIVE_SPEED);
 		}
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return ((Robot.drivetrain.getRightDistance() + Robot.drivetrain.getLeftDistance()) / 2 >= distance);
+		double avg = (Robot.drivetrain.getRightDistance() + Robot.drivetrain.getLeftDistance()) / 2;
+		return (avg >= distance - 2) && (avg <= distance + 2);
 	}
 
 	// Called once after isFinished returns true

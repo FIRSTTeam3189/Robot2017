@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3189.robot.autonomous.AutoGroupCenter;
 import org.usfirst.frc.team3189.robot.autonomous.AutoGroupLeft;
 import org.usfirst.frc.team3189.robot.autonomous.AutoGroupRight;
+import org.usfirst.frc.team3189.robot.commands.AutoGroupNothing;
 import org.usfirst.frc.team3189.robot.subsystems.Claw;
 import org.usfirst.frc.team3189.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3189.robot.subsystems.Dropper;
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Center", new AutoGroupCenter());
 		chooser.addObject("Left", new AutoGroupLeft());
 		chooser.addObject("Right", new AutoGroupRight());
+		chooser.addObject("None", new AutoGroupNothing());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -128,9 +130,12 @@ public class Robot extends IterativeRobot {
 
 	public void updateStatus() {
 		SmartDashboard.putData("drivetrain", drivetrain);
+		SmartDashboard.putData("Claw", claw);
 		drivetrain.updateStatus();
+		claw.updateStatus();
 		if(oi.rightTen.get()){
 			drivetrain.resetDistance();
 		}
+		SmartDashboard.putNumber("vision", vision.getPegBase());
 	}
 }

@@ -109,6 +109,10 @@ public class Drivetrain extends Subsystem {
 		return gyro.getAngle();
 	}
 	
+	public void resetGyro(){
+		gyro.reset();
+	}
+	
 	public double getRightDistance() {
 		return rightFront.getEncPosition() / Constants.ENCODER_TICKS_PER_INCH;
 	}

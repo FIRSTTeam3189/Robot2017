@@ -15,8 +15,10 @@ public class AutoGroupCenter extends CommandGroup {
 
 	public AutoGroupCenter() {
 		addSequential(new AutoDrivetrainSonarGoto(Constants.AUTO_STOP_DISTANCE));
-		addSequential(new WaitCommand(2.0));
-		addSequential(new DropperOpen());
-//		addSequential(new DropperClose());
+		addSequential(new WaitCommand(0.5));
+		addParallel(new DropperOpen());
+		addSequential(new WaitCommand(1));
+		addSequential(new AutoDrivetrainReverse(2.5));
+		addSequential(new DropperClose());
 	}
 }

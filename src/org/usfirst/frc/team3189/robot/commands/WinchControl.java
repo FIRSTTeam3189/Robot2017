@@ -32,6 +32,6 @@ public class WinchControl extends Command {
 	}
 
 	protected void interrupted() {
-		end();
+		Robot.winch.setWinchspeed(0);
 	}
 }
