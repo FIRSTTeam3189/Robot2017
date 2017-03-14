@@ -41,7 +41,8 @@ public class Constants {
 	public static final double POTENTIOMETER_TOP = 350;
 	public static final double POTENTIOMETER_MIDDLE = 380;
 	public static final double POTENTIOMETER_BOTTOM = 470;
-	public static final double CLAW_SPEED = 0.3;
+	public static final double CLAW_DOWN_SPEED = 0.3;
+	public static final double CLAW_UP_SPEED = 0.4;
 	public static final double DROPPER_OPEN_DELAY = 0.25;
 	public static final double CLAW_POT_RANGE = 10;
 }
