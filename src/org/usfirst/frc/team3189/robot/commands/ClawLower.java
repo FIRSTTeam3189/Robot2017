@@ -5,7 +5,6 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-
 /**
  * Lowers the claw of the Robot.
  * 

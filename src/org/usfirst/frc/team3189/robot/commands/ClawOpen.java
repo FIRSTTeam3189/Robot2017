@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * opens the claw
+ * 
  * @author Damon Wagenknecht
  *
  */

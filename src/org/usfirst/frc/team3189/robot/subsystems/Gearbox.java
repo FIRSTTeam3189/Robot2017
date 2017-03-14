@@ -33,8 +33,8 @@ public class Gearbox extends Subsystem {
 	public void toggle() {
 		piston.toggle();
 	}
-	
-	public boolean isLowGear(){
+
+	public boolean isLowGear() {
 		return piston.isRetracted();
 	}
 

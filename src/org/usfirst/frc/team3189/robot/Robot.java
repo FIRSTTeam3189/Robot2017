@@ -133,7 +133,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Claw", claw);
 		drivetrain.updateStatus();
 		claw.updateStatus();
-		if(oi.rightTen.get()){
+		if (oi.rightTen.get()) {
 			drivetrain.resetDistance();
 		}
 		SmartDashboard.putNumber("vision", vision.getPegBase());

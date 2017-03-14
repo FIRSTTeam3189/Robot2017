@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * closes the dropper
+ * 
  * @author Damon Wagenknecht
  *
  */

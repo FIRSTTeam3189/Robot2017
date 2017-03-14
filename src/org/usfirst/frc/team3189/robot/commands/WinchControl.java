@@ -4,9 +4,9 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-
 /**
  * Controls the Winch
+ * 
  * @author Nicholas
  */
 public class WinchControl extends Command {

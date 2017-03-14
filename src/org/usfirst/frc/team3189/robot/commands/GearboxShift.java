@@ -4,7 +4,9 @@ import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/** Shifts the Gearbox
+/**
+ * Shifts the Gearbox
+ * 
  * @author Nate Mansfield
  */
 public class GearboxShift extends Command {

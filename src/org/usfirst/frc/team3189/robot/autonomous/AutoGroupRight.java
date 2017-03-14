@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
- * Drives the robot forward for 1/2 second, turns the robot 45 degrees, and stops the robot using sonar
+ * Drives the robot forward for 1/2 second, turns the robot 45 degrees, and
+ * stops the robot using sonar
+ * 
  * @author Damon Wagenknecht
  *
  */

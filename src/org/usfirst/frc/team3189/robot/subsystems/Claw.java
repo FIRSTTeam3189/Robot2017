@@ -23,6 +23,8 @@ public class Claw extends Subsystem {
 	private DigitalInput upperSwitch = new DigitalInput(RobotMap.UPPER_LIMIT_SWITCH);
 	private DigitalInput lowerSwitch = new DigitalInput(RobotMap.LOWER_LIMIT_SWITCH);
 	private AnalogPotentiometer potentiometer;
+	private int warning;
+	private long lastLight;
 
 	public Claw() {
 		potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT, 1024, 0);
@@ -84,7 +86,7 @@ public class Claw extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		//setDefaultCommand(new ClawControl());
+		// setDefaultCommand(new ClawControl());
 	}
 
 	public boolean isUpperSwitch() {
@@ -97,6 +99,21 @@ public class Claw extends Subsystem {
 
 	public double getPot() {
 		return potentiometer.get();
+	}
+
+	public boolean isClawLow() {
+		return getPot() <= Constants.POTENTIOMETER_BOTTOM - Constants.CLAW_POT_RANGE
+				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_BOTTOM + Constants.CLAW_POT_RANGE;
+	}
+
+	public boolean isClawReadyForHang() {
+		return getPot() <= Constants.POTENTIOMETER_MIDDLE - Constants.CLAW_POT_RANGE
+				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_MIDDLE + Constants.CLAW_POT_RANGE;
+	}
+
+	public boolean isClawHigh() {
+		return getPot() <= Constants.POTENTIOMETER_TOP - Constants.CLAW_POT_RANGE
+				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_TOP + Constants.CLAW_POT_RANGE;
 	}
 
 	public void setPotHigh() {
@@ -131,5 +148,19 @@ public class Claw extends Subsystem {
 
 	public void updateStatus() {
 		SmartDashboard.putNumber("pot", getPot());
+		if (warning > 0) {
+			if (lastLight - System.currentTimeMillis() < 500) {
+				SmartDashboard.putBoolean("ClawLow", false);
+				SmartDashboard.putBoolean("ClawMid", false);
+				SmartDashboard.putBoolean("ClawHigh", false);
+			} else if (lastLight - System.currentTimeMillis() > 1000) {
+				warning--;
+				lastLight = System.currentTimeMillis();
+			}
+		} else {
+			SmartDashboard.putBoolean("ClawLow", isClawLow());
+			SmartDashboard.putBoolean("ClawMid", isClawReadyForHang());
+			SmartDashboard.putBoolean("ClawHigh", isClawHigh());
+		}
 	}
 }

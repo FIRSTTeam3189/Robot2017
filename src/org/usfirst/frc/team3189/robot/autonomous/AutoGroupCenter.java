@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  * Drives forward with sonar and drops the gear
+ * 
  * @author Damon Wagenknecht
  *
  */

@@ -108,11 +108,11 @@ public class Drivetrain extends Subsystem {
 	public double getGyroAngle() {
 		return gyro.getAngle();
 	}
-	
-	public void resetGyro(){
+
+	public void resetGyro() {
 		gyro.reset();
 	}
-	
+
 	public double getRightDistance() {
 		return rightFront.getEncPosition() / Constants.ENCODER_TICKS_PER_INCH;
 	}
@@ -121,7 +121,7 @@ public class Drivetrain extends Subsystem {
 		return leftBack.getEncPosition() / Constants.ENCODER_TICKS_PER_INCH;
 	}
 
-	public void resetDistance(){
+	public void resetDistance() {
 		leftDistance = 0;
 		rightDistance = 0;
 		rightFront.setEncPosition(0);
@@ -132,18 +132,19 @@ public class Drivetrain extends Subsystem {
 	 * sends values of this system to smartdashboard
 	 */
 	public void updateStatus() {
-//		SmartDashboard.putNumber("leftone", leftBack.getOutputVoltage());
-//		SmartDashboard.putNumber("lefttwo", leftFront.getOutputVoltage());
-//		SmartDashboard.putNumber("leftthree", leftMiddle.getOutputVoltage());
-//		SmartDashboard.putNumber("rightone", rightBack.getOutputVoltage());
-//		SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
-//		SmartDashboard.putNumber("rightthree", rightFront.getOutputVoltage());
+		// SmartDashboard.putNumber("leftone", leftBack.getOutputVoltage());
+		// SmartDashboard.putNumber("lefttwo", leftFront.getOutputVoltage());
+		// SmartDashboard.putNumber("leftthree", leftMiddle.getOutputVoltage());
+		// SmartDashboard.putNumber("rightone", rightBack.getOutputVoltage());
+		// SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
+		// SmartDashboard.putNumber("rightthree",
+		// rightFront.getOutputVoltage());
 		SmartDashboard.putNumber("Ultrasonic sensor	", sonarPing());
 		SmartDashboard.putNumber("accel", Accelorometer.getX());
 		SmartDashboard.putNumber("gyro", getGyroAngle());
 		SmartDashboard.putNumber("LeftEnoderInches", getLeftDistance());
 		SmartDashboard.putNumber("RightEnoderInches", getRightDistance());
-		SmartDashboard.putNumber("Distance", (getLeftDistance() + getRightDistance())/2);
-		
+		SmartDashboard.putNumber("Distance", (getLeftDistance() + getRightDistance()) / 2);
+
 	}
 }

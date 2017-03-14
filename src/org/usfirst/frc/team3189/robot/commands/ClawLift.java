@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Alex Rodgers
  */
 public class ClawLift extends Command {
-	
-	
 
 	public ClawLift() {
 		requires(Robot.claw);

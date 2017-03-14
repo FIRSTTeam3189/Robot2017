@@ -31,18 +31,18 @@ public class OI {
 	// joystick button number not finalized
 	private JoystickButton leftOne = new JoystickButton(leftjoystick, 1);
 	private JoystickButton leftTwo = new JoystickButton(leftjoystick, 2);
-//	private JoystickButton leftThree = new JoystickButton(leftjoystick, 3);
-//	private JoystickButton leftFour = new JoystickButton(leftjoystick, 4);
-//	private JoystickButton leftFive = new JoystickButton(leftjoystick, 5);
-//	private JoystickButton leftSix = new JoystickButton(leftjoystick, 6);
-//	private JoystickButton leftSeven = new JoystickButton(leftjoystick, 7);
-//	private JoystickButton leftEight = new JoystickButton(leftjoystick, 8);
-//	private JoystickButton leftNine = new JoystickButton(leftjoystick, 9);
-//	private JoystickButton leftTen = new JoystickButton(leftjoystick, 10);
-//	private JoystickButton rightFour = new JoystickButton(rightjoystick, 4);
-//	private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
-//	private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
-//	private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
+	// private JoystickButton leftThree = new JoystickButton(leftjoystick, 3);
+	// private JoystickButton leftFour = new JoystickButton(leftjoystick, 4);
+	// private JoystickButton leftFive = new JoystickButton(leftjoystick, 5);
+	// private JoystickButton leftSix = new JoystickButton(leftjoystick, 6);
+	// private JoystickButton leftSeven = new JoystickButton(leftjoystick, 7);
+	// private JoystickButton leftEight = new JoystickButton(leftjoystick, 8);
+	// private JoystickButton leftNine = new JoystickButton(leftjoystick, 9);
+	// private JoystickButton leftTen = new JoystickButton(leftjoystick, 10);
+	// private JoystickButton rightFour = new JoystickButton(rightjoystick, 4);
+	// private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
+	// private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
+	// private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
 	public JoystickButton rightTen = new JoystickButton(rightjoystick, 10);
 	public JoystickButton coSix = new JoystickButton(grabjoystick, 6);
 	public JoystickButton coSeven = new JoystickButton(grabjoystick, 7);
@@ -55,7 +55,7 @@ public class OI {
 
 	public OI() {
 		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in
-		coTwo.whileHeld(new DropperOpen());	
+		coTwo.whileHeld(new DropperOpen());
 		coThree.whenPressed(new DropperToggle());
 		coSix.whileHeld(new WinchLift());
 		coSeven.whileHeld(new WinchLower());

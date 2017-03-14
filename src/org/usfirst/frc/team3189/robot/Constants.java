@@ -16,7 +16,7 @@ public class Constants {
 
 	public static final double AUTO_ANGLE_OFF = 10;
 
-	public static final double AUTO_STOP_DISTANCE = 12; 
+	public static final double AUTO_STOP_DISTANCE = 12;
 	public static final double AUTO_STOP_LEFT = 15; // same as first
 	public static final double AUTO_STOP_RIGHT = 15; // same as second
 	public static final double AUTO_DRIVE_SPEED = 0.35; // needs testing and
@@ -32,15 +32,16 @@ public class Constants {
 	public final static int ENCODER_ACCURACY = 4;
 	public final static double LOW_GEARING_RATIO = 2.16;
 	public final static double HIGH_GEARING_RATIO = 3.68;
-	
+
 	public static final double CLAW_LOWER_SPEED = -0.5;
 	public static final double CLAW_RAISE_SPEED = 0.5;
-	
+
 	public static final double ENCODER_TICKS_PER_INCH = 160;
-	
+
 	public static final double POTENTIOMETER_TOP = 350;
 	public static final double POTENTIOMETER_MIDDLE = 380;
 	public static final double POTENTIOMETER_BOTTOM = 470;
 	public static final double CLAW_SPEED = 0.3;
 	public static final double DROPPER_OPEN_DELAY = 0.25;
+	public static final double CLAW_POT_RANGE = 10;
 }

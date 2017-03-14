@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.Piston;
+import org.usfirst.frc.team3189.robot.Robot;
 import org.usfirst.frc.team3189.robot.RobotMap;
 import org.usfirst.frc.team3189.robot.commands.DropperClose;
 
@@ -24,15 +25,20 @@ public class Dropper extends Subsystem {
 
 	// TODO java doc this
 	public void close() {
-		piston.retract();
+		if (Robot.claw.isClawLow() || Robot.claw.isClawHigh()) {
+			piston.retract();
+		}
 	}
 
 	// TODO java doc this
 	public void toggle() {
-		piston.toggle();
+		if (piston.isRetracted() || Robot.claw.isClawLow() || Robot.claw.isClawHigh()) {
+			piston.toggle();
+		}
+
 	}
 
 	public void initDefaultCommand() {
-		//setDefaultCommand(new DropperClose());
+		// setDefaultCommand(new DropperClose());
 	}
 }
