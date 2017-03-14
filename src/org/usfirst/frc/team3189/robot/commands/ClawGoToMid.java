@@ -31,7 +31,7 @@ public class ClawGoToMid extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.claw.isClawReadyForHang();
+		return Robot.claw.getPot() < 0 || Robot.claw.isClawReadyForHang();
 	}
 
 	// Called once after isFinished returns true

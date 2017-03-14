@@ -33,7 +33,7 @@ public class ClawGoToHigh extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.claw.isClawHigh();
+		return Robot.claw.getPot() < 0 || Robot.claw.isClawHigh();
 	}
 
 	// Called once after isFinished returns true
