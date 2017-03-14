@@ -27,7 +27,12 @@ public class Claw extends Subsystem {
 	private long lastLight;
 
 	public Claw() {
-		potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT, 1024, 0);
+		try{
+			potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT, 1024, 0);
+		}catch(Exception e){
+			potentiometer = null;
+			System.out.println("Potentiometer not Pluged in");
+		}
 	}
 
 	/**
@@ -98,25 +103,33 @@ public class Claw extends Subsystem {
 	}
 
 	public double getPot() {
-		return potentiometer.get();
+		return potentiometer != null ? potentiometer.get() : -1.0D;
 	}
 
 	public boolean isClawLow() {
+		if(getPot() < 0)
+			return false;
 		return getPot() <= Constants.POTENTIOMETER_BOTTOM - Constants.CLAW_POT_RANGE
 				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_BOTTOM + Constants.CLAW_POT_RANGE;
 	}
 
 	public boolean isClawReadyForHang() {
+		if(getPot() < 0)
+			return false;
 		return getPot() <= Constants.POTENTIOMETER_MIDDLE - Constants.CLAW_POT_RANGE
 				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_MIDDLE + Constants.CLAW_POT_RANGE;
 	}
 
 	public boolean isClawHigh() {
+		if(getPot() < 0)
+			return false;
 		return getPot() <= Constants.POTENTIOMETER_TOP - Constants.CLAW_POT_RANGE
 				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_TOP + Constants.CLAW_POT_RANGE;
 	}
 	//TODO merge the set pot methods to be one method using a pot value as input.
 	public void setPotHigh() {
+		if(getPot() < 0)
+			return;
 		if (getPot() > Constants.POTENTIOMETER_TOP + 10) {
 			setLifterSpeed(Constants.CLAW_UP_SPEED);
 		} else if (getPot() < Constants.POTENTIOMETER_TOP - 10) {
@@ -127,6 +140,8 @@ public class Claw extends Subsystem {
 	}
 
 	public void setPotMid() {
+		if(getPot() < 0)
+			return;
 		if (getPot() > Constants.POTENTIOMETER_MIDDLE + 10) {
 			setLifterSpeed(Constants.CLAW_UP_SPEED);
 		} else if (getPot() < Constants.POTENTIOMETER_MIDDLE - 10) {
@@ -137,6 +152,8 @@ public class Claw extends Subsystem {
 	}
 
 	public void setPotLow() {
+		if(getPot() < 0)
+			return;
 		if (getPot() > Constants.POTENTIOMETER_BOTTOM + 10) {
 			setLifterSpeed(Constants.CLAW_UP_SPEED);
 		} else if (getPot() < Constants.POTENTIOMETER_BOTTOM - 10) {
@@ -148,6 +165,8 @@ public class Claw extends Subsystem {
 
 	public void updateStatus() {
 		SmartDashboard.putNumber("pot", getPot());
+		if(getPot() < 0)
+			return;
 		if (warning > 0) {
 			if (lastLight - System.currentTimeMillis() < 500) {
 				SmartDashboard.putBoolean("ClawLow", false);
