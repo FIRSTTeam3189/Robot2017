@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
+import org.usfirst.frc.team3189.robot.Configamabob;
 import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Piston;
 import org.usfirst.frc.team3189.robot.Robot;
@@ -28,6 +29,8 @@ public class Claw extends Subsystem {
 
 	public Claw() {
 		try{
+			if(Configamabob.POT)
+				throw new Exception("NO POT");
 			potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT, 1024, 0);
 		}catch(Exception e){
 			potentiometer = null;
