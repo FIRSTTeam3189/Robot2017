@@ -130,36 +130,12 @@ public class Claw extends Subsystem {
 				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_TOP + Constants.CLAW_POT_RANGE;
 	}
 	//TODO merge the set pot methods to be one method using a pot value as input.
-	public void setPotHigh() {
+	public void setPot(double pos) {
 		if(getPot() < 0)
 			return;
-		if (getPot() > Constants.POTENTIOMETER_TOP + 10) {
+		if (getPot() > pos + 10) {
 			setLifterSpeed(Constants.CLAW_UP_SPEED);
-		} else if (getPot() < Constants.POTENTIOMETER_TOP - 10) {
-			setLifterSpeed(-Constants.CLAW_DOWN_SPEED);
-		} else {
-			setLifterSpeed(0);
-		}
-	}
-
-	public void setPotMid() {
-		if(getPot() < 0)
-			return;
-		if (getPot() > Constants.POTENTIOMETER_MIDDLE + 10) {
-			setLifterSpeed(Constants.CLAW_UP_SPEED);
-		} else if (getPot() < Constants.POTENTIOMETER_MIDDLE - 10) {
-			setLifterSpeed(-Constants.CLAW_DOWN_SPEED);
-		} else {
-			setLifterSpeed(0);
-		}
-	}
-
-	public void setPotLow() {
-		if(getPot() < 0)
-			return;
-		if (getPot() > Constants.POTENTIOMETER_BOTTOM + 10) {
-			setLifterSpeed(Constants.CLAW_UP_SPEED);
-		} else if (getPot() < Constants.POTENTIOMETER_BOTTOM - 10) {
+		} else if (getPot() < pos - 10) {
 			setLifterSpeed(-Constants.CLAW_DOWN_SPEED);
 		} else {
 			setLifterSpeed(0);

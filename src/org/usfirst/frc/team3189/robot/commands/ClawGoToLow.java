@@ -25,7 +25,7 @@ public class ClawGoToLow extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (isTimedOut()) {
-			Robot.claw.setPotLow();
+			Robot.claw.setPot(Constants.POTENTIOMETER_BOTTOM);
 		}
 	}
 

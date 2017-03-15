@@ -25,7 +25,7 @@ public class ClawGoToMid extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (isTimedOut()) {
-			Robot.claw.setPotMid();
+			Robot.claw.setPot(Constants.POTENTIOMETER_MIDDLE);
 		}
 	}
 
