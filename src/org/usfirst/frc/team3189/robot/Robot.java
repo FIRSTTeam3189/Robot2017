@@ -137,5 +137,6 @@ public class Robot extends IterativeRobot {
 			drivetrain.resetDistance();
 		}
 		SmartDashboard.putNumber("vision", vision.getPegBase());
+		SmartDashboard.putNumber("loops", vision.getLoops());
 	}
 }

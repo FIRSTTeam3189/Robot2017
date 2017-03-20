@@ -38,7 +38,7 @@ public class ClawGoToHigh extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.dropper.close();
+		//Robot.dropper.close();
 		Robot.claw.setLifterSpeed(0);
 	}
 

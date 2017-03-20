@@ -5,8 +5,10 @@ import org.usfirst.frc.team3189.robot.commands.WinchControl;
 import org.usfirst.frc.team3189.robot.commands.WinchLift;
 import org.usfirst.frc.team3189.robot.commands.WinchLower;
 import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainReverse;
+import org.usfirst.frc.team3189.robot.autonomous.AutoVisionDrive;
 import org.usfirst.frc.team3189.robot.commands.AutoDropperOpen;
 import org.usfirst.frc.team3189.robot.commands.AutoDropperToggle;
+import org.usfirst.frc.team3189.robot.commands.AutoSonarVisionDrive;
 import org.usfirst.frc.team3189.robot.commands.ClawControl;
 import org.usfirst.frc.team3189.robot.commands.ClawGoToHigh;
 import org.usfirst.frc.team3189.robot.commands.ClawGoToLow;
@@ -52,6 +54,7 @@ public class OI {
 	public JoystickButton coEight = new JoystickButton(grabjoystick, 8);
 	public JoystickButton coNine = new JoystickButton(grabjoystick, 9);
 	public JoystickButton coThree = new JoystickButton(grabjoystick, 3);
+	public JoystickButton leftFour = new JoystickButton(rightjoystick, 3);
 
 	public OI() {
 		leftOne.whileHeld(new GearboxHigh());// Hold the left trigger to be in
@@ -64,6 +67,7 @@ public class OI {
 		coNine.whenPressed(new ClawGoToLow());
 		coEight.whenPressed(new ClawToggle());
 		rightTen.whileHeld(new ClawControl());
+		leftFour.whileHeld(new AutoSonarVisionDrive(Constants.AUTO_STOP_DISTANCE));
 	}
 
 	/**

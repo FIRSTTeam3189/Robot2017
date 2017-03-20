@@ -5,7 +5,7 @@ public class Constants {
 	public static final double VISION_OFFSET = 1.0;
 	public static final int VISION_PICTURE_WIDTH = 640;
 
-	public static final double AUTO_FORWARD_SPEED = 0.3;
+	public static final double AUTO_FORWARD_SPEED = 0.35;
 	public static final double AUTO_REVERSE_SPEED = 0.4;
 
 	public static final double GYRO_SPEED_MULTIPLIER = .50;
@@ -22,7 +22,8 @@ public class Constants {
 	public static final double AUTO_DRIVE_SPEED = 0.35; // needs testing and
 														// stuff as well
 
-	public static final double AUTO_VISION_SPEED = 0.5;
+	public static final double AUTO_VISION_SPEED = 0.35;
+	public static final double AUTO_VISION_RANGE = 15;
 
 	public final static double HFC = 0.90;
 	public final static double LFC = 0.98;
@@ -38,9 +39,9 @@ public class Constants {
 
 	public static final double ENCODER_TICKS_PER_INCH = 160;
 
-	public static final double POTENTIOMETER_TOP = 350;
-	public static final double POTENTIOMETER_MIDDLE = 380;
-	public static final double POTENTIOMETER_BOTTOM = 470;
+	public static final double POTENTIOMETER_TOP = 408;
+	public static final double POTENTIOMETER_MIDDLE = 433;
+	public static final double POTENTIOMETER_BOTTOM = 527;
 	public static final double CLAW_DOWN_SPEED = 0.3;
 	public static final double CLAW_UP_SPEED = 0.4;
 	public static final double DROPPER_OPEN_DELAY = 0.25;

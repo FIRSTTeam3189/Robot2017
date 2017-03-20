@@ -29,7 +29,7 @@ public class Claw extends Subsystem {
 
 	public Claw() {
 		try{
-			if(Configamabob.POT)
+			if(!Configamabob.POT)
 				throw new Exception("NO POT");
 			potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT, 1024, 0);
 		}catch(Exception e){
@@ -106,28 +106,28 @@ public class Claw extends Subsystem {
 	}
 
 	public double getPot() {
-		return potentiometer != null ? potentiometer.get() : -1.0D;
+		return potentiometer != null ? (!Configamabob.POT_REVERSE ? potentiometer.get() : Math.abs(potentiometer.get() - 1024)) : -1.0D;
 	}
 
 	public boolean isClawLow() {
 		if(getPot() < 0)
 			return false;
-		return getPot() <= Constants.POTENTIOMETER_BOTTOM - Constants.CLAW_POT_RANGE
-				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_BOTTOM + Constants.CLAW_POT_RANGE;
+		return getPot() >= Constants.POTENTIOMETER_BOTTOM - Constants.CLAW_POT_RANGE
+				&& Robot.claw.getPot() <= Constants.POTENTIOMETER_BOTTOM + Constants.CLAW_POT_RANGE;
 	}
 
 	public boolean isClawReadyForHang() {
 		if(getPot() < 0)
 			return false;
-		return getPot() <= Constants.POTENTIOMETER_MIDDLE - Constants.CLAW_POT_RANGE
-				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_MIDDLE + Constants.CLAW_POT_RANGE;
+		return getPot() >= Constants.POTENTIOMETER_MIDDLE - Constants.CLAW_POT_RANGE
+				&& Robot.claw.getPot() <= Constants.POTENTIOMETER_MIDDLE + Constants.CLAW_POT_RANGE;
 	}
 
 	public boolean isClawHigh() {
 		if(getPot() < 0)
 			return false;
-		return getPot() <= Constants.POTENTIOMETER_TOP - Constants.CLAW_POT_RANGE
-				&& Robot.claw.getPot() >= Constants.POTENTIOMETER_TOP + Constants.CLAW_POT_RANGE;
+		return getPot() >= Constants.POTENTIOMETER_TOP - Constants.CLAW_POT_RANGE
+				&& Robot.claw.getPot() <= Constants.POTENTIOMETER_TOP + Constants.CLAW_POT_RANGE;
 	}
 	//TODO merge the set pot methods to be one method using a pot value as input.
 	public void setPot(double pos) {

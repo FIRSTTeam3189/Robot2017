@@ -18,10 +18,16 @@ public class Vision extends Subsystem {
 	// box_[box number]_[point number]_[x or y]
 
 	NetworkTable table;
+	
+	public String hasInfo = "has_info";
 
 	public Vision() {
 		table = NetworkTable.getTable("vision");
 
+	}
+	
+	public double getLoops(){
+		return table.getNumber("loop_amount", -1);
 	}
 
 	/**
@@ -52,7 +58,7 @@ public class Vision extends Subsystem {
 
 		// get all of the boxes and points
 		for (int i = 0; i < 2; i++) {
-			for (int j = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
 				points[i][j][0] = getPoint(i, j, XY.x);
 				points[i][j][1] = getPoint(i, j, XY.y);
 				if (points[i][j][0] < 0 && points[i][j][1] < 0) {
