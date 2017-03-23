@@ -27,6 +27,8 @@ public class Dropper extends Subsystem {
 	public void close() {
 		if (Robot.claw.isClawLow() || Robot.claw.isClawHigh()) {
 			piston.retract();
+		}else{
+			Robot.claw.warn();
 		}
 	}
 
@@ -34,6 +36,8 @@ public class Dropper extends Subsystem {
 	public void toggle() {
 		if (piston.isRetracted() || Robot.claw.isClawLow() || Robot.claw.isClawHigh()) {
 			piston.toggle();
+		}else{
+			Robot.claw.warn();
 		}
 
 	}

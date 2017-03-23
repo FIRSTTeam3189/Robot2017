@@ -129,13 +129,17 @@ public class Claw extends Subsystem {
 		return getPot() >= Constants.POTENTIOMETER_TOP - Constants.CLAW_POT_RANGE
 				&& Robot.claw.getPot() <= Constants.POTENTIOMETER_TOP + Constants.CLAW_POT_RANGE;
 	}
-	//TODO merge the set pot methods to be one method using a pot value as input.
+	
+	public void warn(){
+		warning = 5;
+	}
+
 	public void setPot(double pos) {
 		if(getPot() < 0)
 			return;
-		if (getPot() > pos + 10) {
+		if (getPot() > pos + Constants.CLAW_POT_RANGE) {
 			setLifterSpeed(Constants.CLAW_UP_SPEED);
-		} else if (getPot() < pos - 10) {
+		} else if (getPot() < pos - Constants.CLAW_POT_RANGE) {
 			setLifterSpeed(-Constants.CLAW_DOWN_SPEED);
 		} else {
 			setLifterSpeed(0);
@@ -147,11 +151,11 @@ public class Claw extends Subsystem {
 		if(getPot() < 0)
 			return;
 		if (warning > 0) {
-			if (lastLight - System.currentTimeMillis() < 500) {
+			if (lastLight - System.currentTimeMillis() < 200) {
 				SmartDashboard.putBoolean("ClawLow", false);
 				SmartDashboard.putBoolean("ClawMid", false);
 				SmartDashboard.putBoolean("ClawHigh", false);
-			} else if (lastLight - System.currentTimeMillis() > 1000) {
+			} else if (lastLight - System.currentTimeMillis() > 400) {
 				warning--;
 				lastLight = System.currentTimeMillis();
 			}

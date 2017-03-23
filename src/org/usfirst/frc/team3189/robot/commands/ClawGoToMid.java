@@ -18,7 +18,10 @@ public class ClawGoToMid extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Robot.dropper.open();
-		Robot.claw.close();
+		if(Robot.claw.getPot() > Constants.POTENTIOMETER_MIDDLE)
+			Robot.claw.close();
+		else
+			Robot.claw.open();
 		setTimeout(Constants.DROPPER_OPEN_DELAY);
 	}
 

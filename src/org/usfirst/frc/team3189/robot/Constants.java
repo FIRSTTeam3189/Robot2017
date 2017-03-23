@@ -39,9 +39,9 @@ public class Constants {
 
 	public static final double ENCODER_TICKS_PER_INCH = 160;
 
-	public static final double POTENTIOMETER_TOP = 408;
-	public static final double POTENTIOMETER_MIDDLE = 433;
-	public static final double POTENTIOMETER_BOTTOM = 527;
+	public static final double POTENTIOMETER_TOP = 375;
+	public static final double POTENTIOMETER_MIDDLE = 403;
+	public static final double POTENTIOMETER_BOTTOM = 505;
 	public static final double CLAW_DOWN_SPEED = 0.3;
 	public static final double CLAW_UP_SPEED = 0.4;
 	public static final double DROPPER_OPEN_DELAY = 0.25;
