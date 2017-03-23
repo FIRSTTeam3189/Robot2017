@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoSonarVisionDrive extends Command {
+public class AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide extends Command {
 	
 	/**
 	 * Stop's once value is reached
 	 */
 	double stopDistance;
 
-    public AutoSonarVisionDrive(double stopDistance) {
+    public AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(double stopDistance) {
 		requires(Robot.drivetrain);
 		this.stopDistance = stopDistance;
     }
@@ -39,7 +39,7 @@ public class AutoSonarVisionDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;//(stopDistance + 1 >= Robot.drivetrain.sonarPing());
+    	return (stopDistance + 1 >= Robot.drivetrain.sonarPing());
     }
 
     // Called once after isFinished returns true

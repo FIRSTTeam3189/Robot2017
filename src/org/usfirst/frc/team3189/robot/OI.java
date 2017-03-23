@@ -8,7 +8,7 @@ import org.usfirst.frc.team3189.robot.autonomous.AutoDrivetrainReverse;
 import org.usfirst.frc.team3189.robot.autonomous.AutoVisionDrive;
 import org.usfirst.frc.team3189.robot.commands.AutoDropperOpen;
 import org.usfirst.frc.team3189.robot.commands.AutoDropperToggle;
-import org.usfirst.frc.team3189.robot.commands.AutoSonarVisionDrive;
+import org.usfirst.frc.team3189.robot.commands.AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide;
 import org.usfirst.frc.team3189.robot.commands.ClawControl;
 import org.usfirst.frc.team3189.robot.commands.ClawGoToHigh;
 import org.usfirst.frc.team3189.robot.commands.ClawGoToLow;
@@ -67,7 +67,7 @@ public class OI {
 		coNine.whenPressed(new ClawGoToLow());
 		coEight.whenPressed(new ClawToggle());
 		rightTen.whileHeld(new ClawControl());
-		leftFour.whileHeld(new AutoSonarVisionDrive(Constants.AUTO_STOP_DISTANCE));
+		leftFour.whileHeld(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
 	}
 
 	/**
