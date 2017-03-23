@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3189.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -36,6 +38,9 @@ public class Robot extends IterativeRobot {
 	public static Dropper dropper;
 	public static Claw claw;
 	public static Vision vision;
+	private static UsbCamera cam1;
+	private static UsbCamera cam2;
+	private static VideoSink server;
 	Compressor comp = new Compressor(0); // is this a magic number? -Nate
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -54,12 +59,23 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		vision = new Vision();
 		oi = new OI();
-		CameraServer.getInstance().startAutomaticCapture();
+		cam1 = CameraServer.getInstance().startAutomaticCapture();
+		cam2 = CameraServer.getInstance().startAutomaticCapture();
+		server = CameraServer.getInstance().getVideo();
+		server.setSource(cam1);
 		chooser.addDefault("Center", new AutoGroupCenter());
 		chooser.addObject("Left", new AutoGroupLeft());
 		chooser.addObject("Right", new AutoGroupRight());
 		chooser.addObject("None", new AutoGroupNothing());
 		SmartDashboard.putData("Auto mode", chooser);
+	}
+	
+	public static void setLowCam(){
+		server.setSource(cam2);
+	}
+	
+	public static void setHighCam(){
+		server.setSource(cam1);
 	}
 
 	/**

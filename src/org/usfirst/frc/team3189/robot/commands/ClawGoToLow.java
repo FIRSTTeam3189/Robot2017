@@ -19,6 +19,7 @@ public class ClawGoToLow extends Command {
 	protected void initialize() {
 		Robot.dropper.open();
 		Robot.claw.open();
+		Robot.setLowCam();
 		setTimeout(Constants.DROPPER_OPEN_DELAY);
 	}
 
