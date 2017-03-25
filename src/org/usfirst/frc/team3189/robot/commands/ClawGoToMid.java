@@ -22,6 +22,7 @@ public class ClawGoToMid extends Command {
 			Robot.claw.close();
 		else
 			Robot.claw.open();
+		Robot.useHighCamera();
 		setTimeout(Constants.DROPPER_OPEN_DELAY);
 	}
 

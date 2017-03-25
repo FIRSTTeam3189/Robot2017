@@ -139,7 +139,7 @@ public class Drivetrain extends Subsystem {
 		// SmartDashboard.putNumber("righttwo", rightMiddle.getOutputVoltage());
 		// SmartDashboard.putNumber("rightthree",
 		// rightFront.getOutputVoltage());
-		SmartDashboard.putNumber("Ultrasonic sensor	", sonarPing());
+		SmartDashboard.putNumber("Ultrasonic", sonarPing());
 		SmartDashboard.putNumber("accel", Accelorometer.getX());
 		SmartDashboard.putNumber("gyro", getGyroAngle());
 		SmartDashboard.putNumber("LeftEnoderInches", getLeftDistance());

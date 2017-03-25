@@ -16,8 +16,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoGroupCenter extends CommandGroup {
 
 	public AutoGroupCenter() {
-		addSequential(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
-		addSequential(new WaitCommand(0.15));
+		//addSequential(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
+		addSequential(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE + 1));
+		addSequential(new WaitCommand(0.35));
 		addParallel(new DropperOpen());
 		addSequential(new WaitCommand(0.5));
 		addSequential(new AutoDrivetrainReverse(2.5));

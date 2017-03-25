@@ -67,7 +67,8 @@ public class OI {
 		coNine.whenPressed(new ClawGoToLow());
 		coEight.whenPressed(new ClawToggle());
 		rightTen.whileHeld(new ClawControl());
-		leftFour.whileHeld(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
+//		leftFour.whileHeld(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
+		leftFour.whileHeld(new AutoVisionDrive());
 	}
 
 	/**

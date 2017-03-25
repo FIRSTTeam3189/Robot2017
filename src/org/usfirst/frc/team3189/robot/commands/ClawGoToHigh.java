@@ -21,6 +21,7 @@ public class ClawGoToHigh extends Command {
 	protected void initialize() {
 		Robot.dropper.open();
 		Robot.claw.open();
+		Robot.useHighCamera();
 		setTimeout(Constants.DROPPER_OPEN_DELAY);
 	}
 

@@ -24,19 +24,25 @@ public class AutoVisionDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double thingy = Robot.vision.getPegBase();
-		if (thingy >= Constants.AUTO_VISION_RANGE) {
-			Robot.drivetrain.tankDrive(-Constants.AUTO_VISION_SPEED, Constants.AUTO_VISION_SPEED);
-		} else if (thingy <= -Constants.AUTO_VISION_RANGE) {
-			Robot.drivetrain.tankDrive(Constants.AUTO_VISION_SPEED, -Constants.AUTO_VISION_SPEED);
-		}else{
+		if (Robot.vision.isGood()) {
+
+			double thingy = Robot.vision.getPegBase();
+			if (thingy >= Constants.AUTO_VISION_RANGE) {
+				Robot.drivetrain.tankDrive(-Constants.AUTO_VISION_SPEED, Constants.AUTO_VISION_SPEED);
+			} else if (thingy <= -Constants.AUTO_VISION_RANGE) {
+				Robot.drivetrain.tankDrive(Constants.AUTO_VISION_SPEED, -Constants.AUTO_VISION_SPEED);
+			}else {
+				Robot.drivetrain.tankDrive(0, 0);
+			}
+		} else {
 			Robot.drivetrain.tankDrive(0, 0);
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (Robot.vision.getPegBase() <= Constants.AUTO_VISION_RANGE && Robot.vision.getPegBase() >= -Constants.AUTO_VISION_RANGE);
+		return Robot.vision.isGood() && (Robot.vision.getPegBase() <= Constants.AUTO_VISION_RANGE
+				&& Robot.vision.getPegBase() >= -Constants.AUTO_VISION_RANGE);
 	}
 
 	// Called once after isFinished returns true

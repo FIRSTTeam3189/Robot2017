@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3189.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -36,6 +38,13 @@ public class Robot extends IterativeRobot {
 	public static Dropper dropper;
 	public static Claw claw;
 	public static Vision vision;
+	
+	public static UsbCamera cam1;
+	public static UsbCamera cam2;
+	public static VideoSink server;
+	
+	public static long timeThing;
+	public static boolean thing = false;
 	Compressor comp = new Compressor(0); // is this a magic number? -Nate
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -54,7 +63,20 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		vision = new Vision();
 		oi = new OI();
-		CameraServer.getInstance().startAutomaticCapture();
+		try {
+			cam1 = CameraServer.getInstance().startAutomaticCapture(0);
+			if (Configamabob.HAS_TWO_CAMERAS) {
+				cam2 = CameraServer.getInstance().startAutomaticCapture(1);
+			}
+			server = CameraServer.getInstance().getServer();
+			if (Configamabob.HAS_TWO_CAMERAS && Configamabob.LOW_CAM_IS_ONE) {
+				server.setSource(cam1);
+			} else {
+				server.setSource(cam2);
+			}
+		} catch (Exception e) {
+			System.out.println("Camera Error");
+		}
 		chooser.addDefault("Center", new AutoGroupCenter());
 		chooser.addObject("Left", new AutoGroupLeft());
 		chooser.addObject("Right", new AutoGroupRight());
@@ -62,19 +84,34 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
+	public static void useLowCamera() {
+		if (Configamabob.HAS_TWO_CAMERAS) {
+			if ((Configamabob.LOW_CAM_IS_ONE ? cam1 : cam2) != null) {
+				server.setSource((Configamabob.LOW_CAM_IS_ONE ? cam1 : cam2));
+			}
+		}
+	}
 
+	public static void useHighCamera() {
+		if (Configamabob.HAS_TWO_CAMERAS) {
+			if ((Configamabob.LOW_CAM_IS_ONE ? cam2 : cam1) != null) {
+				server.setSource((Configamabob.LOW_CAM_IS_ONE ? cam2 : cam1));
+			}
+		}
+	}
+
+	public void disabledInit() {
+		if (Configamabob.HAS_TWO_CAMERAS && Configamabob.LOW_CAM_IS_ONE) {
+			server.setSource(cam2);
+		} else {
+			server.setSource(cam1);
+		}
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
 		updateStatus();
 	}
 
@@ -138,5 +175,6 @@ public class Robot extends IterativeRobot {
 		}
 		SmartDashboard.putNumber("vision", vision.getPegBase());
 		SmartDashboard.putNumber("loops", vision.getLoops());
+		SmartDashboard.putBoolean("Has Info", vision.IsHasInfo());
 	}
 }

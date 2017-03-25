@@ -2,8 +2,12 @@ package org.usfirst.frc.team3189.robot.subsystems;
 
 import org.usfirst.frc.team3189.robot.Constants;
 
+import com.sun.corba.se.impl.ior.ByteBuffer;
+
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The sight for the Robot
@@ -18,8 +22,11 @@ public class Vision extends Subsystem {
 	// box_[box number]_[point number]_[x or y]
 
 	NetworkTable table;
+	public double lastLoop = 0;
 	
 	public String hasInfo = "has_info";
+	private I2C i2cBus = null;
+	private int address = 0xE2;
 
 	public Vision() {
 		table = NetworkTable.getTable("vision");
@@ -28,6 +35,27 @@ public class Vision extends Subsystem {
 	
 	public double getLoops(){
 		return table.getNumber("loop_amount", -1);
+	}
+	
+	public boolean IsHasInfo(){
+		return table.getBoolean(hasInfo, false);
+	}
+	
+	public boolean isGood(){
+		boolean flag = getLoops() > lastLoop;
+		lastLoop = getLoops();
+		return flag && IsHasInfo();
+	}
+	
+	public void i2cCheck(){
+		if(i2cBus == null){
+			i2cBus = new I2C(I2C.Port.kOnboard, 0xE1);
+		}
+	}
+	
+	public boolean i2cWrite(byte[] data){
+		i2cCheck();
+		return i2cBus.writeBulk(data);
 	}
 
 	/**
