@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Right", new AutoGroupRight());
 		chooser.addObject("None", new AutoGroupNothing());
 		SmartDashboard.putData("Auto mode", chooser);
+		vision.start();
 	}
 
 	public static void useLowCamera() {

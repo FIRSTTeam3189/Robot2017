@@ -5,6 +5,8 @@ import org.usfirst.frc.team3189.robot.Constants;
 import com.sun.corba.se.impl.ior.ByteBuffer;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Devlyn, Alex
  */
-public class Vision extends Subsystem {
+public class Vision extends Subsystem implements Runnable {
 
 	public enum XY {
 		x, y
@@ -25,12 +27,36 @@ public class Vision extends Subsystem {
 	public double lastLoop = 0;
 	
 	public String hasInfo = "has_info";
+	
+	
 	private I2C i2cBus = null;
+	private SerialPort uart;
 	private int address = 0xE2;
+	private boolean running = true;
+	private long lastUpdated = System.currentTimeMillis();  
+	private boolean gotTarget = false;
+	private double pixelsOff = 0;
 
 	public Vision() {
 		table = NetworkTable.getTable("vision");
 
+	}
+	
+	public void start(){
+		Thread thread = new Thread(this);
+		thread.start();
+		uart = new SerialPort(115200, Port.kMXP);
+	}
+	
+	public void run(){
+		while(running){
+			i2cWrite(5);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public double getLoops(){
@@ -47,15 +73,26 @@ public class Vision extends Subsystem {
 		return flag && IsHasInfo();
 	}
 	
+	public boolean hasUpdated(){
+		return gotTarget && lastUpdated + 500 >= System.currentTimeMillis();
+	}
+	
 	public void i2cCheck(){
 		if(i2cBus == null){
 			i2cBus = new I2C(I2C.Port.kOnboard, 0xE1);
 		}
 	}
 	
-	public boolean i2cWrite(byte[] data){
+	public boolean i2cWrite(int data){
 		i2cCheck();
-		return i2cBus.writeBulk(data);
+		return i2cBus.write(address, data);
+	}
+	
+	public byte[] i2cRead(){
+		i2cCheck();
+		byte[] temp = new byte[4];
+		i2cBus.read(address, 4, temp);
+		return temp;
 	}
 
 	/**
