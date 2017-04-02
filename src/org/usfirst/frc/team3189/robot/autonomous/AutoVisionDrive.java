@@ -24,9 +24,9 @@ public class AutoVisionDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.vision.isGood()) {
+		if (Robot.vision.hasUpdated()) {
 
-			double thingy = Robot.vision.getPegBase();
+			double thingy = Robot.vision.getPixelsOff();
 			if (thingy >= Constants.AUTO_VISION_RANGE) {
 				Robot.drivetrain.tankDrive(-Constants.AUTO_VISION_SPEED, Constants.AUTO_VISION_SPEED);
 			} else if (thingy <= -Constants.AUTO_VISION_RANGE) {
@@ -41,8 +41,8 @@ public class AutoVisionDrive extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.vision.isGood() && (Robot.vision.getPegBase() <= Constants.AUTO_VISION_RANGE
-				&& Robot.vision.getPegBase() >= -Constants.AUTO_VISION_RANGE);
+		return Robot.vision.hasUpdated() && (Robot.vision.getPixelsOff() <= Constants.AUTO_VISION_RANGE
+				&& Robot.vision.getPixelsOff() >= -Constants.AUTO_VISION_RANGE);
 	}
 
 	// Called once after isFinished returns true

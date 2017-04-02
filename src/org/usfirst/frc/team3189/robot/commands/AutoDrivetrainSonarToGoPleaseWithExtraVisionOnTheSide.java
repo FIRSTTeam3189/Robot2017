@@ -29,8 +29,8 @@ public class AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide extends Comma
 	protected void execute() {
     	double speedL = -Constants.AUTO_FORWARD_SPEED;
     	double speedR = -Constants.AUTO_FORWARD_SPEED;
-    	double thingy = Robot.vision.getPegBase();
-		if(Robot.vision.isGood()){
+    	double thingy = Robot.vision.getPixelsOff();
+		if(Robot.vision.hasUpdated()){
 			if (thingy >= Constants.AUTO_VISION_RANGE) {
 				speedR *= MULTI;
 			} else if (thingy <= -Constants.AUTO_VISION_RANGE) {

@@ -1,8 +1,11 @@
 package org.usfirst.frc.team3189.robot.subsystems;
 
-import org.usfirst.frc.team3189.robot.Constants;
+import java.awt.List;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
 
-import com.sun.corba.se.impl.ior.ByteBuffer;
+import org.usfirst.frc.team3189.robot.Constants;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -28,14 +31,15 @@ public class Vision extends Subsystem implements Runnable {
 	
 	public String hasInfo = "has_info";
 	
-	
-	private I2C i2cBus = null;
 	private SerialPort uart;
 	private int address = 0xE2;
 	private boolean running = true;
 	private long lastUpdated = System.currentTimeMillis();  
 	private boolean gotTarget = false;
-	private double pixelsOff = 0;
+	private int pixelsOff = 0;
+	private int buad = 115200;
+	private ArrayList<Byte> incoming = new ArrayList<Byte>();
+	private int index;
 
 	public Vision() {
 		table = NetworkTable.getTable("vision");
@@ -43,16 +47,55 @@ public class Vision extends Subsystem implements Runnable {
 	}
 	
 	public void start(){
+		uart = new SerialPort(buad, Port.kMXP);
 		Thread thread = new Thread(this);
 		thread.start();
-		uart = new SerialPort(115200, Port.kMXP);
 	}
 	
 	public void run(){
 		while(running){
-			i2cWrite(5);
+			byte[] raw = serialRead();
+			byte[] temp = raw;
+			
+			for(byte taco : raw){
+				System.out.printf("%02X", taco);
+			}
+			
+			int si = 0;
+			
+			while(si < temp.length){
+				//SmartDashboard.put("VisionRaw", raw);
+				if((index < 3 && temp[si] != 0x77) || index > 8)
+					incoming.clear();
+				else{
+					incoming.add(new Byte(temp[si]));
+				}
+				
+				if(index >= 7){
+					lastUpdated = System.currentTimeMillis();
+					System.out.println("LastUpdated: " + lastUpdated);
+					SmartDashboard.putString("VisionLastUpdate", ""+lastUpdated);
+					
+					gotTarget = incoming.get(3) == 0x00 ? false : true;
+					SmartDashboard.putBoolean("VisionGotTarget", gotTarget);
+					byte[] bytes = new byte[4];
+					
+					for(int i = 4; i < 8; ++i)
+						bytes[i - 4] = incoming.get(i);
+
+					pixelsOff = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getInt();
+					System.out.println("PixelsOff: " + pixelsOff);
+					SmartDashboard.putString("PixelsOff", ""+pixelsOff);
+					incoming.clear();
+					index = 0;
+				}else
+					index = incoming.size();
+				
+				si++;
+			}
+			
 			try {
-				Thread.sleep(100);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -73,26 +116,32 @@ public class Vision extends Subsystem implements Runnable {
 		return flag && IsHasInfo();
 	}
 	
-	public boolean hasUpdated(){
-		return gotTarget && lastUpdated + 500 >= System.currentTimeMillis();
+	public boolean getTarget(){
+		return gotTarget;
 	}
 	
-	public void i2cCheck(){
-		if(i2cBus == null){
-			i2cBus = new I2C(I2C.Port.kOnboard, 0xE1);
+	public boolean hasUpdated(){
+		return gotTarget && lastUpdated + 150 >= System.currentTimeMillis();
+	}
+	
+	public void serialCheck(){
+		if(uart == null){
+			//uart = new SerialPort(buad, Port.kMXP);
 		}
 	}
 	
-	public boolean i2cWrite(int data){
-		i2cCheck();
-		return i2cBus.write(address, data);
+	public int serialWrite(String data){
+		serialCheck();
+		return uart.writeString(data);
 	}
 	
-	public byte[] i2cRead(){
-		i2cCheck();
-		byte[] temp = new byte[4];
-		i2cBus.read(address, 4, temp);
-		return temp;
+	public byte[] serialRead(){
+		serialCheck();
+		return uart.read(8);
+	}
+	
+	public int getPixelsOff(){
+		return pixelsOff;
 	}
 
 	/**
