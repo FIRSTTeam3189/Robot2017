@@ -171,6 +171,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Claw", claw);
 		drivetrain.updateStatus();
 		claw.updateStatus();
+		
+		SmartDashboard.putNumber("CoPilot", oi.getCoPilotJoystickY());
+		
 		if (oi.rightTen.get()) {
 			drivetrain.resetDistance();
 		}

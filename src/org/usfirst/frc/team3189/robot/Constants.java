@@ -36,12 +36,13 @@ public class Constants {
 
 	public static final double CLAW_LOWER_SPEED = -0.5;
 	public static final double CLAW_RAISE_SPEED = 0.5;
+	public static final double CLIMB_SPEED = 0.85;
 
 	public static final double ENCODER_TICKS_PER_INCH = 160;
 
-	public static final double POTENTIOMETER_TOP = 440;
-	public static final double POTENTIOMETER_MIDDLE = 470;
-	public static final double POTENTIOMETER_BOTTOM = 570;
+	public static final double POTENTIOMETER_TOP = 250;
+	public static final double POTENTIOMETER_MIDDLE = 280;
+	public static final double POTENTIOMETER_BOTTOM = 375;
 	public static final double CLAW_DOWN_SPEED = 0.3;
 	public static final double CLAW_UP_SPEED = 0.4;
 	public static final double DROPPER_OPEN_DELAY = 0.25;

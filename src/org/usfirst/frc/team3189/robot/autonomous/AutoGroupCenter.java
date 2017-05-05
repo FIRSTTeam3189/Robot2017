@@ -4,6 +4,8 @@ import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.commands.AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide;
 import org.usfirst.frc.team3189.robot.commands.DropperClose;
 import org.usfirst.frc.team3189.robot.commands.DropperOpen;
+import org.usfirst.frc.team3189.robot.commands.WinchUnHook;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -21,6 +23,7 @@ public class AutoGroupCenter extends CommandGroup {
 		addSequential(new WaitCommand(0.35));
 		addParallel(new DropperOpen());
 		addSequential(new WaitCommand(0.5));
+		addParallel(new WinchUnHook());
 		addSequential(new AutoDrivetrainReverse(2.5));
 		addSequential(new DropperClose());
 	}

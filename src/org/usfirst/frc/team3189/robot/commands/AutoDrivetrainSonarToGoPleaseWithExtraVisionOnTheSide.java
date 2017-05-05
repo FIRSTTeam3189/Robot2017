@@ -14,7 +14,7 @@ public class AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide extends Comma
 	 * Stop's once value is reached
 	 */
 	double stopDistance;
-	public static double MULTI = 0.65;
+	public static double MULTI = 0.5;
 
 	public AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(double stopDistance) {
 		requires(Robot.drivetrain);

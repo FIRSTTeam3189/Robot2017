@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class WinchLower extends Command {
+public class WinchUnHook extends Command {
 
-	public WinchLower() {
+	public WinchUnHook() {
 		requires(Robot.winch);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -18,16 +18,17 @@ public class WinchLower extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		setTimeout(3);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.winch.setWinchspeed(Constants.CLIMB_SPEED);
+		Robot.winch.setWinchspeed(Constants.CLIMB_SPEED*0.66);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true

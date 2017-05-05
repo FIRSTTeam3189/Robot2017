@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3189.robot.commands;
 
+import org.usfirst.frc.team3189.robot.Constants;
 import org.usfirst.frc.team3189.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,7 +22,7 @@ public class WinchLift extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.winch.setWinchspeed(1);
+		Robot.winch.setWinchspeed(-Constants.CLIMB_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

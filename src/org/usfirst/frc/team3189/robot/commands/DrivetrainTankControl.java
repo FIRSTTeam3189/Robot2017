@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
  * Uses the Robots drivetrain's subsystem
  */
 public class DrivetrainTankControl extends Command {
+	
+	private boolean r = false;
+	private boolean flag;
 
 	public DrivetrainTankControl() {
 		requires(Robot.drivetrain);
@@ -23,7 +26,13 @@ public class DrivetrainTankControl extends Command {
 	}
 
 	protected void execute() {
-		Robot.drivetrain.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
+		Robot.drivetrain.tankDrive(r ? -Robot.oi.getRightY() : Robot.oi.getLeftY(), r ? -Robot.oi.getLeftY() : Robot.oi.getRightY());
+		if(Robot.oi.rightOne.get() && !flag){
+			flag = true;
+			r = !r;
+		}else if(flag && !Robot.oi.rightOne.get()){
+			flag = false;
+		}
 	}
 
 	protected boolean isFinished() {

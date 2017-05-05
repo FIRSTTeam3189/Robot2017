@@ -44,7 +44,7 @@ public class OI {
 	// private JoystickButton rightFour = new JoystickButton(rightjoystick, 4);
 	// private JoystickButton rightFive = new JoystickButton(rightjoystick, 5);
 	// private JoystickButton rightThree = new JoystickButton(rightjoystick, 3);
-	// private JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
+	public JoystickButton rightOne = new JoystickButton(rightjoystick, 1);
 	public JoystickButton rightTen = new JoystickButton(rightjoystick, 10);
 	public JoystickButton coSix = new JoystickButton(grabjoystick, 6);
 	public JoystickButton coSeven = new JoystickButton(grabjoystick, 7);
@@ -69,6 +69,7 @@ public class OI {
 		rightTen.whileHeld(new ClawControl());
 //		leftFour.whileHeld(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
 		leftFour.whileHeld(new AutoVisionDrive());
+		
 	}
 
 	/**
