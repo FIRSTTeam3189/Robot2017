@@ -23,7 +23,7 @@ public class Constants {
 														// stuff as well
 
 	public static final double AUTO_VISION_SPEED = 0.35;
-	public static final double AUTO_VISION_RANGE = 100;
+	public static final double AUTO_VISION_RANGE = 10;
 
 	public final static double HFC = 0.90;
 	public final static double LFC = 0.98;

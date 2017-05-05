@@ -14,7 +14,8 @@ public class AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide extends Comma
 	 * Stop's once value is reached
 	 */
 	double stopDistance;
-	public static double MULTI = 0.5;
+	public static double visionScalerRange = 0.5;
+	public static double visionScalerConstant = 0.1;
 
 	public AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(double stopDistance) {
 		requires(Robot.drivetrain);
@@ -27,14 +28,14 @@ public class AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide extends Comma
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-    	double speedL = -Constants.AUTO_FORWARD_SPEED;
-    	double speedR = -Constants.AUTO_FORWARD_SPEED;
+    	double speedL = -Constants.AUTO_VISION_SPEED;
+    	double speedR = -Constants.AUTO_VISION_SPEED;
     	double thingy = Robot.vision.getPixelsOff();
 		if(Robot.vision.hasUpdated()){
 			if (thingy >= Constants.AUTO_VISION_RANGE) {
-				speedR *= MULTI;
+				speedR *= (visionScalerRange*(thingy/320)) + visionScalerConstant;
 			} else if (thingy <= -Constants.AUTO_VISION_RANGE) {
-				speedL *= MULTI;
+				speedL *= (visionScalerRange*(thingy/320)) + visionScalerConstant;
 			}
 		}
 		Robot.drivetrain.tankDrive(speedL,speedR);
