@@ -46,10 +46,10 @@ public class Robot extends IterativeRobot {
 	
 	public static long timeThing;
 	public static boolean thing = false;
-	Compressor comp = new Compressor(0); // is this a magic number? -Nate
+	Compressor comp = new Compressor(0);
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	PowerDistributionPanel pdp;
+	PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -58,7 +58,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		comp.setClosedLoopControl(true);
-		pdp = new PowerDistributionPanel(0);
 		drivetrain = new Drivetrain();
 		gearbox = new Gearbox();
 		winch = new Winch();
@@ -66,6 +65,7 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		vision = new Vision();
 		oi = new OI();
+		
 		try {
 			cam1 = CameraServer.getInstance().startAutomaticCapture(0);
 			if (Configamabob.HAS_TWO_CAMERAS) {
@@ -80,11 +80,13 @@ public class Robot extends IterativeRobot {
 		} catch (Exception e) {
 			System.out.println("Camera Error");
 		}
+		
 		chooser.addDefault("Center", new AutoGroupCenter());
 		chooser.addObject("Left", new AutoGroupLeft());
 		chooser.addObject("Right", new AutoGroupRight());
 		chooser.addObject("None", new AutoGroupNothing());
 		SmartDashboard.putData("Auto mode", chooser);
+		
 		vision.start();
 	}
 
