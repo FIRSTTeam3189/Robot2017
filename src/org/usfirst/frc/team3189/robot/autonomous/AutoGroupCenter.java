@@ -24,7 +24,7 @@ public class AutoGroupCenter extends CommandGroup {
 		addParallel(new DropperOpen());
 		addSequential(new WaitCommand(0.5));
 		addParallel(new WinchUnHook());
-		addSequential(new AutoDrivetrainReverse(2.5));
+		addSequential(new AutoDrivetrainReverse(0.65));
 		addSequential(new DropperClose());
 	}
 }

@@ -14,7 +14,7 @@ public class AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide extends Comma
 	 * Stop's once value is reached
 	 */
 	double stopDistance;
-	public static double visionScalerRange = 0.5;
+	public static double visionScalerRange = 0.2;
 	public static double visionScalerConstant = 0.1;
 
 	public AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(double stopDistance) {

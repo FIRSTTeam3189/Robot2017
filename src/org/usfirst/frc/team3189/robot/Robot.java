@@ -5,6 +5,7 @@ import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 	Compressor comp = new Compressor(0); // is this a magic number? -Nate
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	PowerDistributionPanel pdp;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -56,6 +58,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		comp.setClosedLoopControl(true);
+		pdp = new PowerDistributionPanel(0);
 		drivetrain = new Drivetrain();
 		gearbox = new Gearbox();
 		winch = new Winch();
@@ -173,6 +176,10 @@ public class Robot extends IterativeRobot {
 		claw.updateStatus();
 		
 		SmartDashboard.putNumber("CoPilot", oi.getCoPilotJoystickY());
+		
+		for(int i = 0; i < 16; ++i){
+			SmartDashboard.putNumber("PDP " + i + ":", pdp.getCurrent(i));
+		}
 		
 		if (oi.rightTen.get()) {
 			drivetrain.resetDistance();

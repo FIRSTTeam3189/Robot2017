@@ -67,8 +67,8 @@ public class OI {
 		coNine.whenPressed(new ClawGoToLow());
 		coEight.whenPressed(new ClawToggle());
 		rightTen.whileHeld(new ClawControl());
-//		leftFour.whileHeld(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
-		leftFour.whileHeld(new AutoVisionDrive());
+		leftFour.whileHeld(new AutoDrivetrainSonarToGoPleaseWithExtraVisionOnTheSide(Constants.AUTO_STOP_DISTANCE));
+	//	leftFour.whileHeld(new AutoVisionDrive());
 		
 	}
 
@@ -99,6 +99,7 @@ public class OI {
 	 * @return Double copilot's joystick value
 	 */
 	public double getCoPilotJoystickY() {
-		return grabjoystick.getY();
+		double temp = grabjoystick.getY();
+		return (temp > -0.3 && temp < 0.3) ? 0 : temp;
 	}
 }
